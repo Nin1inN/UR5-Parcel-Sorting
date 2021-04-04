@@ -10,9 +10,7 @@ import threading
 import os
 import webbrowser
 
-systemStatus = False
-
-systemConnected = False
+systemStatus = "Offline"
 
 root = 0
 
@@ -151,7 +149,7 @@ class GUI(ttk.Frame):
         # loop over
         while True:
         
-            if(systemStatus == True):
+            if(systemStatus == "Online"):
                 # receive frames from network
                 frame = self.NetGearclient.recv()
             
@@ -251,7 +249,7 @@ class GUI(ttk.Frame):
             
             self.systemStatusLabelText.set("System Status - Standby")
             self.systemStatusLabel.config(bg = '#f9ff54')
-            systemStatus = False
+            systemStatus = "Standby"
                                           
         except Exception as e:
             print(e)
@@ -285,13 +283,12 @@ class GUI(ttk.Frame):
         
 
     def startSystem(self):
-        global systemConnected
         global systemStatus
        
         
         #Create another client (with a different port) to handle the video stream. 
         
-        if(systemConnected == False):
+        if(systemStatus == "Offline"):
            
             
             
@@ -309,8 +306,8 @@ class GUI(ttk.Frame):
                 
                 self.systemStatusLabelText.set("System Status - Online")
                 self.systemStatusLabel.config(bg = '#499c5f')
-                systemStatus = True
-                systemConnected = True
+                systemStatus = "Online"
+                
                 
                 #Start video stream here
                 
@@ -326,7 +323,7 @@ class GUI(ttk.Frame):
             try:
                 jsonResult = {"first":"Client 2", "second":"Resume System"}
                 self.send(jsonResult)
-                systemStatus = True 
+                systemStatus = "Online"
                 
                 
                 
