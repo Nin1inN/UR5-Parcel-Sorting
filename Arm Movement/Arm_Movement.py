@@ -17,7 +17,7 @@ from threading import Event
 serverIP = '127.0.0.1'
 serverPORT = 6000
 
-armIP = "10.0.0.3"
+armIP = "10.0.0.4"
 armPORT = 30002
 
 systemStatus = "Offline"
@@ -32,31 +32,49 @@ systemStatus = "Offline"
 
 #Ready to add other functions for arm movement
 
+
+
+
+#z axis = 109mm at workcell level.
 #Tells server ready for TCP values
 def TCPwrapper(in_q, conn, rtde_c, rtde_r):
     global systemStatus
 
+
+    #For testing purposes
+    systemStatus = "Online"
     #May not need armPosition
     #global armPosition
 
 
     #Place holders, set to defaults
-    home_position = np.zeros(6)
-    place_position = np.zeros(6)
-    armVelocity = 0.9
-
+    home_position = np.array([-0.093, -0.486, 0.530, 1.56, -2.62, -0.03])
+    armVelocity = 0.3
 
     targetTCP = np.zeros(6)
+    place_position = np.zeros(6)
 
+    jsonResult = {"first": "TCP Values", "second": "-0.514", "third": "-0.029" , "fourth": "0.220" , "fifth": "1.05" , "sixth": "-3", "seventh": "-0.15"  }
+
+
+    in_q.put(jsonResult)
+
+    jsonResult = {"first": "Place Location", "second": "-0.050", "third": "-0.565" , "fourth": "0.270" , "fifth": "1.05" , "sixth": "-3", "seventh": "-0.15"  }
+
+    in_q.put(jsonResult)
 
     while (True):
 
+
         if(systemStatus == "Online"):
+
+
+
             #if(armPosition == "Home"):
 
 
-                jsonResult = {"first":"Client 1", "second": "Ready for TCP Values"}
-                send(conn, jsonResult)
+                # jsonResult = {"first":"Client 1", "second": "Ready for TCP Values"}
+                # send(conn, jsonResult)
 
 
                 #This will wait until queue has data.
@@ -67,8 +85,6 @@ def TCPwrapper(in_q, conn, rtde_c, rtde_r):
                 #May check for velocity changes between each section.
                 while(in_q.empty() == False):
                     jsonReceived = in_q.get()
-
-                    in_q.pop(0)
 
                     if(jsonReceived["first"] == "TCP Values"):
                         targetTCP[0] = float(jsonReceived["second"])
@@ -98,30 +114,36 @@ def TCPwrapper(in_q, conn, rtde_c, rtde_r):
 
                 #Not doing a current velocity since the user will likely will want the arm to change velocity as quickly as possible
 
+
                 #This section moves the arm to pickup a package
-                movRobot(rtde_c, targetTCPvalues, armVelocity, 1, True, False)
+                movRobot(rtde_c, targetTCP, armVelocity, 0.6, True, False)
+                time.sleep(1)
+
                 #armPosition = "Unknown"
 
-                checkTCPValues(rtde_r, rtde_c, targetTCPvalues, armVelocity)
-
-                pickParcel()
-
-                #################################################################
-
-                armVelocity = checkVelocity(in_q, armVelocity)
-
-                #This section moves the arm to parcel drop location
+                checkTCPValues(rtde_r, rtde_c, targetTCP, armVelocity)
+                #
+                # pickParcel()
+                #
+                # #################################################################
+                #
+                # armVelocity = checkVelocity(in_q, armVelocity)
+                #
+                # #This section moves the arm to parcel drop location
                 movRobot(rtde_c, place_position, armVelocity, 1, True, True)
+                time.sleep(1)
 
-                checkTCPValues(rtde_r, rtde_c, currentPlacePosition, armVelocity)
 
-                placeParcel()
+                checkTCPValues(rtde_r, rtde_c, place_position, armVelocity)
+                #
+                # placeParcel()
 
                 #################################################################
 
-                armVelocity = checkVelocity(in_q, armVelocity)
-
-                movRobot(rtde_c, place_position, armVelocity, 1, True, False)
+                # armVelocity = checkVelocity(in_q, armVelocity)
+                #
+                movRobot(rtde_c, home_position, armVelocity, 1, True, False)
+                time.sleep(1)
 
                 checkTCPValues(rtde_r, rtde_c, home_position, armVelocity)
 
@@ -158,10 +180,11 @@ def movRobot(rtde_c, targetTCP,v, a, asnc, payload):
             print()
             #Reduce velocity by 20%
             rtde_c.moveL(targetTCP, v, a, asnc)
+
     else:
         #Assuming if v != ECO, is a int in string format
         v = int(v)
-    	rtde_c.moveL(targetTCP, v, a, asnc)
+        rtde_c.moveL(targetTCP, 0.1, 0.1, asnc)
         print("MOVING TO POSITION")
 
 
@@ -172,35 +195,56 @@ def checkVelocity(in_q, currentArmVelocity):
         jsonReceived = in_q.get()
 
         if(jsonReceived["first"] == "Velocity Change"):
-            in_q.pop(0)
             armVelocity = jsonReceived["second"]
             return armVelocity
     else:
+        #Get pops the data from the queue, putting data back into queue
+        in_q.put(jsonReceived)
         return currentArmVelocity
 
 #This function will be used to compare target TCP vs current TCP
 def checkTCPValues(rtde_r, rtde_c, targetTCP, armVelocity):
+    global systemStatus
     flag = 0
+
     currentTCPValues = rtde_r.getActualTCPPose()
+
+    currentTCPValues = currentTCPValues[0:3]
+
+    targetTCP = targetTCP[0:3]
+
+    print("Current TCP Values" + str(currentTCPValues))
+    print("Target TCP Values" + str(targetTCP))
 
     #Run in loop until arm arrives at targetTCP
     #Flag varible is used to moniter if the system is online
     #If flag is set to 1, means system stopped at some point.
     #Need to finish the last step before moving on.
-    while ( np.array_equal(currentTCPValues, targetTCP) == False) :
+    while ( np.allclose(currentTCPValues, targetTCP, 0.01) == False) :
 
-        if(flag == 0):
-
-            if(systemStatus != "Online"):
-                flag = 1
-                stopRobot(rtde_c)
-
-        elif(systemStatus == "Online"):
-
-            if(flag == 1):
-                movRobot(rtde_c, targetTCP, armVelocity, 1, True)
-
+        # print("Current TCP Values" + str(currentTCPValues))
+        # print("Target TCP Values" + str(targetTCP))
+        try:
             currentTCPValues = rtde_r.getActualTCPPose()
+            time.sleep(1)
+            currentTCPValues = currentTCPValues[0:3]
+
+            if(flag == 0):
+
+                if(systemStatus != "Online"):
+                    flag = 1
+                    stopRobot(rtde_c)
+
+            elif(systemStatus == "Online"):
+
+                if(flag == 1):
+                    movRobot(rtde_c, targetTCP, armVelocity, 1, True)
+        except Exception as error:
+            print(error)
+            print("Error is caught here")
+            movRobot(rtde_c, targetTCP, armVelocity, 0.6, True, False)
+
+            #currentTCPValues = rtde_r.getActualTCPPose()
 
 
 def receive(conn):
@@ -235,8 +279,6 @@ def moniterUserInput(out_q, conn):
         elif(jsonReceived["first"] == "Shut Down System"):
             print("System offline")
             systemStatus = "Offline"
-
-
 
 
         elif(jsonReceived["first"] == "Velocity Change"):
@@ -283,25 +325,25 @@ def main():
 
     #Reset variable
     #Connect to server.
-    connected = False
-    while not(connected):
-
-        try:
-            conn.connect((serverIP, serverPORT))
-            connected = True
-        except Exception as e:
-            print(e)
-        finally:
-            time.sleep(1)
+    # connected = False
+    # while not(connected):
+    #
+    #     try:
+    #         conn.connect((serverIP, serverPORT))
+    #         connected = True
+    #     except Exception as e:
+    #         print(e)
+    #     finally:
+    #         time.sleep(1)
 
     q = Queue()
-    t1 = threading.Thread(target = moniterUserInput, args = (q, conn, ))
+    # t1 = threading.Thread(target = moniterUserInput, args = (q, conn, ))
     t2 = threading.Thread(target = TCPwrapper, args = (q, conn, rtde_c, rtde_r,  ))
 
-    t1.start()
+    #t1.start()
     t2.start()
 
-    t1.join()
+    #t1.join()
     t2.join()
 
 
