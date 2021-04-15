@@ -54,14 +54,16 @@ def TCPwrapper(in_q, conn, rtde_c, rtde_r):
     targetTCP = np.zeros(6)
     place_position = np.zeros(6)
 
-    jsonResult = {"first": "TCP Values", "second": "-0.514", "third": "-0.029" , "fourth": "0.220" , "fifth": "1.05" , "sixth": "-3", "seventh": "-0.15"  }
 
-
-    in_q.put(jsonResult)
-
-    jsonResult = {"first": "Place Location", "second": "-0.050", "third": "-0.565" , "fourth": "0.270" , "fifth": "1.05" , "sixth": "-3", "seventh": "-0.15"  }
-
-    in_q.put(jsonResult)
+    #Used for testing, remove for final version
+    # jsonResult = {"first": "TCP Values", "second": "-0.514", "third": "-0.029" , "fourth": "0.220" , "fifth": "1.05" , "sixth": "-3", "seventh": "-0.15"  }
+    #
+    #
+    # in_q.put(jsonResult)
+    #
+    # jsonResult = {"first": "Place Location", "second": "-0.050", "third": "-0.565" , "fourth": "0.270" , "fifth": "1.05" , "sixth": "-3", "seventh": "-0.15"  }
+    #
+    # in_q.put(jsonResult)
 
     while (True):
 
@@ -70,15 +72,12 @@ def TCPwrapper(in_q, conn, rtde_c, rtde_r):
 
 
 
-            #if(armPosition == "Home"):
 
 
-                # jsonResult = {"first":"Client 1", "second": "Ready for TCP Values"}
-                # send(conn, jsonResult)
 
+                jsonResult = {"first":"Client 1", "second": "Ready for TCP Values"}
+                send(conn, jsonResult)
 
-                #This will wait until queue has data.
-                #Is blocking
 
 
                 #Will empty queue at the beginning of each sequence
@@ -110,10 +109,8 @@ def TCPwrapper(in_q, conn, rtde_c, rtde_r):
 
 
                 #Called here so if user changes place position while arm is in seqeuence, changes for next sequence.
-            #    currentPlacePosition = place_position
 
                 #Not doing a current velocity since the user will likely will want the arm to change velocity as quickly as possible
-
 
                 #This section moves the arm to pickup a package
                 movRobot(rtde_c, targetTCP, armVelocity, 0.6, True, False)
@@ -213,8 +210,8 @@ def checkTCPValues(rtde_r, rtde_c, targetTCP, armVelocity):
 
     targetTCP = targetTCP[0:3]
 
-    print("Current TCP Values" + str(currentTCPValues))
-    print("Target TCP Values" + str(targetTCP))
+    # print("Current TCP Values" + str(currentTCPValues))
+    # print("Target TCP Values" + str(targetTCP))
 
     #Run in loop until arm arrives at targetTCP
     #Flag varible is used to moniter if the system is online
@@ -323,18 +320,18 @@ def main():
     #Move arm to home position
 
 
-    #Reset variable
-    #Connect to server.
-    # connected = False
-    # while not(connected):
-    #
-    #     try:
-    #         conn.connect((serverIP, serverPORT))
-    #         connected = True
-    #     except Exception as e:
-    #         print(e)
-    #     finally:
-    #         time.sleep(1)
+    # Reset variable
+    # Connect to server.
+    connected = False
+    while not(connected):
+
+        try:
+            conn.connect((serverIP, serverPORT))
+            connected = True
+        except Exception as e:
+            print(e)
+        finally:
+            time.sleep(1)
 
     q = Queue()
     # t1 = threading.Thread(target = moniterUserInput, args = (q, conn, ))
