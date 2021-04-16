@@ -9,6 +9,7 @@ Note: Derived from detect.py
 import numpy as np
 from numpy import random
 import torch
+import cv2
 
 from models.experimental import attempt_load
 from utils.general import non_max_suppression, scale_coords
@@ -44,9 +45,11 @@ def detect(model, color_frame, depth_frame, imgsz, obj_names, obj_colors):
     prediction = non_max_suppression(prediction, 0.80, 0.50)
 
     #Process detections
-    Bounds = []
-    Depths = []
+    img_params = []
+    bounds = []
+    depth = 0.0
     valid = False
+    label = ''
     for i, det in enumerate(prediction):
 
         if len(det):
@@ -54,24 +57,30 @@ def detect(model, color_frame, depth_frame, imgsz, obj_names, obj_colors):
             det[:, :4] = scale_coords(img.shape[2:], det[:, :4], color_frame.shape).round()
 
             #Data extraction from detection
+            max_conf = 0.0
             for *xyxy, conf, cls in reversed(det):
-                bounds = np.array(xyxy)
+                
+                #Prioritize the highest confidence detection                
+                if (conf > max_conf):
+                    max_conf = conf
+                    
+                    bounds = np.array(xyxy)
+                    mid_x = int((bounds[0] + bounds[2]) / 2)
+                    mid_y = int((bounds[1] + bounds[3]) / 2)
+        
+                    #Get depth info based on center in mm
+                    depth = depth_frame[mid_y, mid_x]
 
-                mid_x = (bounds[0] + bounds[2]) / 2
-                mid_y = (bounds[1] + bounds[3]) / 2
+                    img_params = [xyxy, cls, mid_x, mid_y]
+                    label = f'{obj_names[int(cls)]} {conf:.2f}'
+                    valid = True
 
-                #Get depth info based on center
-                depth = 0
-
-                #Update frame with detection
-                label = f'{obj_names[int(cls)]} {conf:.2f}'
-                plot_one_box(xyxy, color_frame, label=label, color=obj_colors[int(cls)], line_thickness=3)
-
-                Bounds.append(bounds)
-                Depths.append(depth)
-                valid = True
-
-    return valid, Bounds, Depths
+    #Edit video frame to include data
+    plot_one_box(img_params[0], color_frame, label=label, color=obj_colors[int(img_params[1])], line_thickness=4)
+    cv2.circle(color_frame, (img_params[2], img_params[3]), 8, (0, 0, 255))
+    cv2.putText(color_frame, "{}mm".format(depth), (img_params[2], img_params[3] - 20), cv2.FONT_HERSHEY_PLAIN, 2, (0, 0, 0), 2)
+    
+    return valid, depth, bounds, color_frame
 
 
 #Transform the image to be used in the mode
