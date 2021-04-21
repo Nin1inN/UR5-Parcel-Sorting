@@ -1,5 +1,5 @@
 """
-Used as a network interface for communication to the clients.
+Used as a network interface for communications.
 
 Derived from https://realpython.com/python-sockets/#handling-multiple-connections
 """
@@ -66,22 +66,22 @@ class Server:
         #Obtain message from connections
         if mask & selectors.EVENT_READ:
             recv_data = conn.recv(1024)
-            
+
             if recv_data:
                 data.outb += recv_data
 
                 try:
                     jsonReceived = json.loads(recv_data.decode("utf-u"))
                     msg = jsonReceived
-                    
-                    #Check for ARM 
-                    if(jsonReceived['first'] == 'ARM'):
+
+                    #Arm Connection initialization
+                    if(jsonReceived['first'] == 'ARM' and not 'ARM' in server.clients):
                         server.clients['ARM'] = conn
 
-                    #Check for CONTROL
-                    elif(jsonReceived['first'] == 'CONTROL'):
+                    #Control connection initialization
+                    elif(jsonReceived['first'] == 'CONTROL' and not 'CONTROL' in server.clients):
                         server.clients['CONTROL'] = conn
-                        
+
                         if (server.stream_thread == ''):
                             server.stream_thread = threading.Thread(target = server.stream_current_frame, args = (server, conn))
                             server.stream_thread.start()
@@ -89,10 +89,11 @@ class Server:
                     pass
 
             else:
+                #Close connection if socket is no longer available
                 print('closing connection to', data.addr)
                 server.sel.unregister(conn)
                 conn.close()
-            
+
 
         #Echos message received
         if mask & selectors.EVENT_WRITE:
@@ -100,7 +101,7 @@ class Server:
                 print('echoing', repr(data.outb), 'to', data.addr)
                 sent = conn.send(data.outb)
                 data.outb = data.outb[sent:]
-        
+
         return msg
 
 

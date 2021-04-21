@@ -1,4 +1,3 @@
-# -*- coding: utf-8 -*-
 """
 The main file for the parcel sorter
 """
@@ -48,7 +47,5 @@ if __name__ == '__main__':
 
         """
         DO SOMETHING WITH THE INFORMATION GREG
-        Also you can do Server.send_to_arm( json/dictionary ) to send directly to arm 
+        Also you can do Server.send_to_arm( json/dictionary ) to send directly to arm
         """
-
-        
