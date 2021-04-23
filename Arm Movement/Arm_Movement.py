@@ -75,7 +75,7 @@ def TCPwrapper(in_q, conn, rtde_c, rtde_r):
 
 
 
-                jsonResult = {"first":"Client 1", "second": "Ready for TCP Values"}
+                jsonResult = {"first":"ARM", "second": "Ready for TCP Values"}
                 send(conn, jsonResult)
 
 
