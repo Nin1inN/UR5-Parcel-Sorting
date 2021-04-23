@@ -337,7 +337,7 @@ class GUI(ttk.Frame):
         self.NetGearclient = NetGear(
             address=HOST,
             port="5454",
-            protocol="udp",
+            protocol="tcp",
             pattern=0,
             receive_mode=True,
             **options
