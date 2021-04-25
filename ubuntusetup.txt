@@ -1,0 +1,97 @@
+1) pyrealsense (librealsense)
+https://github.com/acrobotic/Ai_Demos_RPi/wiki/Raspberry-Pi-4-and-Intel-RealSense-D435
+https://www.youtube.com/watch?v=LBIBUntnxp8&t=108s&ab_channel=ACROBOTIC
+
+sudo apt-get update && sudo apt-get upgrade && sudo apt-get dist-upgrade
+
+sudo apt-get install automake libtool vim cmake libusb-1.0-0-dev libx11-dev xorg-dev libglu1-mesa-dev
+
+sudo vi /etc/dphys-swapfile
+--> CONF_SWAPSIZE=2048
+
+sudo /etc/init.d/dphys-swapfile restart swapon -s
+
+cd ~
+git clone https://github.com/IntelRealSense/librealsense.git
+cd librealsense
+
+sudo su
+udevadm control --reload-rules && udevadm trigger
+exit
+
+nano .bashrc
+--> export LD_LIBRARY_PATH=/usr/local/lib:$LD_LIBRARY_PATH
+source ~/.bashrc
+
+cd ~
+git clone --depth=1 -b v3.10.0 https://github.com/google/protobuf.git
+cd protobuf
+./autogen.sh
+./configure
+make -j1
+sudo make install
+cd python
+export LD_LIBRARY_PATH=../src/.libs
+python3 setup.py build --cpp_implementation
+sudo python3 setup.py install --cpp_implementation
+sudo ldconfig
+protoc --version
+
+cd ~
+wget https://github.com/PINTO0309/TBBonARMv7/raw/master/libtbb-dev_2018U2_armhf.deb
+sudo dpkg -i ~/libtbb-dev_2018U2_armhf.deb
+sudo ldconfig
+rm libtbb-dev_2018U2_armhf.deb
+
+cd ~/librealsense
+mkdir  build  && cd build
+cmake ../ -DFORCE_RSUSB_BACKEND=ON -DBUILD_PYTHON_BINDINGS:bool=true - DPYTHON_EXECUTABLE=/usr/bin/python3.8 -DCMAKE_BUILD_TYPE=release -DBUILD_EXAMPLES=true -DBUILD_GRAPHICAL_EXAMPLES=true
+make -j4
+sudo make install
+
+nano .bashrc
+ --> export PATH=$PATH:~/.local/bin
+ --> export PYTHONPATH=$PYTHONPATH:/usr/local/lib
+ --> export PYTHONPATH=$PYTHONPATH:/usr/local/lib/python3.8/pyrealsense2
+source ~/.bashrc
+
+sudo apt-get install python-opengl
+sudo -H pip3 install pyopengl
+sudo -H pip3 install pyopengl_accelerate==3.1.3rc1
+
+--> realsense-viewer (opens the application)
+
+* /usr/local/lib/python3.8/pyrealsense2
+when you trace wont find the pyrealsense2 as its only supported uptil python 3.7
+
+2) Python 3.7 installation
+- used ppa:deadsnakes: wasnt useful as the Ubuntu codename we have is "groovy" and there is no release file for that.
+  > so i uninstalled it using terminal
+
+- Install using pyenv
+sudo apt-get install -y make build-essential libssl-dev zlib1g-dev \
+libbz2-dev libreadline-dev libsqlite3-dev wget curl llvm libncurses5-dev \
+libncursesw5-dev xz-utils tk-dev libffi-dev liblzma-dev
+
+curl https://pyenv.run | bash
+
+nano .bashrc
+ --> export PATH="$HOME/.pyenv/bin:$PATH"
+source ~/.bashrc
+
+exec "$SHELL" # Or just restart your terminal
+
+pyenv install --list | grep " 3\.[678]"
+
+pyenv install -v 3.6.0
+(it is installed in home directory /home/ur5; where as normal python is under /usr/bin)
+- Now globally 3.6.0 is used.
+
+- can uninstall using: pyenv uninstall 3.6.0
+
+*NOT COMPLETE*
+
+3) rtde control/receieve
+
+sudo apt-get install libboost-all-dev
+pip3 install ur-rtde
