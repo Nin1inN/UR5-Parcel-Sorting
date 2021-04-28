@@ -93,5 +93,16 @@ pip3 install threaded
 6) OpenCV
 sudo apt install libopencv-dev python3-opencv
 
+---------------------------------------------------------------------------------------------
+SSH authentication
 
+on Server:
+sudo apt install openssh-server
+sudo ufw allow ssh
+ip a (gets you ip address)
+
+on Client:
+ssh ur5@ipaddress
+yes
+enter password: password
 
