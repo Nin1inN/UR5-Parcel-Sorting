@@ -62,36 +62,36 @@ sudo -H pip3 install pyopengl_accelerate==3.1.3rc1
 --> realsense-viewer (opens the application)
 
 * /usr/local/lib/python3.8/pyrealsense2
-when you trace wont find the pyrealsense2 as its only supported uptil python 3.7
 
-2) Python 3.7 installation
-- used ppa:deadsnakes: wasnt useful as the Ubuntu codename we have is "groovy" and there is no release file for that.
-  > so i uninstalled it using terminal
+by commands below we can find the path of pyrealsense and have it equal to PYTHONPATH in .bashrc
+$ python3
+>> import pyrealsense2 as rs
+>> rs.__path__ 
 
-- Install using pyenv
-sudo apt-get install -y make build-essential libssl-dev zlib1g-dev \
-libbz2-dev libreadline-dev libsqlite3-dev wget curl llvm libncurses5-dev \
-libncursesw5-dev xz-utils tk-dev libffi-dev liblzma-dev
-
-curl https://pyenv.run | bash
+sudo cp ~/librealsense/wrappers/python/pyrealsense2/__init__.py /usr/lib/python3/dist-packages/pyrealsense2/ 
 
 nano .bashrc
- --> export PATH="$HOME/.pyenv/bin:$PATH"
+--> export PYTHONPATH=$PYTHONPATH:/usr/lib/python3/dist-packages/pyrealsense2 
+--> #export PYTHONPATH=$PYTHONPATH:/home/ur5/librealsense/build/wrappers/python
 source ~/.bashrc
 
-exec "$SHELL" # Or just restart your terminal
+2) pip3 install -r requirements.txt (at home directory)
 
-pyenv install --list | grep " 3\.[678]"
-
-pyenv install -v 3.6.0
-(it is installed in home directory /home/ur5; where as normal python is under /usr/bin)
-- Now globally 3.6.0 is used.
-
-- can uninstall using: pyenv uninstall 3.6.0
-
-*NOT COMPLETE*
+# Some Specific installation that were not in requirements.txt
 
 3) rtde control/receieve
 
 sudo apt-get install libboost-all-dev
 pip3 install ur-rtde
+
+4) socket
+pip3 install sockets
+
+5) threading
+pip3 install threaded
+
+6) OpenCV
+sudo apt install libopencv-dev python3-opencv
+
+
+
