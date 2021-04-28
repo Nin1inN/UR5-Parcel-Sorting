@@ -98,11 +98,18 @@ SSH authentication
 
 on Server:
 sudo apt install openssh-server
-sudo ufw allow ssh
+sudo ufw allow ssh (disabling firewall)
 ip a (gets you ip address)
 
 on Client:
 ssh ur5@ipaddress
 yes
 enter password: password
+exit (to logout)
+
+---------------------------------------------------------------------------------------------
+Bootloader to start server
+sudo nano /etc/rc.local
+enter password: password
+--> python3 /home/ur5/Documents/server/Server.py 
 
