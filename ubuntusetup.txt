@@ -61,8 +61,6 @@ sudo -H pip3 install pyopengl_accelerate==3.1.3rc1
 
 --> realsense-viewer (opens the application)
 
-* /usr/local/lib/python3.8/pyrealsense2
-
 by commands below we can find the path of pyrealsense and have it equal to PYTHONPATH in .bashrc
 $ python3
 >> import pyrealsense2 as rs
@@ -112,4 +110,14 @@ Bootloader to start server
 sudo nano /etc/rc.local
 enter password: password
 --> python3 /home/ur5/Documents/server/Server.py 
+
+---------------------------------------------------------------------------------------------
+Key pointers:
+
+1)To save and exit out of any writable nanao command
+(Contol + S -> Control + X)
+
+2) Before any new installation
+sudo apt update
+sudo apt upgrade
 
