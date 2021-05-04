@@ -9,7 +9,8 @@ import time
 import logging
 from queue import Queue
 #import yolov5_Interface as yolov5
-#import realsense_depth as rs
+import realsense_depth as rs
+import math
 
 
 class Server:
@@ -193,7 +194,7 @@ class Server:
     #Expected value at end is an array of 6 values.
     def visionSystem(server, in_q):
         
-        pass
+        #pass
         #Not needed, used for testing.
         # stream = cv2.VideoCapture(0)
         
@@ -213,54 +214,62 @@ class Server:
     
         # #Check this function call.
         # #Add error handling
-        # sensor = rs.DepthCamera()
+        sensor = rs.DepthCamera()
         # model, objects, obj_colors = yolov5.create_model('weight_v1.pt')
-        #
-        # while(systemStatus != "Offline"):
-        #
-        #     row_position_average = np.zeros(0)
-        #     column_position_average = np.zeros(0)
-        #
-        #     id_matrix = np.zeros(20)
-        #
-        #     worldPosition = 0
-        #
-        #     if(readyForTCPValues == True):
-        #
-        #         ret, depth_frame, color_frame = sensor.get_frames()
-        #         status, depth, bounds, frame = yolov5.detect(model, color_frame, depth_frame, 192, objects, obj_colors)
-        #
-        #         if(status == False):
-        #             continue
-        #
-        #         readyForTCPValues == False
-        #
-        #         #Length is same as moving average length
-        #     #    for counter in range(0, 20):
-        #     #        gray = cv2.cvtColor(color_frame, cv2.COLOR_BGR2GRAY)
-        #     #        aruco_dict = aruco.Dictionary_get(aruco.DICT_6X6_1000)
-        #     #        arucoParameters = aruco.DetectorParameters_create()
-        #     #        corners, ids, rejectedImgPoints = aruco.detectMarkers(
-        #     #            gray, aruco_dict, parameters=arucoParameters)
-        #     #
-        #     #        #Set id matrix position to 1 (marker visible)
-        #     #        for i in range(0, len(ids)):
-        #     #            if(ids[i] > 20):
-        #     #                print("")
-        #     #            else:
-        #     #                id_matrix[ids[i]] = 1
-        #     #
-        #     #        row_position_average, column_position_average, worldPosition = findLocation(id_matrix, row_position_average, column_position_average)
-        #     #
-        #     #        id_matrix = np.zeros(20)
-        #
-        #
-        #
-        #     else:
-        #         ret, depth_frame, color_frame = sensor.get_frames()
-        #
-        #         if(in_q.empty() == True):
-        #             in_q.put(color_frame)
+        
+        while(server.systemStatus != "Offline"):
+            if(server.readyForTCPValues == True):
+                row_position_average = np.zeros(0)
+                column_position_average = np.zeros(0)
+            
+                id_matrix = np.zeros(20)
+            
+                worldPosition = 0
+            
+            
+                ret, depth_frame, color_frame = sensor.get_frames()
+                # status, depth, bounds, frame = yolov5.detect(model, color_frame, depth_frame, 192, objects, obj_colors)
+        
+                # if(status == False):
+                #     continue
+        
+              
+        
+                #Length is same as moving average length
+                for counter in range(0, 20):
+                    gray = cv2.cvtColor(color_frame, cv2.COLOR_BGR2GRAY)
+                    aruco_dict = aruco.Dictionary_get(aruco.DICT_6X6_1000)
+                    arucoParameters = aruco.DetectorParameters_create()
+                    corners, ids, rejectedImgPoints = aruco.detectMarkers(
+                        gray, aruco_dict, parameters=arucoParameters)
+            
+                    #Set id matrix position to 1 (marker visible)
+                    for i in range(0, len(ids)):
+                        if(ids[i] > 20):
+                            print("")
+                        else:
+                            id_matrix[ids[i]] = 1
+            
+                    row_position_average, column_position_average, worldPosition = server.findLocation(id_matrix, row_position_average, column_position_average)
+            
+                    id_matrix = np.zeros(20)
+            
+                    ret, depth_frame, color_frame = sensor.get_frames()
+        
+                server.readyForTCPValues == False
+                
+                #At this point, because we know the camera angle (45 degrees), can use simple trig to get an aproximate of the depth. 
+                
+                # marker_distance would hold the values for the displacement between the markers and the camera (x-axis)
+                # x_distance = marker_distance[row_position_average]
+                
+                # depth = math.sqrt( pow(depth, 2) - pow(x_distance, 2) )
+        
+            else:
+                ret, depth_frame, color_frame = sensor.get_frames()
+        
+                if(in_q.empty() == True):
+                    in_q.put(color_frame)
     
     
     
@@ -291,7 +300,7 @@ class Server:
     
         return worldPosition
     
-        #Figure out the rest of the TCP Values
+     
     
     
     
@@ -333,8 +342,8 @@ class Server:
            print("Column Position")
     
            worldPosition = server.convertToWorldLocation(row_position_average, column_position_average)
-           row_position_average = np.zeros(0)
-           column_position_average = np.zeros(0)
+           # row_position_average = np.zeros(0)
+           # column_position_average = np.zeros(0)
     
         return row_position_average, column_position_average, worldPosition
     
@@ -389,3 +398,11 @@ class Server:
             elif(server.systemStatus == "Offline"):
                 VidGearServer.close()
                 return
+
+
+if __name__ == "__main__":
+    HOST = '127.0.0.1'
+    PORT = 6000
+    
+    server = Server(HOST, PORT)
+    server.setup()

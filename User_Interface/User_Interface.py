@@ -11,9 +11,6 @@ import os
 import webbrowser
 
 
-systemStatus = "Offline"
-
-root = 0
 
 HOST = '127.0.0.1'
 PORT = 6000
@@ -125,6 +122,7 @@ class GUI(ttk.Frame):
 
         ttk.Frame.__init__(self, parent, *args, **kwargs)
         self.root = parent
+        self.systemStatus = "Offline"
         self.init_gui()
 
 
@@ -219,7 +217,7 @@ class GUI(ttk.Frame):
 
 
     def sendPlaceLocation(self):
-        global systemStatus
+  
 
         try:
             data = self.place_position_data.get()
@@ -230,13 +228,13 @@ class GUI(ttk.Frame):
 
             if(len(data) == 6):
 
-                if(systemStatus == "Online"):
+                if(self.systemStatus == "Online"):
                     print()
                     jsonData = {"first": "Client 2", "second": "Drop Location", "third": data[0], "fourth": data[1], "fifth": data[2], "sixth": data[3], "seventh": data[4], "eight": data[5] }
                     self.send(jsonData)
                     self.placeLocationStatus.set("Parcel Drop Location Updated")
                 else:
-                    self.placeLocationStatus.set("System status: " + systemStatus)
+                    self.placeLocationStatus.set("System status: " + self.systemStatus)
             else:
                 self.placeLocationStatus.set("Incorrect format")
 
@@ -326,7 +324,7 @@ class GUI(ttk.Frame):
         """
 
 
-        global systemStatus
+   
 
 
         # define tweak flags
@@ -346,7 +344,7 @@ class GUI(ttk.Frame):
         # loop over
         while True:
 
-            if(systemStatus == "Online"):
+            if(self.systemStatus == "Online"):
                 # receive frames from network
                 frame = self.NetGearclient.recv()
 
@@ -536,7 +534,7 @@ class GUI(ttk.Frame):
         """
 
         print("Putting system in Standby")
-        global systemStatus
+      
 
 
         try:
@@ -547,7 +545,7 @@ class GUI(ttk.Frame):
 
             self.systemStatusLabelText.set("System Status - Standby")
             self.systemStatusLabel.config(bg = '#f9ff54')
-            systemStatus = "Standby"
+            self.systemStatus = "Standby"
 
         except Exception as e:
             print(e)
@@ -579,12 +577,12 @@ class GUI(ttk.Frame):
 
         """
 
-        global systemStatus
+        
 
 
         #Create another client (with a different port) to handle the video stream.
 
-        if(systemStatus == "Offline"):
+        if(self.systemStatus == "Offline"):
 
 
 
@@ -602,7 +600,7 @@ class GUI(ttk.Frame):
 
                 self.systemStatusLabelText.set("System Status - Online")
                 self.systemStatusLabel.config(bg = '#499c5f')
-                systemStatus = "Online"
+                self.systemStatus = "Online"
 
 
                 #Start video stream here
@@ -615,11 +613,11 @@ class GUI(ttk.Frame):
                 print(e)
 
         #At this point, if function is called, assuming system is in standby, send message to resume system
-        elif(systemStatus == "Standby"):
+        elif(self.systemStatus == "Standby"):
             try:
                 jsonResult = {"first":"Client 2", "second":"Resume System"}
                 self.send(jsonResult)
-                systemStatus = "Online"
+                self.systemStatus = "Online"
 
 
 
@@ -631,12 +629,8 @@ class GUI(ttk.Frame):
 
 
 
-def main():
-    global root
+if __name__ == '__main__':
+
     root = tkinter.Tk()
     GUI(root)
     root.mainloop()
-
-if __name__ == '__main__':
-
-    main()
