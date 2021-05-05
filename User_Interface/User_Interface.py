@@ -12,8 +12,8 @@ import webbrowser
 
 
 
-HOST = '127.0.0.1'
-PORT = 6000
+HOST = '10.0.0.3'
+PORT = 5500
 
 
 class Menubar(ttk.Frame):
@@ -352,8 +352,8 @@ class GUI(ttk.Frame):
 
 
         """
-
-
+        hostname = socket.gethostname() 
+        IPAddr = socket.gethostbyname(hostname)   
 
         # define tweak flags
         options = {"compression_format": ".jpg", "compression_param": cv2.IMREAD_COLOR}
@@ -361,7 +361,7 @@ class GUI(ttk.Frame):
         # Define Netgear Client at given IP address and define parameters
         # !!! change following IP address '192.168.x.xxx' with yours !!!
         self.NetGearclient = NetGear(
-            address=HOST,
+            address=IPAddr,
             port="5454",
             protocol="tcp",
             pattern=0,

@@ -13,9 +13,6 @@ from queue import Queue
 import math
 
 
-
-#Out of date, use other version. 
-
 class Server:
     def __init__(server, ip, port):
 
@@ -46,6 +43,7 @@ class Server:
         server.clients = []
         server.systemStatus = "Offline"
         server.readyForTCPValues = False
+        server.marker_distance = [584, 470, 365, 260]
 
 
     def setup(server):
@@ -299,27 +297,10 @@ class Server:
 
         """
 
-        #pass
-        #Not needed, used for testing.
-        # stream = cv2.VideoCapture(0)
-
-        # while(server.systemStatus != "Offline"):
-        #     if(in_q.empty() == True):
-
-        #         #ret, depth_frame, color_frame = sensor.get_frames()
-        #         color_frame = stream.read()
-        #         in_q.put(color_frame)
-
-        # stream.release()
-
-
-
-
-
-
         # #Check this function call.
         # #Add error handling
         sensor = rs.DepthCamera()
+        ret, depth_frame, color_frame = sensor.get_frames()
         # model, objects, obj_colors = yolov5.create_model('weight_v1.pt')
 
         while(server.systemStatus != "Offline"):
@@ -341,41 +322,60 @@ class Server:
 
 
                 #Length is same as moving average length
-                for counter in range(0, 20):
+                for counter in range(0, 50):
                     gray = cv2.cvtColor(color_frame, cv2.COLOR_BGR2GRAY)
                     aruco_dict = aruco.Dictionary_get(aruco.DICT_6X6_1000)
                     arucoParameters = aruco.DetectorParameters_create()
                     corners, ids, rejectedImgPoints = aruco.detectMarkers(
                         gray, aruco_dict, parameters=arucoParameters)
+                    
+                    frame = aruco.drawDetectedMarkers(color_frame, corners)
+                    if(in_q.empty() == True):
+                        in_q.put(frame)
 
-                    #Set id matrix position to 1 (marker visible)
-                    for i in range(0, len(ids)):
-                        if(ids[i] > 20):
-                            print("")
-                        else:
-                            id_matrix[ids[i]] = 1
-
-                    row_position_average, column_position_average, worldPosition = server.findLocation(id_matrix, row_position_average, column_position_average)
-
-                    id_matrix = np.zeros(20)
-
-                    ret, depth_frame, color_frame = sensor.get_frames()
+                    try:
+                        #Set id matrix position to 1 (marker visible)
+                        for i in range(0, len(ids)):
+                            if(ids[i] > 20):
+                                print("")
+                            else:
+                                id_matrix[ids[i]] = 1
+    
+                        row_position_average, column_position_average, worldPosition = server.findLocation(id_matrix, row_position_average, column_position_average)
+    
+                        id_matrix = np.zeros(20)
+    
+                        ret, depth_frame, color_frame = sensor.get_frames()
+                    except Exception as error:
+                        print(error)
 
                 server.readyForTCPValues == False
 
-                #At this point, because we know the camera angle (45 degrees), can use simple trig to get an aproximate of the depth.
+                #Can use simple trig to get an aproximate of the depth.
 
                 # marker_distance would hold the values for the displacement between the markers and the camera (x-axis)
-                # x_distance = marker_distance[row_position_average]
+                # x_distance = marker_distance[round(row_position_average)]
 
                 # depth = math.sqrt( pow(depth, 2) - pow(x_distance, 2) )
+                
+                # jsonResult = {"first": "Target TCP", "second":(worldPosition[0]/1000), "third": (worldPosition[1]/1000), "fourth": (depth/1000)}
+                
+                # server.send(jsonResult, 1)
 
             else:
-                ret, depth_frame, color_frame = sensor.get_frames()
-
+                
+                gray = cv2.cvtColor(color_frame, cv2.COLOR_BGR2GRAY)
+                aruco_dict = aruco.Dictionary_get(aruco.DICT_6X6_1000)
+                arucoParameters = aruco.DetectorParameters_create()
+                corners, ids, rejectedImgPoints = aruco.detectMarkers(
+                        gray, aruco_dict, parameters=arucoParameters)
+                    
+                
+                frame = aruco.drawDetectedMarkers(color_frame, corners)
                 if(in_q.empty() == True):
-                    in_q.put(color_frame)
-
+                    in_q.put(frame)
+                    
+                ret, depth_frame, color_frame = sensor.get_frames()
 
 
     #x is row position, y is column position
@@ -505,11 +505,11 @@ class Server:
         row_position_average = np.append(row_position_average, row_position)
         column_position_average = np.append(column_position_average, column_position)
 
-        if(len(row_position_average)  == 20):
-           row_position_average = server.moving_average(row_position_average, 20)
+        if(len(row_position_average)  == 50):
+           row_position_average = server.moving_average(row_position_average, 50)
            print("Row Position")
 
-           column_position_average = server.moving_average(column_position_average, 20)
+           column_position_average = server.moving_average(column_position_average, 50)
            print("Column Position")
 
            worldPosition = server.convertToWorldLocation(row_position_average, column_position_average)
@@ -542,7 +542,7 @@ class Server:
 
         """
 
-        ipOfClient = server.clients[0].getpeername()
+        ipOfClient = server.clients[-1].getpeername()
 
 
         #10 frames a sec is fine for the video stream

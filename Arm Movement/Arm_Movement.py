@@ -4,8 +4,8 @@ import numpy as np
 import time
 import threading
 import math
-#import rtde_control
-#import rtde_receive
+import rtde_control
+import rtde_receive
 import cv2
 import pyrealsense2
 from queue import Queue
@@ -81,8 +81,8 @@ class Arm_Movement:
         #Connect to arm
         while not(connected):
             try:
-                #rtde_c = rtde_control.RTDEControlInterface(self.armIP)
-               # rtde_r = rtde_receive.RTDEReceiveInterface(self.armIP)
+                rtde_c = rtde_control.RTDEControlInterface(self.armIP)
+                rtde_r = rtde_receive.RTDEReceiveInterface(self.armIP)
                 connected = True
             except Exception as e:
                 print(e)
@@ -105,13 +105,13 @@ class Arm_Movement:
 
 
         q = Queue()
-        # t1 = threading.Thread(target = self.moniterUserInput, args = (q, conn, ))
+        t1 = threading.Thread(target = self.moniterUserInput, args = (q, conn, ))
         t2 = threading.Thread(target = self.TCPwrapper, args = (q, conn, rtde_c, rtde_r,  ))
 
-        #t1.start()
+        t1.start()
         t2.start()
 
-        #t1.join()
+        t1.join()
         t2.join()
 
 
@@ -144,28 +144,12 @@ class Arm_Movement:
 
         """
 
-        #For testing purposes
-        self.systemStatus = "Online"
-
-
-
         #Place holders, set to defaults
         home_position = np.array([-0.093, -0.486, 0.530, 1.56, -2.62, -0.03])
         armVelocity = 0.3
 
-        targetTCP = np.zeros(6)
+        targetTCP = np.zeros(3)
         place_position = np.zeros(6)
-
-
-        #Used for testing, remove for final version
-        # jsonResult = {"first": "TCP Values", "second": "-0.514", "third": "-0.029" , "fourth": "0.220" , "fifth": "1.05" , "sixth": "-3", "seventh": "-0.15"  }
-        #
-        #
-        # in_q.put(jsonResult)
-        #
-        # jsonResult = {"first": "Place Location", "second": "-0.050", "third": "-0.565" , "fourth": "0.270" , "fifth": "1.05" , "sixth": "-3", "seventh": "-0.15"  }
-        #
-        # in_q.put(jsonResult)
 
         while (True):
 
@@ -519,7 +503,7 @@ class Arm_Movement:
 
                 out_q.put((jsonReceived))
 
-            elif(jsonReceived["first"] == "TCP Values"):
+            elif(jsonReceived["first"] == "Target TCP"):
                 print("TCP Values")
 
                 out_q.put((jsonReceived))
