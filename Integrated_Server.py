@@ -8,13 +8,10 @@ import cv2.aruco as aruco
 import time
 import logging
 from queue import Queue
-#import yolov5_Interface as yolov5
-#import realsense_depth as rs
+import yolov5_Interface as yolov5
+import realsense_depth as rs
 import math
 
-
-
-#Out of date, use other version. 
 
 class Server:
     def __init__(server, ip, port):
@@ -46,6 +43,7 @@ class Server:
         server.clients = []
         server.systemStatus = "Offline"
         server.readyForTCPValues = False
+        server.marker_distance = [584, 470, 365, 260]
 
 
     def setup(server):
@@ -299,28 +297,10 @@ class Server:
 
         """
 
-        #pass
-        #Not needed, used for testing.
-        # stream = cv2.VideoCapture(0)
-
-        # while(server.systemStatus != "Offline"):
-        #     if(in_q.empty() == True):
-
-        #         #ret, depth_frame, color_frame = sensor.get_frames()
-        #         color_frame = stream.read()
-        #         in_q.put(color_frame)
-
-        # stream.release()
-
-
-
-
-
-
         # #Check this function call.
         # #Add error handling
         sensor = rs.DepthCamera()
-        # model, objects, obj_colors = yolov5.create_model('weight_v1.pt')
+        model, objects, obj_colors = yolov5.create_model('weight_v1.pt')
 
         while(server.systemStatus != "Offline"):
             if(server.readyForTCPValues == True):
@@ -334,13 +314,20 @@ class Server:
 
                 ret, depth_frame, color_frame = sensor.get_frames()
                 # status, depth, bounds, frame = yolov5.detect(model, color_frame, depth_frame, 192, objects, obj_colors)
+                #
+                # if(in_q.empty() == True):
+                #     in_q.put(frame)
 
                 # if(status == False):
+                #     print("Restarting loop")
                 #     continue
 
 
 
                 #Length is same as moving average length
+
+
+                #Works
                 for counter in range(0, 20):
                     gray = cv2.cvtColor(color_frame, cv2.COLOR_BGR2GRAY)
                     aruco_dict = aruco.Dictionary_get(aruco.DICT_6X6_1000)
@@ -348,33 +335,54 @@ class Server:
                     corners, ids, rejectedImgPoints = aruco.detectMarkers(
                         gray, aruco_dict, parameters=arucoParameters)
 
-                    #Set id matrix position to 1 (marker visible)
-                    for i in range(0, len(ids)):
-                        if(ids[i] > 20):
-                            print("")
-                        else:
-                            id_matrix[ids[i]] = 1
+                    try:
+                        #Set id matrix position to 1 (marker visible)
+                        for i in range(0, len(ids)):
+                            if(ids[i] > 20):
+                                print("")
+                            else:
+                                id_matrix[ids[i]] = 1
 
-                    row_position_average, column_position_average, worldPosition = server.findLocation(id_matrix, row_position_average, column_position_average)
+                        row_position_average, column_position_average, worldPosition = server.findLocation(id_matrix, row_position_average, column_position_average)
 
-                    id_matrix = np.zeros(20)
+                        id_matrix = np.zeros(20)
 
-                    ret, depth_frame, color_frame = sensor.get_frames()
+                        frame = aruco.drawDetectedMarkers(color_frame, corners)
+                        if(in_q.empty() == True):
+                            in_q.put(frame)
 
-                server.readyForTCPValues == False
+                        ret, depth_frame, color_frame = sensor.get_frames()
+                    except Exception as error:
+                        print(error)
+
+                server.readyForTCPValues = "False"
+                #server.readyForTCPValues == False
 
                 #At this point, because we know the camera angle (45 degrees), can use simple trig to get an aproximate of the depth.
 
                 # marker_distance would hold the values for the displacement between the markers and the camera (x-axis)
-                # x_distance = marker_distance[row_position_average]
 
-                # depth = math.sqrt( pow(depth, 2) - pow(x_distance, 2) )
+                index =  round(row_position_average)
+                x_distance = server.marker_distance[index]
+
+                depth = math.sqrt( pow(depth, 2) - pow(x_distance, 2) )
+
+                #jsonResult = {"first":"Target TCP", "second": (worldPosition[0]/1000), "third": (worldPosition[1]/1000), "fourth": (depth/1000) }
+
+                #server.send(jsonResult, 1)
 
             else:
-                ret, depth_frame, color_frame = sensor.get_frames()
 
+                gray = cv2.cvtColor(color_frame, cv2.COLOR_BGR2GRAY)
+                aruco_dict = aruco.Dictionary_get(aruco.DICT_6X6_1000)
+                arucoParameters = aruco.DetectorParameters_create()
+                corners, ids, rejectedImgPoints = aruco.detectMarkers(
+                    gray, aruco_dict, parameters=arucoParameters)
+
+
+                frame = aruco.drawDetectedMarkers(color_frame, corners)
                 if(in_q.empty() == True):
-                    in_q.put(color_frame)
+                    in_q.put(frame)
 
 
 
