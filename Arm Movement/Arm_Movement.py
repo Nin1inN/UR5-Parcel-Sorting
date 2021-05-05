@@ -13,10 +13,6 @@ from threading import Event
 
 
 
-
-
-systemStatus = "Offline"
-
 # armVelocity = 0
 
 #For the demo, there will only be one drop position.
@@ -34,6 +30,21 @@ systemStatus = "Offline"
 
 class Arm_Movement:
     def __init__(self):
+        
+        """
+        Constructor:
+            
+        Setups up the parameters used by the rest of the system.
+        
+        Args: 
+            
+            None.
+
+        Returns: 
+            
+            None.
+
+        """
         self.serverIP = '127.0.0.1'
         self.serverPORT = 6000
         self.armIP = "10.0.0.4"
@@ -42,6 +53,24 @@ class Arm_Movement:
         
     
     def setup(self):
+        
+        """
+        Connects Arm Movement to the UR5 and the Server.
+        
+        Starts up the rest of the functionality for the class. 
+        
+        Args: 
+            
+            None.
+
+        Returns: 
+            
+            None.
+
+        """
+        
+        
+        
         connected = False
 
         conn = socket.socket(socket.AF_INET, socket.SOCK_STREAM)
@@ -91,6 +120,29 @@ class Arm_Movement:
     #Tells server ready for TCP values
     def TCPwrapper(self, in_q, conn, rtde_c, rtde_r):
   
+        
+        """
+        Main control logic for the arm. Moves and moniters the arm for pick and place operation. 
+        
+        Tracks the position of the arm and moniters input from the user.
+        
+        Requests TCP values when in home position (system just started or dropped a parcel and ready for the next).
+        
+        Args: 
+            
+            in_q (Queue): Queue shared between TCPwrapper and moniterUserInput (allows for thread-safe communication). Used to moniter input from the user (network).
+                
+            conn (socket): Socket connected to server.
+                
+            rtde_c (class): Control interface for the arm (send data). 
+                
+            rtde_r (class): Receive interface for the arm (read data).
+
+        Returns: 
+            
+            None.
+
+        """
     
         #For testing purposes
         self.systemStatus = "Online"
@@ -118,7 +170,7 @@ class Arm_Movement:
         while (True):
     
     
-            if(systemStatus == "Online"):
+            if(self.systemStatus == "Online"):
     
     
                     jsonResult = {"first":"ARM", "second": "Ready for TCP Values"}
@@ -201,6 +253,8 @@ class Arm_Movement:
     
     #Ready for code
     def pickParcel(self):
+        
+        
         #At this point (in checkTCPValues) can read the sensor (switch), if nothing, move lower in the z axis by small increments)
         pass
     
@@ -209,29 +263,87 @@ class Arm_Movement:
         pass
     
     def stopRobot(self, rtde_c):
+        
+        """
+        Stops the arm with a joint deceleration of 2 rad/s^2
+        
+        Args: 
+            
+            rtde_c (class): Control interface for the arm (send stop command to arm). 
+
+        Returns: 
+            
+            None.
+
+        """
         rtde_c.stopJ(2.0)
+        
+        
     
-    def movRobot(self, rtde_c, targetTCP,v, a, asnc, payload):
+    def movRobot(self, rtde_c, targetTCP,v, a, asyn, payload):
+        
+        """
+        Moves the arm to the given targetTCP values.
+        
+        Depending on the velocity mode (ECO or constant), moves the arm at different speeds. 
+        
+        Args: 
+            
+            rtde_c (class): Control interface for the arm (send move command to arm). 
+            
+            targetTCP (list): TCP values for arm to move to. 
+            
+            v (int): velocity for arm (either value from 0 to 100 or ECO).
+            
+            a (int): accleration for arm.
+            
+            asyn (bool): Allows the arm to run in asynchronous mode
+            
+            payload (bool): Whether the arm currently has a payload (used in ECO mode)
+
+        Returns: 
+            
+            None.
+
+        """
     
         if(v == "ECO"):
             if(payload == False):
                 print()
                 #Move at higher velocity
-                rtde_c.moveL(targetTCP, v, a, asnc)
+                rtde_c.moveL(targetTCP, v, a, asyn)
     
             elif(payload == True):
                 print()
                 #Reduce velocity by 20%
-                rtde_c.moveL(targetTCP, v, a, asnc)
+                rtde_c.moveL(targetTCP, v, a, asyn)
     
         else:
             #Assuming if v != ECO, is a int in string format
             v = int(v)
-            rtde_c.moveL(targetTCP, 0.1, 0.1, asnc)
+            rtde_c.moveL(targetTCP, 0.1, 0.1, asyn)
             print("MOVING TO POSITION")
     
     
     def checkVelocity(self, in_q, currentArmVelocity):
+        
+        """
+        Checks the Queue to see if a arm velocity change has been received from the server.
+        
+        Returns new velocity, otherwise returns the current velocity.
+        
+        
+        Args: 
+            
+            in_q (Queue): Queue shared between TCPwrapper and moniterUserInput (allows for thread-safe communication). 
+            
+            currentArmVelocity (int): If no velocity change (or queue is empty), returns this value.
+
+        Returns: 
+            
+            armVelocity (int or string): New velocity for arm
+
+        """
     
         if (in_q.empty() == False):
     
@@ -249,7 +361,32 @@ class Arm_Movement:
     
     #This function will be used to compare target TCP vs current TCP
     def checkTCPValues(self, rtde_r, rtde_c, targetTCP, armVelocity):
-        global systemStatus
+        
+        """
+        Checks current TCP values of UR5 against target TCP values.
+        
+        Moniters input from user (e.g. system go into standby). Will restart arm movement if system goes into standby. 
+        
+        Args: 
+            
+            rtde_c (class): Control interface for the arm (restart arm movement if system pauses).
+            
+            rtde_r (class): Receive interface for the arm (get current TCP values of UR5).
+            
+            targetTCP (list): TCP values for arm to move to. 
+            
+            armVelocity (int or string): velocity for arm (either value from 0 to 100 or ECO).
+            
+            
+
+        Returns: 
+            
+            None.
+
+        """
+        
+        
+     
         flag = 0
     
         currentTCPValues = rtde_r.getActualTCPPose()
@@ -276,11 +413,11 @@ class Arm_Movement:
     
                 if(flag == 0):
     
-                    if(systemStatus != "Online"):
+                    if(self.systemStatus != "Online"):
                         flag = 1
                         self.stopRobot(rtde_c)
     
-                elif(systemStatus == "Online"):
+                elif(self.systemStatus == "Online"):
     
                     if(flag == 1):
                         self.movRobot(rtde_c, targetTCP, armVelocity, 1, True)
@@ -296,17 +433,59 @@ class Arm_Movement:
     
     
     def receive(self, conn):
+        
+        """
+        Returns data received from server.
+        
+        Args: 
+            
+            conn (socket): socket connected to server.
+
+        Returns: 
+            
+            jsonReceived (JSON - dictionary): returns json data. 
+        """
         jsonReceived = conn.recv(1024)
         jsonReceived = json.loads(jsonReceived.decode("utf-8"))
         return jsonReceived
     
     def send(self, conn, data):
+        
+        """
+        Sends data to the server. 
+        
+        Args: 
+            
+            conn (socket): socket connected to server.
+            
+            data (JSON - dictionary): data to send. 
+
+        Returns: 
+            
+            None.
+
+        """
     
         jsonResult = json.dumps(data)
         conn.send(bytes(jsonResult, encoding="utf-8"))
     
     
     def moniterUserInput(self, out_q, conn):
+        
+        """
+        Moniters data received from the server and performs the command receieved. 
+        
+        Args: 
+            
+            out_q (Queue): Queue shared between TCPwrapper and moniterUserInput (allows for thread-safe communication). Puts commands on the queue for TCPWrapper to use. 
+                
+            conn (socket): socket connected to server.
+
+        Returns: 
+            
+            None.
+
+        """
     
         while(True):
             jsonReceived = self.receive(conn)

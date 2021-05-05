@@ -17,30 +17,28 @@ PORT = 6000
 
 
 class Menubar(ttk.Frame):
-    """Builds a menu bar for the top of the main window"""
 
-    def __init__(self, parent, *args, **kwargs):
+    def __init__(self, parent):
 
         """
+        
+        Constructor:
+        
         Initializes the menubar for the GUI
 
         Calls the setup (init_menubar) for the rest of the menubar.
 
-        Args:
+        Args: 
+            
+            parent: Root window for the MenuBar.
 
-            parent:
-
-            *args:
-
-            **kwargs:
-
-        Returns:
-
-            self (root): Explain
+        Returns: 
+            
+            None.
 
         """
 
-        ttk.Frame.__init__(self, parent, *args, **kwargs)
+        ttk.Frame.__init__(self, parent)
         self.root = parent
         self.init_menubar()
 
@@ -50,9 +48,13 @@ class Menubar(ttk.Frame):
         """
         Displays the help document (How to use the GUI).
 
-        Args: None.
+        Args: 
+            
+            None.
 
-        Returns: None.
+        Returns: 
+            
+            None.
 
         """
         webbrowser.open("README.txt")
@@ -63,28 +65,32 @@ class Menubar(ttk.Frame):
         """
         Displays info about program (purpose of the system).
 
-        Args: None.
+        Args: 
+           
+            None
 
 
-        Returns: None.
+        Returns: 
+            
+            None.
 
         """
         pass
 
     def init_menubar(self):
 
+
+        
         """
         Creates the menubar (attached to root) and adds the functionaly for the menubar.
 
-        Creates two commands - Help and About
+        Args: 
+            
+            None.
 
-        Args:
-
-            self (root):
-
-         Returns:
-
-            self (menubar): Something
+        Returns: 
+            
+            None.
 
         """
 
@@ -98,29 +104,29 @@ class Menubar(ttk.Frame):
         self.root.config(menu=self.menubar)
 
 class GUI(ttk.Frame):
-    """Main GUI class"""
-    def __init__(self, parent, *args, **kwargs):
-
+    
+    def __init__(self, parent):
+        
         """
+        
+        Constructor:
+        
         Initializes the GUI with the parmeters set by the user.
 
         Calls the setup (init_gui) for the rest of the GUI.
 
-        Args:
+        Args: 
+           
+            parent: Root window for the Main Window. 
 
-            parent:
 
-            *args:
-
-            **kwargs:
-
-        Returns:
-
-            self (root): Something
+        Returns: 
+            
+            None.
 
         """
 
-        ttk.Frame.__init__(self, parent, *args, **kwargs)
+        ttk.Frame.__init__(self, parent)
         self.root = parent
         self.systemStatus = "Offline"
         self.init_gui()
@@ -130,16 +136,19 @@ class GUI(ttk.Frame):
 
         """
 
-        Something
+        Setups all the parameters (and their values) needed by the GUI.
+        
+        Includes window size, components, background, and more. 
+
+        Args: 
+            
+            None
 
 
-        Args:
+        Returns: 
+            
+            None
 
-            self (root):
-
-        Returns:
-
-            self: Something
 
         """
 
@@ -153,7 +162,7 @@ class GUI(ttk.Frame):
 
 
         self.background_image = Image.open("Flat_colorful_background.png")
-        self.background_image = self.background_image.resize((2000,1200), Image.ANTIALIAS)
+        self.background_image = self.background_image.resize((2000,2000), Image.ANTIALIAS)
         self.background_image = ImageTk.PhotoImage(self.background_image)
 
         self.label = tkinter.Label(self.root, image=self.background_image)
@@ -217,6 +226,22 @@ class GUI(ttk.Frame):
 
 
     def sendPlaceLocation(self):
+              
+        """
+
+        Sends updated drop (place) location of parcel to the server set by the user. 
+
+        Args: 
+            
+            self.place_position (string): Drop location of parcel set by user.
+
+
+        Returns: 
+            
+            None
+
+
+        """
   
 
         try:
@@ -248,12 +273,17 @@ class GUI(ttk.Frame):
     def systemSettings(self):
 
         """
-        Explain
+        Settings window for the User Interface.
+        
+        Allows the user to edit multiple aspects of the system. Including velocity, drop location, and more. 
 
-        Args: None
+        Args: 
+            
+            None
 
-
-        Returns: None.
+        Returns: 
+            
+            None.
 
         """
 
@@ -306,25 +336,23 @@ class GUI(ttk.Frame):
 #   # function for video streaming
     #Used for testing, change to network stream for final version
     def video_stream(self):
-
-        """
-        After user calls startup for the system and the User_Interface scripts connects to the server, this function is called.
-
-        Creates a NetGear socket (IPC for network protocol) to handle video stream from server.
-
-
-        Args:
-
-            self (Tkinter Label): Label used to display frame
-
-        Returns:
-
-            self (NetGearclient): NetGearclient for the videos stream
-
-        """
-
-
    
+        """
+
+        Creates a NetGear socket (TCP for network protocol) to handle video stream from server.
+
+        Args: 
+            
+            self.systemStatus (string): Used to determine if the system needs to shutdown or go to standby.
+
+
+        Returns: 
+            
+            None
+
+
+        """
+
 
 
         # define tweak flags
@@ -358,24 +386,26 @@ class GUI(ttk.Frame):
                 thread.start()
 
     def updateVideoWindow(self, frame):
-
-
+            
         """
+
         Function is called by video_stream() to update the frame (image) on the GUI.
 
-        Ran in a thread to avoid blocking of new frame (update frame as fast as network transmits).
+        Runs in a thread to avoid blocking of new frame (update frame as fast as network transmits).
 
-        Args:
+        Args: 
+            
+            frame (OpenCV frame): image recieved by the server.
 
-           frame (OpenCV): frame (image) recieved by the server.
+            self.lmain (tkinter Label): Label used to display image on the GUI
 
-           self (tkinter Label): Label used to display image on the GUI.
 
-        Returns: None.
+        Returns: 
+            
+            None
 
 
         """
-
 
         cv2image = cv2.cvtColor(frame, cv2.COLOR_BGR2RGBA)
         img = Image.fromarray(cv2image)
@@ -387,23 +417,28 @@ class GUI(ttk.Frame):
 
     #Modify function to return data decoded
     #Not sure if this function is really needed, used mostly for testing purposes
-    def receive(self):
-        jsonReceived = self.conn.recv(1024)
-        jsonReceived = json.loads(jsonReceived.decode("utf-8"))
-        print(jsonReceived["first"])
+    # def receive(self):
+    #     jsonReceived = self.conn.recv(1024)
+    #     jsonReceived = json.loads(jsonReceived.decode("utf-8"))
+    #     print(jsonReceived["first"])
 
 
     def send(self, data):
+        
         """
-        Converts data (json dict.) into a string and transmits to connected server socket
 
-        Args:
+        Converts data (json dict.) into a string and transmits to connected server socket.
 
-            self (socket): Uses socket connection (conn) defined in creation of class.
+        Args: 
+            
+            self.conn (socket): Uses socket connection (conn) defined in creation of class.
 
             data (dictionary): Data to be sent over network in the form of json.
 
-        Returns: None.
+
+        Returns: 
+            
+            None
 
 
         """
@@ -412,25 +447,28 @@ class GUI(ttk.Frame):
 
 
     def on_exit(self):
+        
         """
 
         Sends shutdown notification over the network to rest of the system (connected to button event).
         Shuts down video stream (NetGear) and the normal socket.
         Finally exits program
 
-        Args:
+        Args: 
+            
+            self.conn (socket): Uses socket connection (conn) defined in creation of class
 
-            self (socket): Uses socket connection (conn) defined in creation of class
+            self.NetGearclient (NetGearSocket): Uses NetGearSocket defined in video_stream()
 
-            self (NetGearSocket): Uses NetGearSocket defined in video_stream()
 
-        Returns: None.
+        Returns: 
+            
+            None
+
 
         """
 
-        global root
-
-
+      
         try:
             jsonResult = {"first":"Client 2", "second":"Shut Down System"}
             self.send(jsonResult)
@@ -439,7 +477,7 @@ class GUI(ttk.Frame):
             print("Error sending close command to server")
 
         try:
-            root.destroy()
+            self.root.destroy()
             self.NetGearclient.close()
             self.conn.shutdown(socket.SHUT_RDWR)
             self.conn.close()
@@ -451,17 +489,19 @@ class GUI(ttk.Frame):
             os._exit(1)
 
     def setVelocity(self):
-
+    
         """
-        Function is called when the user sets a new velocity (connected to button event).
-        Transmits new velocity over the network to the arm.
 
-        Args:
+        Transmits new velocity (set by user) over the network to the arm.
 
-            self: Calls the send() function to transmit data payload
-            self (Tkinter Label): Updates display_velocity to notify user velocity has been updated
+        Args: 
+            
+             self.display_velocity (Tkinter Label): Updates display_velocity to notify user velocity has been updated
 
-        Returns: None.
+
+        Returns: 
+            
+            None
 
 
         """
@@ -486,18 +526,19 @@ class GUI(ttk.Frame):
     #The e-series robots can measure torque change.
     #No way of knowing power savings (if any) without testing.
     def ecoMode(self):
-
-
+        
         """
-        Function is called when the user turns on ECO mode (connected to button event).
-        Transmits new velocity over the network to the arm.
 
-        Args:
+        Transmits new velocity (ECO) over the network to the arm.
 
-            self: Calls the send() function to transmit data payload
-            self (Tkinter Label): Updates display_velocity to notify user velocity has been updated
+        Args: 
+            
+             self.display_velocity (Tkinter Label): Updates display_velocity to notify user velocity has been updated
 
-        Returns: None.
+
+        Returns: 
+            
+            None
 
 
         """
@@ -514,21 +555,19 @@ class GUI(ttk.Frame):
 
     #Does not shut down the GUI program, goes into a standby mode, ready to start up again.
     def pauseSystem(self):
-
+     
         """
-
-        Function is called when the user puts the system in standby (connected to a button event).
 
         Sends standby notification over the network to the rest of the system.
 
-        Args:
-
-            self: Calls the send() function to transmit data payload
-            self (Tkinter Label): Updates systemStatusLabel (displays system status on Interface) text and color
-
-        Returns: None.
+        Args: 
+            
+            self.systemStatusLabel (Tkinter Label): Updates systemStatusLabel (displays system status on Interface) text and color.
 
 
+        Returns: 
+            
+            None
 
 
         """
@@ -557,25 +596,25 @@ class GUI(ttk.Frame):
 
 
     def startSystem(self):
-
+        
         """
-        Function is called when the user starts up the system (connected to a button event).
 
         Sends startup notification over the network to the rest of the system.
 
-        Runs video_stream() in a new thread.
+        Starts up the video stream in a seperate thread. 
 
-        Args:
+        Args: 
+            
+            self.systemStatusLabel (Tkinter Label): Updates systemStatusLabel (displays system status on Interface) text and color.
 
-            self: Calls the send() function to transmit data payload.
-            self (Tkinter Label): Updates systemStatusLabel (displays system status on Interface) text and color.
 
+        Returns: 
+            
+            None
 
-        Returns:
-
-            self (socket): Creates socket variable used by the rest of the class.
 
         """
+        
 
         
 

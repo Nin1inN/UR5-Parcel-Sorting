@@ -9,12 +9,34 @@ import time
 import logging
 from queue import Queue
 #import yolov5_Interface as yolov5
-import realsense_depth as rs
+#import realsense_depth as rs
 import math
 
 
 class Server:
     def __init__(server, ip, port):
+        
+        """
+        
+        Constructor:
+            
+        Initalizes the variables needed for the server class.
+
+        Args: 
+            
+            ip (string): IP address of the server.
+            
+            port (string): Port number of the server. 
+
+
+        Returns: 
+            
+            None
+
+
+        """
+        
+        
         server.ip = ip
         server.port = port
         server.socket = socket.socket(socket.AF_INET, socket.SOCK_STREAM)
@@ -24,6 +46,25 @@ class Server:
       
     
     def setup(server):     
+        
+        """
+
+        Setups the server socket and listens for connecting clients.
+        
+        Once a client is connected, spawns a thread to handle client (clientHandler).
+
+        Args: 
+            
+            server.clients (list): List of connected clients. Adds clients to the list as they connect.
+
+
+        Returns: 
+            
+            None
+
+
+        """
+        
         # Using IPv4 with a TCP socket
         serversocket = socket.socket(socket.AF_INET, socket.SOCK_STREAM)
         
@@ -39,7 +80,7 @@ class Server:
                 server.clients.append(conn)
                 print("Client connected")
                 
-                t1 = threading.Thread(target = server.clientHandler, args = (conn, serversocket))
+                t1 = threading.Thread(target = server.clientHandler, args = (conn, ))
         
                 t1.start()
         
@@ -49,7 +90,30 @@ class Server:
     
     
     
-    def clientHandler(server, clientsocket, serversocket):
+    def clientHandler(server, clientsocket):
+        
+        
+        """
+
+        Receives data from client(s) and performs the command receieved. 
+
+        Args: 
+            
+            server.readyForTCPValues (bool): Used to determine when to use the vision system (works on client request).
+                
+            server.systemStatus (string):  Used to determine if the system needs to shutdown or go to standby. 
+                
+            server.clients (list): List of connected clients. Used to disconnect from User Interface client. 
+                
+            clientsocket (socket): Current client connected (multiple threads running clientHandler, each instance has a different clientsocket).
+
+
+        Returns: 
+            
+            None
+
+
+        """
     
         while(True):
     
@@ -142,21 +206,17 @@ class Server:
     
                     #Client 0 for testing, client 1 for final version
     
-    
-                    #Disconnect socket for video feed here
                     try:
-                        server.clients[0].close()
                         
-                        #Rest of code will not need in final version
-                        # temp = server.clients[0]
-                        # #Keeping the first client (Arm Movement)
-                        server.clients = []
-                        # server.clients.append(temp)
-    
+                        clientsocket.close()
+                        
+                  
                     except Exception as e:
                         logging.error(e)
     
                     finally:
+                        #Will need in final version. 
+                        #del server.clients[1]
                         return
                        #os._exit(1)
     
@@ -168,6 +228,26 @@ class Server:
     # 1 = Client 1 (Arm Movement)
     # 2 = Client 2 (User Interface)
     def send(server, data, flag):
+        
+        """
+
+        Send data over the socket to the clients. 
+
+        Args: 
+            
+            server.clients (list): List of connected clients. Used to send data to client.
+            
+            data (JSON - dict): JSON data
+                
+            flag (int): Used to identify which client to send to. Client 1 is Arm Movement, Client 2 is User Interface. 
+
+
+        Returns: 
+            
+            None
+
+
+        """
         jsonResult = json.dumps(data)
     
         try:
@@ -193,6 +273,28 @@ class Server:
     #If object detected will call findLocation and convertToWorldLocation to get x and y TCP values
     #Expected value at end is an array of 6 values.
     def visionSystem(server, in_q):
+        
+        """
+
+        Vision functionality for the system (includes AI-yolo5 and aruco marker detection).
+        
+        If the arm is ready to pickup a package, determines what the parcel is (AI) and the postion of said parcel.
+        
+        Using the bounding box (if parcel was detected), gets center of parcel and returns a depth value. Used for TCP values.
+
+        Args: 
+            
+            server.systemStatus (string): Used to determine if the vision system needs to shutdown or go to standby. 
+                
+            in_q (Queue): Queue shared between videoStream and the visionSystem (allows for thread-safe communication). Inserts a frame into the queue to send to the user client.
+
+
+        Returns: 
+            
+            None
+
+
+        """
         
         #pass
         #Not needed, used for testing.
@@ -276,6 +378,26 @@ class Server:
     #x is row position, y is column position 
     
     def convertToWorldLocation(server, x, y):
+        """
+
+        Using x and y (row and column position), finds the real world Position.
+        
+        Done by measureing the grid (work cell) in TCP values (relative to arm base).
+
+        Args: 
+            
+            x (numpy array): row position average.
+                
+            y (numpy array): column position average.
+
+
+        Returns: 
+            
+            realWorldPosition (numpy array): Returns world real Position (both X and Y).
+
+
+        """
+        
         
         num_of_rows = 4
         num_of_columns = 5
@@ -305,11 +427,57 @@ class Server:
     
     
     def moving_average(server, x, w):
+      
+        """
+
+        Gets the moving average by convolution. 
+
+        Args: 
+            
+            x (numpy array): average to be convolved.
+            
+            w (int): length of varible x.
+
+        Returns: 
+            
+            average(numpy array): returns either row or column position average
+
+
+        """
         return np.convolve(x, np.ones(w), 'valid') / w
     
     
     
     def findLocation(server, id_matrix, row_position_average, column_position_average):
+              
+        """
+
+        Finds the location of a parcel within the grid.
+        
+        Uses a matrix to determine the center point of a parcel (0 shows marker is covered).
+        
+        Function is called n times (reason to keep track of row position and column position) to get a average. 
+
+        Args: 
+            
+            row_position_average (numpy array): Used to keep track of the row position average for each iteration.
+            
+            column_position_average (numpy array): Used to keep track of the column position average for each iteration.
+                
+            id_matrix (2d numpy array): Matrix holding the values for each Arcuo marker. 
+
+
+        Returns: 
+            
+            row_position_average (numpy array): Used to keep track of the row position average for each iteration.
+            
+            column_position_average (numpy array): Used to keep track of the column position average for each iteration.
+                
+            worldPostiion (numpy array): Returns the TCP values (real world position).
+
+
+        """
+        
         position_matrix = np.split(id_matrix,4)
     
         row_position = np.zeros(0)
@@ -350,7 +518,26 @@ class Server:
     
     
     def videoStream(server, in_q):
-        #global systemStatus
+               
+        """
+
+        Creates a Netgear socket (TCP for network protocol) to stream video to the client.
+        
+        Allows us to use compression and other protocols for the video stream. 
+
+        Args: 
+            
+            server.clients (list): List of connected clients. Used to get IP of user client (uses a different port).
+
+            in_q (Queue): Queue shared between videoStream and the visionSystem (allows for thread-safe communication).
+
+
+        Returns: 
+            
+            None
+
+
+        """
         
         ipOfClient = server.clients[0].getpeername()
         

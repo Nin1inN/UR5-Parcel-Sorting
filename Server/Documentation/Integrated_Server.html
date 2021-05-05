@@ -1,0 +1,1935 @@
+<!doctype html>
+<html lang="en">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1, minimum-scale=1" />
+<meta name="generator" content="pdoc 0.9.2" />
+<title>Integrated_Server API documentation</title>
+<meta name="description" content="" />
+<link rel="preload stylesheet" as="style" href="https://cdnjs.cloudflare.com/ajax/libs/10up-sanitize.css/11.0.1/sanitize.min.css" integrity="sha256-PK9q560IAAa6WVRRh76LtCaI8pjTJ2z11v0miyNNjrs=" crossorigin>
+<link rel="preload stylesheet" as="style" href="https://cdnjs.cloudflare.com/ajax/libs/10up-sanitize.css/11.0.1/typography.min.css" integrity="sha256-7l/o7C8jubJiy74VsKTidCy1yBkRtiUGbVkYBylBqUg=" crossorigin>
+<link rel="stylesheet preload" as="style" href="https://cdnjs.cloudflare.com/ajax/libs/highlight.js/10.1.1/styles/github.min.css" crossorigin>
+<style>:root{--highlight-color:#fe9}.flex{display:flex !important}body{line-height:1.5em}#content{padding:20px}#sidebar{padding:30px;overflow:hidden}#sidebar > *:last-child{margin-bottom:2cm}.http-server-breadcrumbs{font-size:130%;margin:0 0 15px 0}#footer{font-size:.75em;padding:5px 30px;border-top:1px solid #ddd;text-align:right}#footer p{margin:0 0 0 1em;display:inline-block}#footer p:last-child{margin-right:30px}h1,h2,h3,h4,h5{font-weight:300}h1{font-size:2.5em;line-height:1.1em}h2{font-size:1.75em;margin:1em 0 .50em 0}h3{font-size:1.4em;margin:25px 0 10px 0}h4{margin:0;font-size:105%}h1:target,h2:target,h3:target,h4:target,h5:target,h6:target{background:var(--highlight-color);padding:.2em 0}a{color:#058;text-decoration:none;transition:color .3s ease-in-out}a:hover{color:#e82}.title code{font-weight:bold}h2[id^="header-"]{margin-top:2em}.ident{color:#900}pre code{background:#f8f8f8;font-size:.8em;line-height:1.4em}code{background:#f2f2f1;padding:1px 4px;overflow-wrap:break-word}h1 code{background:transparent}pre{background:#f8f8f8;border:0;border-top:1px solid #ccc;border-bottom:1px solid #ccc;margin:1em 0;padding:1ex}#http-server-module-list{display:flex;flex-flow:column}#http-server-module-list div{display:flex}#http-server-module-list dt{min-width:10%}#http-server-module-list p{margin-top:0}.toc ul,#index{list-style-type:none;margin:0;padding:0}#index code{background:transparent}#index h3{border-bottom:1px solid #ddd}#index ul{padding:0}#index h4{margin-top:.6em;font-weight:bold}@media (min-width:200ex){#index .two-column{column-count:2}}@media (min-width:300ex){#index .two-column{column-count:3}}dl{margin-bottom:2em}dl dl:last-child{margin-bottom:4em}dd{margin:0 0 1em 3em}#header-classes + dl > dd{margin-bottom:3em}dd dd{margin-left:2em}dd p{margin:10px 0}.name{background:#eee;font-weight:bold;font-size:.85em;padding:5px 10px;display:inline-block;min-width:40%}.name:hover{background:#e0e0e0}dt:target .name{background:var(--highlight-color)}.name > span:first-child{white-space:nowrap}.name.class > span:nth-child(2){margin-left:.4em}.inherited{color:#999;border-left:5px solid #eee;padding-left:1em}.inheritance em{font-style:normal;font-weight:bold}.desc h2{font-weight:400;font-size:1.25em}.desc h3{font-size:1em}.desc dt code{background:inherit}.source summary,.git-link-div{color:#666;text-align:right;font-weight:400;font-size:.8em;text-transform:uppercase}.source summary > *{white-space:nowrap;cursor:pointer}.git-link{color:inherit;margin-left:1em}.source pre{max-height:500px;overflow:auto;margin:0}.source pre code{font-size:12px;overflow:visible}.hlist{list-style:none}.hlist li{display:inline}.hlist li:after{content:',\2002'}.hlist li:last-child:after{content:none}.hlist .hlist{display:inline;padding-left:1em}img{max-width:100%}td{padding:0 .5em}.admonition{padding:.1em .5em;margin-bottom:1em}.admonition-title{font-weight:bold}.admonition.note,.admonition.info,.admonition.important{background:#aef}.admonition.todo,.admonition.versionadded,.admonition.tip,.admonition.hint{background:#dfd}.admonition.warning,.admonition.versionchanged,.admonition.deprecated{background:#fd4}.admonition.error,.admonition.danger,.admonition.caution{background:lightpink}</style>
+<style media="screen and (min-width: 700px)">@media screen and (min-width:700px){#sidebar{width:30%;height:100vh;overflow:auto;position:sticky;top:0}#content{width:70%;max-width:100ch;padding:3em 4em;border-left:1px solid #ddd}pre code{font-size:1em}.item .name{font-size:1em}main{display:flex;flex-direction:row-reverse;justify-content:flex-end}.toc ul ul,#index ul{padding-left:1.5em}.toc > ul > li{margin-top:.5em}}</style>
+<style media="print">@media print{#sidebar h1{page-break-before:always}.source{display:none}}@media print{*{background:transparent !important;color:#000 !important;box-shadow:none !important;text-shadow:none !important}a[href]:after{content:" (" attr(href) ")";font-size:90%}a[href][title]:after{content:none}abbr[title]:after{content:" (" attr(title) ")"}.ir a:after,a[href^="javascript:"]:after,a[href^="#"]:after{content:""}pre,blockquote{border:1px solid #999;page-break-inside:avoid}thead{display:table-header-group}tr,img{page-break-inside:avoid}img{max-width:100% !important}@page{margin:0.5cm}p,h2,h3{orphans:3;widows:3}h1,h2,h3,h4,h5,h6{page-break-after:avoid}}</style>
+<script defer src="https://cdnjs.cloudflare.com/ajax/libs/highlight.js/10.1.1/highlight.min.js" integrity="sha256-Uv3H6lx7dJmRfRvH8TH6kJD1TSK1aFcwgx+mdg3epi8=" crossorigin></script>
+<script>window.addEventListener('DOMContentLoaded', () => hljs.initHighlighting())</script>
+</head>
+<body>
+<main>
+<article id="content">
+<header>
+<h1 class="title">Module <code>Integrated_Server</code></h1>
+</header>
+<section id="section-intro">
+<details class="source">
+<summary>
+<span>Expand source code</span>
+</summary>
+<pre><code class="python">import socket
+import threading
+import numpy as np
+import json
+from vidgear.gears import NetGear
+import cv2
+import cv2.aruco as aruco
+import time
+import logging
+from queue import Queue
+#import yolov5_Interface as yolov5
+#import realsense_depth as rs
+import math
+
+
+class Server:
+    def __init__(server, ip, port):
+        
+        &#34;&#34;&#34;
+        
+        Constructor:
+            
+        Initalizes the variables needed for the server class.
+
+        Args: 
+            
+            ip (string): IP address of the server.
+            
+            port (string): Port number of the server. 
+
+
+        Returns: 
+            
+            None
+
+
+        &#34;&#34;&#34;
+        
+        
+        server.ip = ip
+        server.port = port
+        server.socket = socket.socket(socket.AF_INET, socket.SOCK_STREAM)
+        server.clients = []
+        server.systemStatus = &#34;Offline&#34;
+        server.readyForTCPValues = False
+      
+    
+    def setup(server):     
+        
+        &#34;&#34;&#34;
+
+        Setups the server socket and listens for connecting clients.
+        
+        Once a client is connected, spawns a thread to handle client (clientHandler).
+
+        Args: 
+            
+            server.clients (list): List of connected clients. Adds clients to the list as they connect.
+
+
+        Returns: 
+            
+            None
+
+
+        &#34;&#34;&#34;
+        
+        # Using IPv4 with a TCP socket
+        serversocket = socket.socket(socket.AF_INET, socket.SOCK_STREAM)
+        
+        # bind the socket to a public host, and a well-known port
+        serversocket.bind((server.ip, server.port))
+        # become a server socket
+        serversocket.listen(5)
+        
+        while True:
+            try:
+                conn, addr = serversocket.accept()     # Establish connection with client.
+                
+                server.clients.append(conn)
+                print(&#34;Client connected&#34;)
+                
+                t1 = threading.Thread(target = server.clientHandler, args = (conn, ))
+        
+                t1.start()
+        
+            except Exception as e:
+                print(e)
+
+    
+    
+    
+    def clientHandler(server, clientsocket):
+        
+        
+        &#34;&#34;&#34;
+
+        Receives data from client(s) and performs the command receieved. 
+
+        Args: 
+            
+            server.readyForTCPValues (bool): Used to determine when to use the vision system (works on client request).
+                
+            server.systemStatus (string):  Used to determine if the system needs to shutdown or go to standby. 
+                
+            server.clients (list): List of connected clients. Used to disconnect from User Interface client. 
+                
+            clientsocket (socket): Current client connected (multiple threads running clientHandler, each instance has a different clientsocket).
+
+
+        Returns: 
+            
+            None
+
+
+        &#34;&#34;&#34;
+    
+        while(True):
+    
+            try:
+                jsonReceived = clientsocket.recv(1024)
+                jsonReceived = json.loads(jsonReceived.decode(&#34;utf-8&#34;))
+              #  jsonReceived = json.loads(jsonReceived)
+            except Exception as error:
+                print(error)
+                continue
+    
+    
+    
+            #Arm command
+            if(jsonReceived[&#34;first&#34;] == &#34;ARM&#34;):
+    
+                if(jsonReceived[&#34;second&#34;] == &#34;Ready for TCP Values&#34;):
+    
+                    server.readyForTCPValues = True
+    
+    
+    
+            #Client Commands
+            elif(jsonReceived[&#34;first&#34;] == &#34;Client 2&#34;):
+    
+                if(jsonReceived[&#34;second&#34;] == &#34;Start Up System&#34;):
+    
+                    if(server.systemStatus == &#34;Offline&#34;):
+    
+    
+                        print(&#34;Starting up&#34;)
+                        jsonResult = {&#34;first&#34;:&#34;System Started&#34;}
+                        server.send(jsonResult, 1)
+    
+                        server.systemStatus = &#34;Online&#34;
+    
+                        q = Queue()
+    
+                        visionSystemThread = threading.Thread(target = server.videoStream, args = (q, ))
+    
+                        videoStreamThread = threading.Thread(target = server.visionSystem, args = (q, ))
+    
+                        visionSystemThread.start()
+    
+                        videoStreamThread.start()
+    
+    
+    
+                elif(jsonReceived[&#34;second&#34;] == &#34;Resume System&#34;):
+    
+    
+                     print(&#34;System Resuming&#34;)
+                     jsonResult = {&#34;first&#34;:&#34;System Resume&#34;}
+    
+                     server.send(jsonResult, 1)
+                     server.systemStatus = &#34;Online&#34;
+    
+                elif(jsonReceived[&#34;second&#34;] == &#34;Pause System&#34;):
+    
+    
+                     print(&#34;System going into standby&#34;)
+    
+                     jsonResult = {&#34;first&#34;:&#34;Go into Standby&#34;}
+    
+                     server.send(jsonResult, 1)
+                     server.systemStatus = &#34;Standby&#34;
+    
+    
+                elif(jsonReceived[&#34;second&#34;] == &#34;Drop Location&#34;):
+    
+                    if(server.systemStatus == &#34;Online&#34;):
+    
+                        jsonResult = {&#34;first&#34;: &#34;Drop Location&#34;, &#34;second&#34;: jsonReceived[&#34;third&#34;], &#34;third&#34;: jsonReceived[&#34;fourth&#34;], &#34;fourth&#34;: jsonReceived[&#34;fifth&#34;], &#34;fifth&#34;: jsonReceived[&#34;sixth&#34;], &#34;sixth&#34;: jsonReceived[&#34;seventh&#34;], &#34;seventh&#34;: jsonReceived[&#34;eight&#34;] }
+                        print(jsonResult)
+                        #send(jsonResult, 1)
+    
+                elif(jsonReceived[&#34;second&#34;] == &#34;Set Velocity&#34;):
+    
+                    if(server.systemStatus == &#34;Online&#34;):
+                        jsonResult = {&#34;first&#34;:&#34;Velocity Change&#34;, &#34;second&#34;: jsonReceived[&#34;third&#34;]}
+    
+                        server.send(jsonResult, 1)
+    
+                elif(jsonReceived[&#34;second&#34;] == &#34;Shut Down System&#34;):
+    
+                    server.systemStatus = &#34;Offline&#34;
+    
+    
+    
+    
+                    #Client 0 for testing, client 1 for final version
+    
+                    try:
+                        
+                        clientsocket.close()
+                        
+                  
+                    except Exception as e:
+                        logging.error(e)
+    
+                    finally:
+                        #Will need in final version. 
+                        #del server.clients[1]
+                        return
+                       #os._exit(1)
+    
+    
+    
+    
+    #Flag will be used to indicate which client to send to
+    # 0 = both
+    # 1 = Client 1 (Arm Movement)
+    # 2 = Client 2 (User Interface)
+    def send(server, data, flag):
+        
+        &#34;&#34;&#34;
+
+        Send data over the socket to the clients. 
+
+        Args: 
+            
+            server.clients (list): List of connected clients. Used to send data to client.
+            
+            data (JSON - dict): JSON data
+                
+            flag (int): Used to identify which client to send to. Client 1 is Arm Movement, Client 2 is User Interface. 
+
+
+        Returns: 
+            
+            None
+
+
+        &#34;&#34;&#34;
+        jsonResult = json.dumps(data)
+    
+        try:
+            if(flag == 0):
+    
+                for i in range(0, 2):
+                    server.clients[i].send(bytes(jsonResult, encoding=&#34;utf-8&#34;))
+    
+            elif(flag == 1):
+                server.clients[0].send(bytes(jsonResult, encoding=&#34;utf-8&#34;))
+    
+            elif(flag == 2):
+                server.clients[1].send(bytes(jsonResult, encoding=&#34;utf-8&#34;))
+        except Exception as e:
+            print(e)
+    
+    
+    
+    
+    
+    #Will check to see if anything is covering the markers.
+    #If so, will use the AI to detect if a parcel is present.
+    #If object detected will call findLocation and convertToWorldLocation to get x and y TCP values
+    #Expected value at end is an array of 6 values.
+    def visionSystem(server, in_q):
+        
+        &#34;&#34;&#34;
+
+        Vision functionality for the system (includes AI-yolo5 and aruco marker detection).
+        
+        If the arm is ready to pickup a package, determines what the parcel is (AI) and the postion of said parcel.
+        
+        Using the bounding box (if parcel was detected), gets center of parcel and returns a depth value. Used for TCP values.
+
+        Args: 
+            
+            server.systemStatus (string): Used to determine if the vision system needs to shutdown or go to standby. 
+                
+            in_q (Queue): Queue shared between videoStream and the visionSystem (allows for thread-safe communication). Inserts a frame into the queue to send to the user client.
+
+
+        Returns: 
+            
+            None
+
+
+        &#34;&#34;&#34;
+        
+        #pass
+        #Not needed, used for testing.
+        # stream = cv2.VideoCapture(0)
+        
+        # while(server.systemStatus != &#34;Offline&#34;):
+        #     if(in_q.empty() == True):
+        
+        #         #ret, depth_frame, color_frame = sensor.get_frames()
+        #         color_frame = stream.read()
+        #         in_q.put(color_frame)
+                
+        # stream.release()
+    
+    
+    
+    
+    
+    
+        # #Check this function call.
+        # #Add error handling
+        sensor = rs.DepthCamera()
+        # model, objects, obj_colors = yolov5.create_model(&#39;weight_v1.pt&#39;)
+        
+        while(server.systemStatus != &#34;Offline&#34;):
+            if(server.readyForTCPValues == True):
+                row_position_average = np.zeros(0)
+                column_position_average = np.zeros(0)
+            
+                id_matrix = np.zeros(20)
+            
+                worldPosition = 0
+            
+            
+                ret, depth_frame, color_frame = sensor.get_frames()
+                # status, depth, bounds, frame = yolov5.detect(model, color_frame, depth_frame, 192, objects, obj_colors)
+        
+                # if(status == False):
+                #     continue
+        
+              
+        
+                #Length is same as moving average length
+                for counter in range(0, 20):
+                    gray = cv2.cvtColor(color_frame, cv2.COLOR_BGR2GRAY)
+                    aruco_dict = aruco.Dictionary_get(aruco.DICT_6X6_1000)
+                    arucoParameters = aruco.DetectorParameters_create()
+                    corners, ids, rejectedImgPoints = aruco.detectMarkers(
+                        gray, aruco_dict, parameters=arucoParameters)
+            
+                    #Set id matrix position to 1 (marker visible)
+                    for i in range(0, len(ids)):
+                        if(ids[i] &gt; 20):
+                            print(&#34;&#34;)
+                        else:
+                            id_matrix[ids[i]] = 1
+            
+                    row_position_average, column_position_average, worldPosition = server.findLocation(id_matrix, row_position_average, column_position_average)
+            
+                    id_matrix = np.zeros(20)
+            
+                    ret, depth_frame, color_frame = sensor.get_frames()
+        
+                server.readyForTCPValues == False
+                
+                #At this point, because we know the camera angle (45 degrees), can use simple trig to get an aproximate of the depth. 
+                
+                # marker_distance would hold the values for the displacement between the markers and the camera (x-axis)
+                # x_distance = marker_distance[row_position_average]
+                
+                # depth = math.sqrt( pow(depth, 2) - pow(x_distance, 2) )
+        
+            else:
+                ret, depth_frame, color_frame = sensor.get_frames()
+        
+                if(in_q.empty() == True):
+                    in_q.put(color_frame)
+    
+    
+    
+    #x is row position, y is column position 
+    
+    def convertToWorldLocation(server, x, y):
+        &#34;&#34;&#34;
+
+        Using x and y (row and column position), finds the real world Position.
+        
+        Done by measureing the grid (work cell) in TCP values (relative to arm base).
+
+        Args: 
+            
+            x (numpy array): row position average.
+                
+            y (numpy array): column position average.
+
+
+        Returns: 
+            
+            realWorldPosition (numpy array): Returns world real Position (both X and Y).
+
+
+        &#34;&#34;&#34;
+        
+        
+        num_of_rows = 4
+        num_of_columns = 5
+    
+        #All positions values are in mm
+        bottom_left = np.array([-745, 300])
+    
+        top_right = np.array([-330, -280])
+    
+        block_size = np.zeros(2)
+        worldPosition = np.zeros(2)
+    
+        block_size[0] = ( np.abs(bottom_left[0] - top_right[0])/ num_of_rows)
+    
+        block_size[1] = ( np.abs(bottom_left[1] - top_right[1])/ num_of_columns)
+    
+        worldPosition[0] = -(block_size[0] * x) + top_right[0]
+        worldPosition[0] -= 50
+    
+        worldPosition[1] = -(block_size[1] * y) - top_right[1]
+        worldPosition[1] -= 35
+    
+        return worldPosition
+    
+     
+    
+    
+    
+    def moving_average(server, x, w):
+      
+        &#34;&#34;&#34;
+
+        Gets the moving average by convolution. 
+
+        Args: 
+            
+            x (numpy array): average to be convolved.
+            
+            w (int): length of varible x.
+
+        Returns: 
+            
+            average(numpy array): returns either row or column position average
+
+
+        &#34;&#34;&#34;
+        return np.convolve(x, np.ones(w), &#39;valid&#39;) / w
+    
+    
+    
+    def findLocation(server, id_matrix, row_position_average, column_position_average):
+              
+        &#34;&#34;&#34;
+
+        Finds the location of a parcel within the grid.
+        
+        Uses a matrix to determine the center point of a parcel (0 shows marker is covered).
+        
+        Function is called n times (reason to keep track of row position and column position) to get a average. 
+
+        Args: 
+            
+            row_position_average (numpy array): Used to keep track of the row position average for each iteration.
+            
+            column_position_average (numpy array): Used to keep track of the column position average for each iteration.
+                
+            id_matrix (2d numpy array): Matrix holding the values for each Arcuo marker. 
+
+
+        Returns: 
+            
+            row_position_average (numpy array): Used to keep track of the row position average for each iteration.
+            
+            column_position_average (numpy array): Used to keep track of the column position average for each iteration.
+                
+            worldPostiion (numpy array): Returns the TCP values (real world position).
+
+
+        &#34;&#34;&#34;
+        
+        position_matrix = np.split(id_matrix,4)
+    
+        row_position = np.zeros(0)
+        column_position = np.zeros(0)
+        worldPosition = &#34;Null&#34;
+    
+        for i in range(len(position_matrix)):
+            for j in range(len(position_matrix[i])):
+    
+                if(position_matrix[i][j] == 0):
+    
+                    if i not in row_position:
+                        row_position = np.append(row_position, i)
+    
+                    if j not in column_position:
+                        column_position = np.append(column_position, j)
+    
+        row_position = (np.sum(row_position)/(len(row_position)))
+        column_position = (np.sum(column_position)/(len(column_position)))
+    #
+    
+        row_position_average = np.append(row_position_average, row_position)
+        column_position_average = np.append(column_position_average, column_position)
+    
+        if(len(row_position_average)  == 20):
+           row_position_average = server.moving_average(row_position_average, 20)
+           print(&#34;Row Position&#34;)
+    
+           column_position_average = server.moving_average(column_position_average, 20)
+           print(&#34;Column Position&#34;)
+    
+           worldPosition = server.convertToWorldLocation(row_position_average, column_position_average)
+           # row_position_average = np.zeros(0)
+           # column_position_average = np.zeros(0)
+    
+        return row_position_average, column_position_average, worldPosition
+    
+    
+    
+    def videoStream(server, in_q):
+               
+        &#34;&#34;&#34;
+
+        Creates a Netgear socket (TCP for network protocol) to stream video to the client.
+        
+        Allows us to use compression and other protocols for the video stream. 
+
+        Args: 
+            
+            server.clients (list): List of connected clients. Used to get IP of user client (uses a different port).
+
+            in_q (Queue): Queue shared between videoStream and the visionSystem (allows for thread-safe communication).
+
+
+        Returns: 
+            
+            None
+
+
+        &#34;&#34;&#34;
+        
+        ipOfClient = server.clients[0].getpeername()
+        
+    
+        #10 frames a sec is fine for the video stream
+        #If not, you are welcome to increase (problems with the GUI appear if you do)
+        frame_rate = 10
+        prev = 0
+    
+        # define tweak flags
+        options = {
+        &#34;compression_format&#34;: &#34;.jpg&#34;,
+        &#34;compression_param&#34;: [cv2.IMWRITE_JPEG_QUALITY, 50],
+    }
+        
+        
+    
+        VidGearServer = NetGear(
+            address = ipOfClient[0],
+            port = &#34;5454&#34;,
+            protocol=&#34;tcp&#34;,
+            pattern=0,
+            **options
+        )
+    
+        # loop over until KeyBoard Interrupted
+        while True:
+    
+            if(server.systemStatus == &#34;Online&#34;):
+    
+                try:
+                    time_elapsed = time.time() - prev
+    
+                    if(time_elapsed &gt; 1./frame_rate):
+                        # read frames from stream
+                        frame = in_q.get()
+                        #print(frame)
+    
+                        prev = time.time()
+    
+                        VidGearServer.send(frame[1])
+    
+                except KeyboardInterrupt:
+                    break
+            elif(server.systemStatus == &#34;Offline&#34;):
+                VidGearServer.close()
+                return
+
+
+if __name__ == &#34;__main__&#34;:
+    HOST = &#39;127.0.0.1&#39;
+    PORT = 6000
+    
+    server = Server(HOST, PORT)
+    server.setup()</code></pre>
+</details>
+</section>
+<section>
+</section>
+<section>
+</section>
+<section>
+</section>
+<section>
+<h2 class="section-title" id="header-classes">Classes</h2>
+<dl>
+<dt id="Integrated_Server.Server"><code class="flex name class">
+<span>class <span class="ident">Server</span></span>
+<span>(</span><span>ip, port)</span>
+</code></dt>
+<dd>
+<div class="desc"><h2 id="constructor">Constructor</h2>
+<p>Initalizes the variables needed for the server class.</p>
+<p>Args: </p>
+<pre><code>ip (string): IP address of the server.
+
+port (string): Port number of the server.
+</code></pre>
+<p>Returns: </p>
+<pre><code>None
+</code></pre></div>
+<details class="source">
+<summary>
+<span>Expand source code</span>
+</summary>
+<pre><code class="python">class Server:
+    def __init__(server, ip, port):
+        
+        &#34;&#34;&#34;
+        
+        Constructor:
+            
+        Initalizes the variables needed for the server class.
+
+        Args: 
+            
+            ip (string): IP address of the server.
+            
+            port (string): Port number of the server. 
+
+
+        Returns: 
+            
+            None
+
+
+        &#34;&#34;&#34;
+        
+        
+        server.ip = ip
+        server.port = port
+        server.socket = socket.socket(socket.AF_INET, socket.SOCK_STREAM)
+        server.clients = []
+        server.systemStatus = &#34;Offline&#34;
+        server.readyForTCPValues = False
+      
+    
+    def setup(server):     
+        
+        &#34;&#34;&#34;
+
+        Setups the server socket and listens for connecting clients.
+        
+        Once a client is connected, spawns a thread to handle client (clientHandler).
+
+        Args: 
+            
+            server.clients (list): List of connected clients. Adds clients to the list as they connect.
+
+
+        Returns: 
+            
+            None
+
+
+        &#34;&#34;&#34;
+        
+        # Using IPv4 with a TCP socket
+        serversocket = socket.socket(socket.AF_INET, socket.SOCK_STREAM)
+        
+        # bind the socket to a public host, and a well-known port
+        serversocket.bind((server.ip, server.port))
+        # become a server socket
+        serversocket.listen(5)
+        
+        while True:
+            try:
+                conn, addr = serversocket.accept()     # Establish connection with client.
+                
+                server.clients.append(conn)
+                print(&#34;Client connected&#34;)
+                
+                t1 = threading.Thread(target = server.clientHandler, args = (conn, ))
+        
+                t1.start()
+        
+            except Exception as e:
+                print(e)
+
+    
+    
+    
+    def clientHandler(server, clientsocket):
+        
+        
+        &#34;&#34;&#34;
+
+        Receives data from client(s) and performs the command receieved. 
+
+        Args: 
+            
+            server.readyForTCPValues (bool): Used to determine when to use the vision system (works on client request).
+                
+            server.systemStatus (string):  Used to determine if the system needs to shutdown or go to standby. 
+                
+            server.clients (list): List of connected clients. Used to disconnect from User Interface client. 
+                
+            clientsocket (socket): Current client connected (multiple threads running clientHandler, each instance has a different clientsocket).
+
+
+        Returns: 
+            
+            None
+
+
+        &#34;&#34;&#34;
+    
+        while(True):
+    
+            try:
+                jsonReceived = clientsocket.recv(1024)
+                jsonReceived = json.loads(jsonReceived.decode(&#34;utf-8&#34;))
+              #  jsonReceived = json.loads(jsonReceived)
+            except Exception as error:
+                print(error)
+                continue
+    
+    
+    
+            #Arm command
+            if(jsonReceived[&#34;first&#34;] == &#34;ARM&#34;):
+    
+                if(jsonReceived[&#34;second&#34;] == &#34;Ready for TCP Values&#34;):
+    
+                    server.readyForTCPValues = True
+    
+    
+    
+            #Client Commands
+            elif(jsonReceived[&#34;first&#34;] == &#34;Client 2&#34;):
+    
+                if(jsonReceived[&#34;second&#34;] == &#34;Start Up System&#34;):
+    
+                    if(server.systemStatus == &#34;Offline&#34;):
+    
+    
+                        print(&#34;Starting up&#34;)
+                        jsonResult = {&#34;first&#34;:&#34;System Started&#34;}
+                        server.send(jsonResult, 1)
+    
+                        server.systemStatus = &#34;Online&#34;
+    
+                        q = Queue()
+    
+                        visionSystemThread = threading.Thread(target = server.videoStream, args = (q, ))
+    
+                        videoStreamThread = threading.Thread(target = server.visionSystem, args = (q, ))
+    
+                        visionSystemThread.start()
+    
+                        videoStreamThread.start()
+    
+    
+    
+                elif(jsonReceived[&#34;second&#34;] == &#34;Resume System&#34;):
+    
+    
+                     print(&#34;System Resuming&#34;)
+                     jsonResult = {&#34;first&#34;:&#34;System Resume&#34;}
+    
+                     server.send(jsonResult, 1)
+                     server.systemStatus = &#34;Online&#34;
+    
+                elif(jsonReceived[&#34;second&#34;] == &#34;Pause System&#34;):
+    
+    
+                     print(&#34;System going into standby&#34;)
+    
+                     jsonResult = {&#34;first&#34;:&#34;Go into Standby&#34;}
+    
+                     server.send(jsonResult, 1)
+                     server.systemStatus = &#34;Standby&#34;
+    
+    
+                elif(jsonReceived[&#34;second&#34;] == &#34;Drop Location&#34;):
+    
+                    if(server.systemStatus == &#34;Online&#34;):
+    
+                        jsonResult = {&#34;first&#34;: &#34;Drop Location&#34;, &#34;second&#34;: jsonReceived[&#34;third&#34;], &#34;third&#34;: jsonReceived[&#34;fourth&#34;], &#34;fourth&#34;: jsonReceived[&#34;fifth&#34;], &#34;fifth&#34;: jsonReceived[&#34;sixth&#34;], &#34;sixth&#34;: jsonReceived[&#34;seventh&#34;], &#34;seventh&#34;: jsonReceived[&#34;eight&#34;] }
+                        print(jsonResult)
+                        #send(jsonResult, 1)
+    
+                elif(jsonReceived[&#34;second&#34;] == &#34;Set Velocity&#34;):
+    
+                    if(server.systemStatus == &#34;Online&#34;):
+                        jsonResult = {&#34;first&#34;:&#34;Velocity Change&#34;, &#34;second&#34;: jsonReceived[&#34;third&#34;]}
+    
+                        server.send(jsonResult, 1)
+    
+                elif(jsonReceived[&#34;second&#34;] == &#34;Shut Down System&#34;):
+    
+                    server.systemStatus = &#34;Offline&#34;
+    
+    
+    
+    
+                    #Client 0 for testing, client 1 for final version
+    
+                    try:
+                        
+                        clientsocket.close()
+                        
+                  
+                    except Exception as e:
+                        logging.error(e)
+    
+                    finally:
+                        #Will need in final version. 
+                        #del server.clients[1]
+                        return
+                       #os._exit(1)
+    
+    
+    
+    
+    #Flag will be used to indicate which client to send to
+    # 0 = both
+    # 1 = Client 1 (Arm Movement)
+    # 2 = Client 2 (User Interface)
+    def send(server, data, flag):
+        
+        &#34;&#34;&#34;
+
+        Send data over the socket to the clients. 
+
+        Args: 
+            
+            server.clients (list): List of connected clients. Used to send data to client.
+            
+            data (JSON - dict): JSON data
+                
+            flag (int): Used to identify which client to send to. Client 1 is Arm Movement, Client 2 is User Interface. 
+
+
+        Returns: 
+            
+            None
+
+
+        &#34;&#34;&#34;
+        jsonResult = json.dumps(data)
+    
+        try:
+            if(flag == 0):
+    
+                for i in range(0, 2):
+                    server.clients[i].send(bytes(jsonResult, encoding=&#34;utf-8&#34;))
+    
+            elif(flag == 1):
+                server.clients[0].send(bytes(jsonResult, encoding=&#34;utf-8&#34;))
+    
+            elif(flag == 2):
+                server.clients[1].send(bytes(jsonResult, encoding=&#34;utf-8&#34;))
+        except Exception as e:
+            print(e)
+    
+    
+    
+    
+    
+    #Will check to see if anything is covering the markers.
+    #If so, will use the AI to detect if a parcel is present.
+    #If object detected will call findLocation and convertToWorldLocation to get x and y TCP values
+    #Expected value at end is an array of 6 values.
+    def visionSystem(server, in_q):
+        
+        &#34;&#34;&#34;
+
+        Vision functionality for the system (includes AI-yolo5 and aruco marker detection).
+        
+        If the arm is ready to pickup a package, determines what the parcel is (AI) and the postion of said parcel.
+        
+        Using the bounding box (if parcel was detected), gets center of parcel and returns a depth value. Used for TCP values.
+
+        Args: 
+            
+            server.systemStatus (string): Used to determine if the vision system needs to shutdown or go to standby. 
+                
+            in_q (Queue): Queue shared between videoStream and the visionSystem (allows for thread-safe communication). Inserts a frame into the queue to send to the user client.
+
+
+        Returns: 
+            
+            None
+
+
+        &#34;&#34;&#34;
+        
+        #pass
+        #Not needed, used for testing.
+        # stream = cv2.VideoCapture(0)
+        
+        # while(server.systemStatus != &#34;Offline&#34;):
+        #     if(in_q.empty() == True):
+        
+        #         #ret, depth_frame, color_frame = sensor.get_frames()
+        #         color_frame = stream.read()
+        #         in_q.put(color_frame)
+                
+        # stream.release()
+    
+    
+    
+    
+    
+    
+        # #Check this function call.
+        # #Add error handling
+        sensor = rs.DepthCamera()
+        # model, objects, obj_colors = yolov5.create_model(&#39;weight_v1.pt&#39;)
+        
+        while(server.systemStatus != &#34;Offline&#34;):
+            if(server.readyForTCPValues == True):
+                row_position_average = np.zeros(0)
+                column_position_average = np.zeros(0)
+            
+                id_matrix = np.zeros(20)
+            
+                worldPosition = 0
+            
+            
+                ret, depth_frame, color_frame = sensor.get_frames()
+                # status, depth, bounds, frame = yolov5.detect(model, color_frame, depth_frame, 192, objects, obj_colors)
+        
+                # if(status == False):
+                #     continue
+        
+              
+        
+                #Length is same as moving average length
+                for counter in range(0, 20):
+                    gray = cv2.cvtColor(color_frame, cv2.COLOR_BGR2GRAY)
+                    aruco_dict = aruco.Dictionary_get(aruco.DICT_6X6_1000)
+                    arucoParameters = aruco.DetectorParameters_create()
+                    corners, ids, rejectedImgPoints = aruco.detectMarkers(
+                        gray, aruco_dict, parameters=arucoParameters)
+            
+                    #Set id matrix position to 1 (marker visible)
+                    for i in range(0, len(ids)):
+                        if(ids[i] &gt; 20):
+                            print(&#34;&#34;)
+                        else:
+                            id_matrix[ids[i]] = 1
+            
+                    row_position_average, column_position_average, worldPosition = server.findLocation(id_matrix, row_position_average, column_position_average)
+            
+                    id_matrix = np.zeros(20)
+            
+                    ret, depth_frame, color_frame = sensor.get_frames()
+        
+                server.readyForTCPValues == False
+                
+                #At this point, because we know the camera angle (45 degrees), can use simple trig to get an aproximate of the depth. 
+                
+                # marker_distance would hold the values for the displacement between the markers and the camera (x-axis)
+                # x_distance = marker_distance[row_position_average]
+                
+                # depth = math.sqrt( pow(depth, 2) - pow(x_distance, 2) )
+        
+            else:
+                ret, depth_frame, color_frame = sensor.get_frames()
+        
+                if(in_q.empty() == True):
+                    in_q.put(color_frame)
+    
+    
+    
+    #x is row position, y is column position 
+    
+    def convertToWorldLocation(server, x, y):
+        &#34;&#34;&#34;
+
+        Using x and y (row and column position), finds the real world Position.
+        
+        Done by measureing the grid (work cell) in TCP values (relative to arm base).
+
+        Args: 
+            
+            x (numpy array): row position average.
+                
+            y (numpy array): column position average.
+
+
+        Returns: 
+            
+            realWorldPosition (numpy array): Returns world real Position (both X and Y).
+
+
+        &#34;&#34;&#34;
+        
+        
+        num_of_rows = 4
+        num_of_columns = 5
+    
+        #All positions values are in mm
+        bottom_left = np.array([-745, 300])
+    
+        top_right = np.array([-330, -280])
+    
+        block_size = np.zeros(2)
+        worldPosition = np.zeros(2)
+    
+        block_size[0] = ( np.abs(bottom_left[0] - top_right[0])/ num_of_rows)
+    
+        block_size[1] = ( np.abs(bottom_left[1] - top_right[1])/ num_of_columns)
+    
+        worldPosition[0] = -(block_size[0] * x) + top_right[0]
+        worldPosition[0] -= 50
+    
+        worldPosition[1] = -(block_size[1] * y) - top_right[1]
+        worldPosition[1] -= 35
+    
+        return worldPosition
+    
+     
+    
+    
+    
+    def moving_average(server, x, w):
+      
+        &#34;&#34;&#34;
+
+        Gets the moving average by convolution. 
+
+        Args: 
+            
+            x (numpy array): average to be convolved.
+            
+            w (int): length of varible x.
+
+        Returns: 
+            
+            average(numpy array): returns either row or column position average
+
+
+        &#34;&#34;&#34;
+        return np.convolve(x, np.ones(w), &#39;valid&#39;) / w
+    
+    
+    
+    def findLocation(server, id_matrix, row_position_average, column_position_average):
+              
+        &#34;&#34;&#34;
+
+        Finds the location of a parcel within the grid.
+        
+        Uses a matrix to determine the center point of a parcel (0 shows marker is covered).
+        
+        Function is called n times (reason to keep track of row position and column position) to get a average. 
+
+        Args: 
+            
+            row_position_average (numpy array): Used to keep track of the row position average for each iteration.
+            
+            column_position_average (numpy array): Used to keep track of the column position average for each iteration.
+                
+            id_matrix (2d numpy array): Matrix holding the values for each Arcuo marker. 
+
+
+        Returns: 
+            
+            row_position_average (numpy array): Used to keep track of the row position average for each iteration.
+            
+            column_position_average (numpy array): Used to keep track of the column position average for each iteration.
+                
+            worldPostiion (numpy array): Returns the TCP values (real world position).
+
+
+        &#34;&#34;&#34;
+        
+        position_matrix = np.split(id_matrix,4)
+    
+        row_position = np.zeros(0)
+        column_position = np.zeros(0)
+        worldPosition = &#34;Null&#34;
+    
+        for i in range(len(position_matrix)):
+            for j in range(len(position_matrix[i])):
+    
+                if(position_matrix[i][j] == 0):
+    
+                    if i not in row_position:
+                        row_position = np.append(row_position, i)
+    
+                    if j not in column_position:
+                        column_position = np.append(column_position, j)
+    
+        row_position = (np.sum(row_position)/(len(row_position)))
+        column_position = (np.sum(column_position)/(len(column_position)))
+    #
+    
+        row_position_average = np.append(row_position_average, row_position)
+        column_position_average = np.append(column_position_average, column_position)
+    
+        if(len(row_position_average)  == 20):
+           row_position_average = server.moving_average(row_position_average, 20)
+           print(&#34;Row Position&#34;)
+    
+           column_position_average = server.moving_average(column_position_average, 20)
+           print(&#34;Column Position&#34;)
+    
+           worldPosition = server.convertToWorldLocation(row_position_average, column_position_average)
+           # row_position_average = np.zeros(0)
+           # column_position_average = np.zeros(0)
+    
+        return row_position_average, column_position_average, worldPosition
+    
+    
+    
+    def videoStream(server, in_q):
+               
+        &#34;&#34;&#34;
+
+        Creates a Netgear socket (TCP for network protocol) to stream video to the client.
+        
+        Allows us to use compression and other protocols for the video stream. 
+
+        Args: 
+            
+            server.clients (list): List of connected clients. Used to get IP of user client (uses a different port).
+
+            in_q (Queue): Queue shared between videoStream and the visionSystem (allows for thread-safe communication).
+
+
+        Returns: 
+            
+            None
+
+
+        &#34;&#34;&#34;
+        
+        ipOfClient = server.clients[0].getpeername()
+        
+    
+        #10 frames a sec is fine for the video stream
+        #If not, you are welcome to increase (problems with the GUI appear if you do)
+        frame_rate = 10
+        prev = 0
+    
+        # define tweak flags
+        options = {
+        &#34;compression_format&#34;: &#34;.jpg&#34;,
+        &#34;compression_param&#34;: [cv2.IMWRITE_JPEG_QUALITY, 50],
+    }
+        
+        
+    
+        VidGearServer = NetGear(
+            address = ipOfClient[0],
+            port = &#34;5454&#34;,
+            protocol=&#34;tcp&#34;,
+            pattern=0,
+            **options
+        )
+    
+        # loop over until KeyBoard Interrupted
+        while True:
+    
+            if(server.systemStatus == &#34;Online&#34;):
+    
+                try:
+                    time_elapsed = time.time() - prev
+    
+                    if(time_elapsed &gt; 1./frame_rate):
+                        # read frames from stream
+                        frame = in_q.get()
+                        #print(frame)
+    
+                        prev = time.time()
+    
+                        VidGearServer.send(frame[1])
+    
+                except KeyboardInterrupt:
+                    break
+            elif(server.systemStatus == &#34;Offline&#34;):
+                VidGearServer.close()
+                return</code></pre>
+</details>
+<h3>Methods</h3>
+<dl>
+<dt id="Integrated_Server.Server.clientHandler"><code class="name flex">
+<span>def <span class="ident">clientHandler</span></span>(<span>server, clientsocket)</span>
+</code></dt>
+<dd>
+<div class="desc"><p>Receives data from client(s) and performs the command receieved. </p>
+<p>Args: </p>
+<pre><code>server.readyForTCPValues (bool): Used to determine when to use the vision system (works on client request).
+
+server.systemStatus (string):  Used to determine if the system needs to shutdown or go to standby.
+
+server.clients (list): List of connected clients. Used to disconnect from User Interface client.
+
+clientsocket (socket): Current client connected (multiple threads running clientHandler, each instance has a different clientsocket).
+</code></pre>
+<p>Returns: </p>
+<pre><code>None
+</code></pre></div>
+<details class="source">
+<summary>
+<span>Expand source code</span>
+</summary>
+<pre><code class="python">def clientHandler(server, clientsocket):
+    
+    
+    &#34;&#34;&#34;
+
+    Receives data from client(s) and performs the command receieved. 
+
+    Args: 
+        
+        server.readyForTCPValues (bool): Used to determine when to use the vision system (works on client request).
+            
+        server.systemStatus (string):  Used to determine if the system needs to shutdown or go to standby. 
+            
+        server.clients (list): List of connected clients. Used to disconnect from User Interface client. 
+            
+        clientsocket (socket): Current client connected (multiple threads running clientHandler, each instance has a different clientsocket).
+
+
+    Returns: 
+        
+        None
+
+
+    &#34;&#34;&#34;
+
+    while(True):
+
+        try:
+            jsonReceived = clientsocket.recv(1024)
+            jsonReceived = json.loads(jsonReceived.decode(&#34;utf-8&#34;))
+          #  jsonReceived = json.loads(jsonReceived)
+        except Exception as error:
+            print(error)
+            continue
+
+
+
+        #Arm command
+        if(jsonReceived[&#34;first&#34;] == &#34;ARM&#34;):
+
+            if(jsonReceived[&#34;second&#34;] == &#34;Ready for TCP Values&#34;):
+
+                server.readyForTCPValues = True
+
+
+
+        #Client Commands
+        elif(jsonReceived[&#34;first&#34;] == &#34;Client 2&#34;):
+
+            if(jsonReceived[&#34;second&#34;] == &#34;Start Up System&#34;):
+
+                if(server.systemStatus == &#34;Offline&#34;):
+
+
+                    print(&#34;Starting up&#34;)
+                    jsonResult = {&#34;first&#34;:&#34;System Started&#34;}
+                    server.send(jsonResult, 1)
+
+                    server.systemStatus = &#34;Online&#34;
+
+                    q = Queue()
+
+                    visionSystemThread = threading.Thread(target = server.videoStream, args = (q, ))
+
+                    videoStreamThread = threading.Thread(target = server.visionSystem, args = (q, ))
+
+                    visionSystemThread.start()
+
+                    videoStreamThread.start()
+
+
+
+            elif(jsonReceived[&#34;second&#34;] == &#34;Resume System&#34;):
+
+
+                 print(&#34;System Resuming&#34;)
+                 jsonResult = {&#34;first&#34;:&#34;System Resume&#34;}
+
+                 server.send(jsonResult, 1)
+                 server.systemStatus = &#34;Online&#34;
+
+            elif(jsonReceived[&#34;second&#34;] == &#34;Pause System&#34;):
+
+
+                 print(&#34;System going into standby&#34;)
+
+                 jsonResult = {&#34;first&#34;:&#34;Go into Standby&#34;}
+
+                 server.send(jsonResult, 1)
+                 server.systemStatus = &#34;Standby&#34;
+
+
+            elif(jsonReceived[&#34;second&#34;] == &#34;Drop Location&#34;):
+
+                if(server.systemStatus == &#34;Online&#34;):
+
+                    jsonResult = {&#34;first&#34;: &#34;Drop Location&#34;, &#34;second&#34;: jsonReceived[&#34;third&#34;], &#34;third&#34;: jsonReceived[&#34;fourth&#34;], &#34;fourth&#34;: jsonReceived[&#34;fifth&#34;], &#34;fifth&#34;: jsonReceived[&#34;sixth&#34;], &#34;sixth&#34;: jsonReceived[&#34;seventh&#34;], &#34;seventh&#34;: jsonReceived[&#34;eight&#34;] }
+                    print(jsonResult)
+                    #send(jsonResult, 1)
+
+            elif(jsonReceived[&#34;second&#34;] == &#34;Set Velocity&#34;):
+
+                if(server.systemStatus == &#34;Online&#34;):
+                    jsonResult = {&#34;first&#34;:&#34;Velocity Change&#34;, &#34;second&#34;: jsonReceived[&#34;third&#34;]}
+
+                    server.send(jsonResult, 1)
+
+            elif(jsonReceived[&#34;second&#34;] == &#34;Shut Down System&#34;):
+
+                server.systemStatus = &#34;Offline&#34;
+
+
+
+
+                #Client 0 for testing, client 1 for final version
+
+                try:
+                    
+                    clientsocket.close()
+                    
+              
+                except Exception as e:
+                    logging.error(e)
+
+                finally:
+                    #Will need in final version. 
+                    #del server.clients[1]
+                    return</code></pre>
+</details>
+</dd>
+<dt id="Integrated_Server.Server.convertToWorldLocation"><code class="name flex">
+<span>def <span class="ident">convertToWorldLocation</span></span>(<span>server, x, y)</span>
+</code></dt>
+<dd>
+<div class="desc"><p>Using x and y (row and column position), finds the real world Position.</p>
+<p>Done by measureing the grid (work cell) in TCP values (relative to arm base).</p>
+<p>Args: </p>
+<pre><code>x (numpy array): row position average.
+
+y (numpy array): column position average.
+</code></pre>
+<p>Returns: </p>
+<pre><code>realWorldPosition (numpy array): Returns world real Position (both X and Y).
+</code></pre></div>
+<details class="source">
+<summary>
+<span>Expand source code</span>
+</summary>
+<pre><code class="python">def convertToWorldLocation(server, x, y):
+    &#34;&#34;&#34;
+
+    Using x and y (row and column position), finds the real world Position.
+    
+    Done by measureing the grid (work cell) in TCP values (relative to arm base).
+
+    Args: 
+        
+        x (numpy array): row position average.
+            
+        y (numpy array): column position average.
+
+
+    Returns: 
+        
+        realWorldPosition (numpy array): Returns world real Position (both X and Y).
+
+
+    &#34;&#34;&#34;
+    
+    
+    num_of_rows = 4
+    num_of_columns = 5
+
+    #All positions values are in mm
+    bottom_left = np.array([-745, 300])
+
+    top_right = np.array([-330, -280])
+
+    block_size = np.zeros(2)
+    worldPosition = np.zeros(2)
+
+    block_size[0] = ( np.abs(bottom_left[0] - top_right[0])/ num_of_rows)
+
+    block_size[1] = ( np.abs(bottom_left[1] - top_right[1])/ num_of_columns)
+
+    worldPosition[0] = -(block_size[0] * x) + top_right[0]
+    worldPosition[0] -= 50
+
+    worldPosition[1] = -(block_size[1] * y) - top_right[1]
+    worldPosition[1] -= 35
+
+    return worldPosition</code></pre>
+</details>
+</dd>
+<dt id="Integrated_Server.Server.findLocation"><code class="name flex">
+<span>def <span class="ident">findLocation</span></span>(<span>server, id_matrix, row_position_average, column_position_average)</span>
+</code></dt>
+<dd>
+<div class="desc"><p>Finds the location of a parcel within the grid.</p>
+<p>Uses a matrix to determine the center point of a parcel (0 shows marker is covered).</p>
+<p>Function is called n times (reason to keep track of row position and column position) to get a average. </p>
+<p>Args: </p>
+<pre><code>row_position_average (numpy array): Used to keep track of the row position average for each iteration.
+
+column_position_average (numpy array): Used to keep track of the column position average for each iteration.
+
+id_matrix (2d numpy array): Matrix holding the values for each Arcuo marker.
+</code></pre>
+<p>Returns: </p>
+<pre><code>row_position_average (numpy array): Used to keep track of the row position average for each iteration.
+
+column_position_average (numpy array): Used to keep track of the column position average for each iteration.
+
+worldPostiion (numpy array): Returns the TCP values (real world position).
+</code></pre></div>
+<details class="source">
+<summary>
+<span>Expand source code</span>
+</summary>
+<pre><code class="python">def findLocation(server, id_matrix, row_position_average, column_position_average):
+          
+    &#34;&#34;&#34;
+
+    Finds the location of a parcel within the grid.
+    
+    Uses a matrix to determine the center point of a parcel (0 shows marker is covered).
+    
+    Function is called n times (reason to keep track of row position and column position) to get a average. 
+
+    Args: 
+        
+        row_position_average (numpy array): Used to keep track of the row position average for each iteration.
+        
+        column_position_average (numpy array): Used to keep track of the column position average for each iteration.
+            
+        id_matrix (2d numpy array): Matrix holding the values for each Arcuo marker. 
+
+
+    Returns: 
+        
+        row_position_average (numpy array): Used to keep track of the row position average for each iteration.
+        
+        column_position_average (numpy array): Used to keep track of the column position average for each iteration.
+            
+        worldPostiion (numpy array): Returns the TCP values (real world position).
+
+
+    &#34;&#34;&#34;
+    
+    position_matrix = np.split(id_matrix,4)
+
+    row_position = np.zeros(0)
+    column_position = np.zeros(0)
+    worldPosition = &#34;Null&#34;
+
+    for i in range(len(position_matrix)):
+        for j in range(len(position_matrix[i])):
+
+            if(position_matrix[i][j] == 0):
+
+                if i not in row_position:
+                    row_position = np.append(row_position, i)
+
+                if j not in column_position:
+                    column_position = np.append(column_position, j)
+
+    row_position = (np.sum(row_position)/(len(row_position)))
+    column_position = (np.sum(column_position)/(len(column_position)))
+#
+
+    row_position_average = np.append(row_position_average, row_position)
+    column_position_average = np.append(column_position_average, column_position)
+
+    if(len(row_position_average)  == 20):
+       row_position_average = server.moving_average(row_position_average, 20)
+       print(&#34;Row Position&#34;)
+
+       column_position_average = server.moving_average(column_position_average, 20)
+       print(&#34;Column Position&#34;)
+
+       worldPosition = server.convertToWorldLocation(row_position_average, column_position_average)
+       # row_position_average = np.zeros(0)
+       # column_position_average = np.zeros(0)
+
+    return row_position_average, column_position_average, worldPosition</code></pre>
+</details>
+</dd>
+<dt id="Integrated_Server.Server.moving_average"><code class="name flex">
+<span>def <span class="ident">moving_average</span></span>(<span>server, x, w)</span>
+</code></dt>
+<dd>
+<div class="desc"><p>Gets the moving average by convolution. </p>
+<p>Args: </p>
+<pre><code>x (numpy array): average to be convolved.
+
+w (int): length of varible x.
+</code></pre>
+<p>Returns: </p>
+<pre><code>average(numpy array): returns either row or column position average
+</code></pre></div>
+<details class="source">
+<summary>
+<span>Expand source code</span>
+</summary>
+<pre><code class="python">def moving_average(server, x, w):
+  
+    &#34;&#34;&#34;
+
+    Gets the moving average by convolution. 
+
+    Args: 
+        
+        x (numpy array): average to be convolved.
+        
+        w (int): length of varible x.
+
+    Returns: 
+        
+        average(numpy array): returns either row or column position average
+
+
+    &#34;&#34;&#34;
+    return np.convolve(x, np.ones(w), &#39;valid&#39;) / w</code></pre>
+</details>
+</dd>
+<dt id="Integrated_Server.Server.send"><code class="name flex">
+<span>def <span class="ident">send</span></span>(<span>server, data, flag)</span>
+</code></dt>
+<dd>
+<div class="desc"><p>Send data over the socket to the clients. </p>
+<p>Args: </p>
+<pre><code>server.clients (list): List of connected clients. Used to send data to client.
+
+data (JSON - dict): JSON data
+
+flag (int): Used to identify which client to send to. Client 1 is Arm Movement, Client 2 is User Interface.
+</code></pre>
+<p>Returns: </p>
+<pre><code>None
+</code></pre></div>
+<details class="source">
+<summary>
+<span>Expand source code</span>
+</summary>
+<pre><code class="python">def send(server, data, flag):
+    
+    &#34;&#34;&#34;
+
+    Send data over the socket to the clients. 
+
+    Args: 
+        
+        server.clients (list): List of connected clients. Used to send data to client.
+        
+        data (JSON - dict): JSON data
+            
+        flag (int): Used to identify which client to send to. Client 1 is Arm Movement, Client 2 is User Interface. 
+
+
+    Returns: 
+        
+        None
+
+
+    &#34;&#34;&#34;
+    jsonResult = json.dumps(data)
+
+    try:
+        if(flag == 0):
+
+            for i in range(0, 2):
+                server.clients[i].send(bytes(jsonResult, encoding=&#34;utf-8&#34;))
+
+        elif(flag == 1):
+            server.clients[0].send(bytes(jsonResult, encoding=&#34;utf-8&#34;))
+
+        elif(flag == 2):
+            server.clients[1].send(bytes(jsonResult, encoding=&#34;utf-8&#34;))
+    except Exception as e:
+        print(e)</code></pre>
+</details>
+</dd>
+<dt id="Integrated_Server.Server.setup"><code class="name flex">
+<span>def <span class="ident">setup</span></span>(<span>server)</span>
+</code></dt>
+<dd>
+<div class="desc"><p>Setups the server socket and listens for connecting clients.</p>
+<p>Once a client is connected, spawns a thread to handle client (clientHandler).</p>
+<p>Args: </p>
+<pre><code>server.clients (list): List of connected clients. Adds clients to the list as they connect.
+</code></pre>
+<p>Returns: </p>
+<pre><code>None
+</code></pre></div>
+<details class="source">
+<summary>
+<span>Expand source code</span>
+</summary>
+<pre><code class="python">def setup(server):     
+    
+    &#34;&#34;&#34;
+
+    Setups the server socket and listens for connecting clients.
+    
+    Once a client is connected, spawns a thread to handle client (clientHandler).
+
+    Args: 
+        
+        server.clients (list): List of connected clients. Adds clients to the list as they connect.
+
+
+    Returns: 
+        
+        None
+
+
+    &#34;&#34;&#34;
+    
+    # Using IPv4 with a TCP socket
+    serversocket = socket.socket(socket.AF_INET, socket.SOCK_STREAM)
+    
+    # bind the socket to a public host, and a well-known port
+    serversocket.bind((server.ip, server.port))
+    # become a server socket
+    serversocket.listen(5)
+    
+    while True:
+        try:
+            conn, addr = serversocket.accept()     # Establish connection with client.
+            
+            server.clients.append(conn)
+            print(&#34;Client connected&#34;)
+            
+            t1 = threading.Thread(target = server.clientHandler, args = (conn, ))
+    
+            t1.start()
+    
+        except Exception as e:
+            print(e)</code></pre>
+</details>
+</dd>
+<dt id="Integrated_Server.Server.videoStream"><code class="name flex">
+<span>def <span class="ident">videoStream</span></span>(<span>server, in_q)</span>
+</code></dt>
+<dd>
+<div class="desc"><p>Creates a Netgear socket (TCP for network protocol) to stream video to the client.</p>
+<p>Allows us to use compression and other protocols for the video stream. </p>
+<p>Args: </p>
+<pre><code>server.clients (list): List of connected clients. Used to get IP of user client (uses a different port).
+
+in_q (Queue): Queue shared between videoStream and the visionSystem (allows for thread-safe communication).
+</code></pre>
+<p>Returns: </p>
+<pre><code>None
+</code></pre></div>
+<details class="source">
+<summary>
+<span>Expand source code</span>
+</summary>
+<pre><code class="python">def videoStream(server, in_q):
+           
+    &#34;&#34;&#34;
+
+    Creates a Netgear socket (TCP for network protocol) to stream video to the client.
+    
+    Allows us to use compression and other protocols for the video stream. 
+
+    Args: 
+        
+        server.clients (list): List of connected clients. Used to get IP of user client (uses a different port).
+
+        in_q (Queue): Queue shared between videoStream and the visionSystem (allows for thread-safe communication).
+
+
+    Returns: 
+        
+        None
+
+
+    &#34;&#34;&#34;
+    
+    ipOfClient = server.clients[0].getpeername()
+    
+
+    #10 frames a sec is fine for the video stream
+    #If not, you are welcome to increase (problems with the GUI appear if you do)
+    frame_rate = 10
+    prev = 0
+
+    # define tweak flags
+    options = {
+    &#34;compression_format&#34;: &#34;.jpg&#34;,
+    &#34;compression_param&#34;: [cv2.IMWRITE_JPEG_QUALITY, 50],
+}
+    
+    
+
+    VidGearServer = NetGear(
+        address = ipOfClient[0],
+        port = &#34;5454&#34;,
+        protocol=&#34;tcp&#34;,
+        pattern=0,
+        **options
+    )
+
+    # loop over until KeyBoard Interrupted
+    while True:
+
+        if(server.systemStatus == &#34;Online&#34;):
+
+            try:
+                time_elapsed = time.time() - prev
+
+                if(time_elapsed &gt; 1./frame_rate):
+                    # read frames from stream
+                    frame = in_q.get()
+                    #print(frame)
+
+                    prev = time.time()
+
+                    VidGearServer.send(frame[1])
+
+            except KeyboardInterrupt:
+                break
+        elif(server.systemStatus == &#34;Offline&#34;):
+            VidGearServer.close()
+            return</code></pre>
+</details>
+</dd>
+<dt id="Integrated_Server.Server.visionSystem"><code class="name flex">
+<span>def <span class="ident">visionSystem</span></span>(<span>server, in_q)</span>
+</code></dt>
+<dd>
+<div class="desc"><p>Vision functionality for the system (includes AI-yolo5 and aruco marker detection).</p>
+<p>If the arm is ready to pickup a package, determines what the parcel is (AI) and the postion of said parcel.</p>
+<p>Using the bounding box (if parcel was detected), gets center of parcel and returns a depth value. Used for TCP values.</p>
+<p>Args: </p>
+<pre><code>server.systemStatus (string): Used to determine if the vision system needs to shutdown or go to standby.
+
+in_q (Queue): Queue shared between videoStream and the visionSystem (allows for thread-safe communication). Inserts a frame into the queue to send to the user client.
+</code></pre>
+<p>Returns: </p>
+<pre><code>None
+</code></pre></div>
+<details class="source">
+<summary>
+<span>Expand source code</span>
+</summary>
+<pre><code class="python">def visionSystem(server, in_q):
+    
+    &#34;&#34;&#34;
+
+    Vision functionality for the system (includes AI-yolo5 and aruco marker detection).
+    
+    If the arm is ready to pickup a package, determines what the parcel is (AI) and the postion of said parcel.
+    
+    Using the bounding box (if parcel was detected), gets center of parcel and returns a depth value. Used for TCP values.
+
+    Args: 
+        
+        server.systemStatus (string): Used to determine if the vision system needs to shutdown or go to standby. 
+            
+        in_q (Queue): Queue shared between videoStream and the visionSystem (allows for thread-safe communication). Inserts a frame into the queue to send to the user client.
+
+
+    Returns: 
+        
+        None
+
+
+    &#34;&#34;&#34;
+    
+    #pass
+    #Not needed, used for testing.
+    # stream = cv2.VideoCapture(0)
+    
+    # while(server.systemStatus != &#34;Offline&#34;):
+    #     if(in_q.empty() == True):
+    
+    #         #ret, depth_frame, color_frame = sensor.get_frames()
+    #         color_frame = stream.read()
+    #         in_q.put(color_frame)
+            
+    # stream.release()
+
+
+
+
+
+
+    # #Check this function call.
+    # #Add error handling
+    sensor = rs.DepthCamera()
+    # model, objects, obj_colors = yolov5.create_model(&#39;weight_v1.pt&#39;)
+    
+    while(server.systemStatus != &#34;Offline&#34;):
+        if(server.readyForTCPValues == True):
+            row_position_average = np.zeros(0)
+            column_position_average = np.zeros(0)
+        
+            id_matrix = np.zeros(20)
+        
+            worldPosition = 0
+        
+        
+            ret, depth_frame, color_frame = sensor.get_frames()
+            # status, depth, bounds, frame = yolov5.detect(model, color_frame, depth_frame, 192, objects, obj_colors)
+    
+            # if(status == False):
+            #     continue
+    
+          
+    
+            #Length is same as moving average length
+            for counter in range(0, 20):
+                gray = cv2.cvtColor(color_frame, cv2.COLOR_BGR2GRAY)
+                aruco_dict = aruco.Dictionary_get(aruco.DICT_6X6_1000)
+                arucoParameters = aruco.DetectorParameters_create()
+                corners, ids, rejectedImgPoints = aruco.detectMarkers(
+                    gray, aruco_dict, parameters=arucoParameters)
+        
+                #Set id matrix position to 1 (marker visible)
+                for i in range(0, len(ids)):
+                    if(ids[i] &gt; 20):
+                        print(&#34;&#34;)
+                    else:
+                        id_matrix[ids[i]] = 1
+        
+                row_position_average, column_position_average, worldPosition = server.findLocation(id_matrix, row_position_average, column_position_average)
+        
+                id_matrix = np.zeros(20)
+        
+                ret, depth_frame, color_frame = sensor.get_frames()
+    
+            server.readyForTCPValues == False
+            
+            #At this point, because we know the camera angle (45 degrees), can use simple trig to get an aproximate of the depth. 
+            
+            # marker_distance would hold the values for the displacement between the markers and the camera (x-axis)
+            # x_distance = marker_distance[row_position_average]
+            
+            # depth = math.sqrt( pow(depth, 2) - pow(x_distance, 2) )
+    
+        else:
+            ret, depth_frame, color_frame = sensor.get_frames()
+    
+            if(in_q.empty() == True):
+                in_q.put(color_frame)</code></pre>
+</details>
+</dd>
+</dl>
+</dd>
+</dl>
+</section>
+</article>
+<nav id="sidebar">
+<h1>Index</h1>
+<div class="toc">
+<ul></ul>
+</div>
+<ul id="index">
+<li><h3><a href="#header-classes">Classes</a></h3>
+<ul>
+<li>
+<h4><code><a title="Integrated_Server.Server" href="#Integrated_Server.Server">Server</a></code></h4>
+<ul class="">
+<li><code><a title="Integrated_Server.Server.clientHandler" href="#Integrated_Server.Server.clientHandler">clientHandler</a></code></li>
+<li><code><a title="Integrated_Server.Server.convertToWorldLocation" href="#Integrated_Server.Server.convertToWorldLocation">convertToWorldLocation</a></code></li>
+<li><code><a title="Integrated_Server.Server.findLocation" href="#Integrated_Server.Server.findLocation">findLocation</a></code></li>
+<li><code><a title="Integrated_Server.Server.moving_average" href="#Integrated_Server.Server.moving_average">moving_average</a></code></li>
+<li><code><a title="Integrated_Server.Server.send" href="#Integrated_Server.Server.send">send</a></code></li>
+<li><code><a title="Integrated_Server.Server.setup" href="#Integrated_Server.Server.setup">setup</a></code></li>
+<li><code><a title="Integrated_Server.Server.videoStream" href="#Integrated_Server.Server.videoStream">videoStream</a></code></li>
+<li><code><a title="Integrated_Server.Server.visionSystem" href="#Integrated_Server.Server.visionSystem">visionSystem</a></code></li>
+</ul>
+</li>
+</ul>
+</li>
+</ul>
+</nav>
+</main>
+<footer id="footer">
+<p>Generated by <a href="https://pdoc3.github.io/pdoc"><cite>pdoc</cite> 0.9.2</a>.</p>
+</footer>
+</body>
+</html>

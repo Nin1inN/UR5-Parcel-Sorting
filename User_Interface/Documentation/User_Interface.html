@@ -1,0 +1,2274 @@
+<!doctype html>
+<html lang="en">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1, minimum-scale=1" />
+<meta name="generator" content="pdoc 0.9.2" />
+<title>User_Interface API documentation</title>
+<meta name="description" content="" />
+<link rel="preload stylesheet" as="style" href="https://cdnjs.cloudflare.com/ajax/libs/10up-sanitize.css/11.0.1/sanitize.min.css" integrity="sha256-PK9q560IAAa6WVRRh76LtCaI8pjTJ2z11v0miyNNjrs=" crossorigin>
+<link rel="preload stylesheet" as="style" href="https://cdnjs.cloudflare.com/ajax/libs/10up-sanitize.css/11.0.1/typography.min.css" integrity="sha256-7l/o7C8jubJiy74VsKTidCy1yBkRtiUGbVkYBylBqUg=" crossorigin>
+<link rel="stylesheet preload" as="style" href="https://cdnjs.cloudflare.com/ajax/libs/highlight.js/10.1.1/styles/github.min.css" crossorigin>
+<style>:root{--highlight-color:#fe9}.flex{display:flex !important}body{line-height:1.5em}#content{padding:20px}#sidebar{padding:30px;overflow:hidden}#sidebar > *:last-child{margin-bottom:2cm}.http-server-breadcrumbs{font-size:130%;margin:0 0 15px 0}#footer{font-size:.75em;padding:5px 30px;border-top:1px solid #ddd;text-align:right}#footer p{margin:0 0 0 1em;display:inline-block}#footer p:last-child{margin-right:30px}h1,h2,h3,h4,h5{font-weight:300}h1{font-size:2.5em;line-height:1.1em}h2{font-size:1.75em;margin:1em 0 .50em 0}h3{font-size:1.4em;margin:25px 0 10px 0}h4{margin:0;font-size:105%}h1:target,h2:target,h3:target,h4:target,h5:target,h6:target{background:var(--highlight-color);padding:.2em 0}a{color:#058;text-decoration:none;transition:color .3s ease-in-out}a:hover{color:#e82}.title code{font-weight:bold}h2[id^="header-"]{margin-top:2em}.ident{color:#900}pre code{background:#f8f8f8;font-size:.8em;line-height:1.4em}code{background:#f2f2f1;padding:1px 4px;overflow-wrap:break-word}h1 code{background:transparent}pre{background:#f8f8f8;border:0;border-top:1px solid #ccc;border-bottom:1px solid #ccc;margin:1em 0;padding:1ex}#http-server-module-list{display:flex;flex-flow:column}#http-server-module-list div{display:flex}#http-server-module-list dt{min-width:10%}#http-server-module-list p{margin-top:0}.toc ul,#index{list-style-type:none;margin:0;padding:0}#index code{background:transparent}#index h3{border-bottom:1px solid #ddd}#index ul{padding:0}#index h4{margin-top:.6em;font-weight:bold}@media (min-width:200ex){#index .two-column{column-count:2}}@media (min-width:300ex){#index .two-column{column-count:3}}dl{margin-bottom:2em}dl dl:last-child{margin-bottom:4em}dd{margin:0 0 1em 3em}#header-classes + dl > dd{margin-bottom:3em}dd dd{margin-left:2em}dd p{margin:10px 0}.name{background:#eee;font-weight:bold;font-size:.85em;padding:5px 10px;display:inline-block;min-width:40%}.name:hover{background:#e0e0e0}dt:target .name{background:var(--highlight-color)}.name > span:first-child{white-space:nowrap}.name.class > span:nth-child(2){margin-left:.4em}.inherited{color:#999;border-left:5px solid #eee;padding-left:1em}.inheritance em{font-style:normal;font-weight:bold}.desc h2{font-weight:400;font-size:1.25em}.desc h3{font-size:1em}.desc dt code{background:inherit}.source summary,.git-link-div{color:#666;text-align:right;font-weight:400;font-size:.8em;text-transform:uppercase}.source summary > *{white-space:nowrap;cursor:pointer}.git-link{color:inherit;margin-left:1em}.source pre{max-height:500px;overflow:auto;margin:0}.source pre code{font-size:12px;overflow:visible}.hlist{list-style:none}.hlist li{display:inline}.hlist li:after{content:',\2002'}.hlist li:last-child:after{content:none}.hlist .hlist{display:inline;padding-left:1em}img{max-width:100%}td{padding:0 .5em}.admonition{padding:.1em .5em;margin-bottom:1em}.admonition-title{font-weight:bold}.admonition.note,.admonition.info,.admonition.important{background:#aef}.admonition.todo,.admonition.versionadded,.admonition.tip,.admonition.hint{background:#dfd}.admonition.warning,.admonition.versionchanged,.admonition.deprecated{background:#fd4}.admonition.error,.admonition.danger,.admonition.caution{background:lightpink}</style>
+<style media="screen and (min-width: 700px)">@media screen and (min-width:700px){#sidebar{width:30%;height:100vh;overflow:auto;position:sticky;top:0}#content{width:70%;max-width:100ch;padding:3em 4em;border-left:1px solid #ddd}pre code{font-size:1em}.item .name{font-size:1em}main{display:flex;flex-direction:row-reverse;justify-content:flex-end}.toc ul ul,#index ul{padding-left:1.5em}.toc > ul > li{margin-top:.5em}}</style>
+<style media="print">@media print{#sidebar h1{page-break-before:always}.source{display:none}}@media print{*{background:transparent !important;color:#000 !important;box-shadow:none !important;text-shadow:none !important}a[href]:after{content:" (" attr(href) ")";font-size:90%}a[href][title]:after{content:none}abbr[title]:after{content:" (" attr(title) ")"}.ir a:after,a[href^="javascript:"]:after,a[href^="#"]:after{content:""}pre,blockquote{border:1px solid #999;page-break-inside:avoid}thead{display:table-header-group}tr,img{page-break-inside:avoid}img{max-width:100% !important}@page{margin:0.5cm}p,h2,h3{orphans:3;widows:3}h1,h2,h3,h4,h5,h6{page-break-after:avoid}}</style>
+<script defer src="https://cdnjs.cloudflare.com/ajax/libs/highlight.js/10.1.1/highlight.min.js" integrity="sha256-Uv3H6lx7dJmRfRvH8TH6kJD1TSK1aFcwgx+mdg3epi8=" crossorigin></script>
+<script>window.addEventListener('DOMContentLoaded', () => hljs.initHighlighting())</script>
+</head>
+<body>
+<main>
+<article id="content">
+<header>
+<h1 class="title">Module <code>User_Interface</code></h1>
+</header>
+<section id="section-intro">
+<details class="source">
+<summary>
+<span>Expand source code</span>
+</summary>
+<pre><code class="python">import tkinter
+from tkinter import ttk
+#import numpy as np
+import cv2
+from PIL import Image, ImageTk
+import socket
+import json
+from vidgear.gears import NetGear
+import threading
+import os
+import webbrowser
+
+
+
+HOST = &#39;127.0.0.1&#39;
+PORT = 6000
+
+
+class Menubar(ttk.Frame):
+
+    def __init__(self, parent):
+
+        &#34;&#34;&#34;
+        
+        Constructor:
+        
+        Initializes the menubar for the GUI
+
+        Calls the setup (init_menubar) for the rest of the menubar.
+
+        Args: 
+            
+            parent: Root window for the MenuBar.
+
+        Returns: 
+            
+            None.
+
+        &#34;&#34;&#34;
+
+        ttk.Frame.__init__(self, parent)
+        self.root = parent
+        self.init_menubar()
+
+
+    def display_help(self):
+
+        &#34;&#34;&#34;
+        Displays the help document (How to use the GUI).
+
+        Args: 
+            
+            None.
+
+        Returns: 
+            
+            None.
+
+        &#34;&#34;&#34;
+        webbrowser.open(&#34;README.txt&#34;)
+        pass
+
+    def display_about(self):
+
+        &#34;&#34;&#34;
+        Displays info about program (purpose of the system).
+
+        Args: 
+           
+            None
+
+
+        Returns: 
+            
+            None.
+
+        &#34;&#34;&#34;
+        pass
+
+    def init_menubar(self):
+
+
+        
+        &#34;&#34;&#34;
+        Creates the menubar (attached to root) and adds the functionaly for the menubar.
+
+        Args: 
+            
+            None.
+
+        Returns: 
+            
+            None.
+
+        &#34;&#34;&#34;
+
+
+        self.menubar = tkinter.Menu(self.root)
+        self.menu_help = tkinter.Menu(self.menubar) #Creates a &#34;Help&#34; menu
+        self.menu_help.add_command(label=&#39;Help&#39;, command=self.display_help)
+        self.menu_help.add_command(label=&#39;About&#39;, command=self.display_about)
+        self.menubar.add_cascade(menu=self.menu_help, label=&#39;Info&#39;)
+
+        self.root.config(menu=self.menubar)
+
+class GUI(ttk.Frame):
+    
+    def __init__(self, parent):
+        
+        &#34;&#34;&#34;
+        
+        Constructor:
+        
+        Initializes the GUI with the parmeters set by the user.
+
+        Calls the setup (init_gui) for the rest of the GUI.
+
+        Args: 
+           
+            parent: Root window for the Main Window. 
+
+
+        Returns: 
+            
+            None.
+
+        &#34;&#34;&#34;
+
+        ttk.Frame.__init__(self, parent)
+        self.root = parent
+        self.systemStatus = &#34;Offline&#34;
+        self.init_gui()
+
+
+    def init_gui(self):
+
+        &#34;&#34;&#34;
+
+        Setups all the parameters (and their values) needed by the GUI.
+        
+        Includes window size, components, background, and more. 
+
+        Args: 
+            
+            None
+
+
+        Returns: 
+            
+            None
+
+
+        &#34;&#34;&#34;
+
+
+
+        #Rename, socket for client
+
+
+        self.root.title(&#39;Arm Solutions&#39;)
+        self.root.geometry(&#34;1200x800&#34;)
+
+
+        self.background_image = Image.open(&#34;Flat_colorful_background.png&#34;)
+        self.background_image = self.background_image.resize((2000,2000), Image.ANTIALIAS)
+        self.background_image = ImageTk.PhotoImage(self.background_image)
+
+        self.label = tkinter.Label(self.root, image=self.background_image)
+
+        self.label.image = self.background_image
+        self.label.place(x=0,y=0, relwidth=1, relheight=1)
+
+        self.root.grid_columnconfigure(1, weight=1)
+        self.root.grid_columnconfigure(0, weight=1)
+
+        self.root.option_add(&#39;*tearOff&#39;, &#39;FALSE&#39;) # Disables ability to tear menu bar into own window
+#
+        self.systemStatusLabelText = tkinter.StringVar()
+
+
+
+        self.systemStatusLabel = tkinter.Label(textvariable= self.systemStatusLabelText , bg = &#39;#e81a1a&#39;, width = 25)
+
+
+        self.startup_button = tkinter.Button(self.root, text =&#34;Start Up/Resume System&#34;, command = self.startSystem, height=3, width= 35, bg = &#39;#499c5f&#39;)
+        self.pause_button = tkinter.Button(self.root, text =&#34;Put System in Standby&#34;, command = self.pauseSystem, height=3, width= 35, bg =&#39;#f9ff54&#39;)
+        self.settings_button = tkinter.Button(self.root, text =&#34;System Settings&#34;, command = self.systemSettings, height=3, width= 35, bg = &#39;#adaaaa&#39;)
+        self.exit_button = tkinter.Button(self.root, text =&#34;Shut Down System&#34;, command = self.on_exit, height=3, width= 35, bg = &#39;#e81a1a&#39;)
+
+
+        self.imageFrame = tkinter.Frame(self.root)
+        self.imageFrame.grid(row=0, column=1, padx=10, pady=50, rowspan=4)
+
+
+
+
+        self.startup_button.grid(row=0,column=0, padx=50, pady=(60,100))
+        self.pause_button.grid(row=1,column=0, padx=50, pady=(0,100))
+        self.settings_button.grid(row=2, column=0, padx=50, pady=(0,100))
+        self.exit_button.grid(row=3, column=0, padx=50)
+        self.systemStatusLabel.grid(row=3, column=1, pady=10, padx=240)
+
+
+
+
+        self.systemStatusLabel.config(font=(&#34;New Times Roman&#34;, 20))
+        self.startup_button.config(font=(&#34;New Times Roman&#34;, 16))
+        self.pause_button.config(font=(&#34;New Times Roman&#34;, 16))
+        self.settings_button.config(font=(&#34;New Times Roman&#34;, 16))
+        self.exit_button.config(font=(&#34;New Times Roman&#34;, 16))
+
+
+        # Menu Bar
+        self.menubar = Menubar(self.root)
+
+        # Padding
+        for child in self.winfo_children():
+            child.grid_configure(padx=10, pady=5)
+
+
+        self.lmain = tkinter.Label(self.imageFrame)
+
+        #Variables used later on
+        self.speed = tkinter.DoubleVar()
+        self.systemStatusLabelText.set(&#34;System Status - Offline&#34;)
+
+
+    def sendPlaceLocation(self):
+              
+        &#34;&#34;&#34;
+
+        Sends updated drop (place) location of parcel to the server set by the user. 
+
+        Args: 
+            
+            self.place_position (string): Drop location of parcel set by user.
+
+
+        Returns: 
+            
+            None
+
+
+        &#34;&#34;&#34;
+  
+
+        try:
+            data = self.place_position_data.get()
+
+            self.place_position_data.set(&#34;&#34;)
+
+            data = data.split()
+
+            if(len(data) == 6):
+
+                if(self.systemStatus == &#34;Online&#34;):
+                    print()
+                    jsonData = {&#34;first&#34;: &#34;Client 2&#34;, &#34;second&#34;: &#34;Drop Location&#34;, &#34;third&#34;: data[0], &#34;fourth&#34;: data[1], &#34;fifth&#34;: data[2], &#34;sixth&#34;: data[3], &#34;seventh&#34;: data[4], &#34;eight&#34;: data[5] }
+                    self.send(jsonData)
+                    self.placeLocationStatus.set(&#34;Parcel Drop Location Updated&#34;)
+                else:
+                    self.placeLocationStatus.set(&#34;System status: &#34; + self.systemStatus)
+            else:
+                self.placeLocationStatus.set(&#34;Incorrect format&#34;)
+
+        except Exception as error:
+            print(error)
+            self.placeLocationStatus.set(&#34;Error&#34;)
+
+
+
+      #Work the styling for settings window
+    def systemSettings(self):
+
+        &#34;&#34;&#34;
+        Settings window for the User Interface.
+        
+        Allows the user to edit multiple aspects of the system. Including velocity, drop location, and more. 
+
+        Args: 
+            
+            None
+
+        Returns: 
+            
+            None.
+
+        &#34;&#34;&#34;
+
+        self.settingsWindow = tkinter.Toplevel(self.root)
+
+        self.settingsWindow.title(&#34;Settings&#34;)
+
+        self.settingsWindow.geometry(&#34;400x400&#34;)
+
+        self.velocity_scale = tkinter.Scale(self.settingsWindow, variable = self.speed, from_ = 1, to = 100, orient= tkinter.HORIZONTAL, length = 250, width=30)
+
+        self.display_velocity = tkinter.Label(self.settingsWindow)
+
+        self.set_velocity = tkinter.Button(self.settingsWindow, text =&#34;Set Velocity&#34;,
+            command = self.setVelocity)
+
+        self.eco_button = tkinter.Button(self.settingsWindow, text = &#34;ECO Mode&#34;, command = self.ecoMode)
+
+        self.place_position_data = tkinter.StringVar()
+
+        self.placeLocationStatus = tkinter.StringVar()
+        self.placeLocationStatus.set(&#34;&#34;)
+
+        # creating a label for
+        # name using widget Label
+        place_position_label = tkinter.Label(self.settingsWindow, text = &#39;Parcel Drop Location&#39;, font=(&#39;calibre&#39;,10, &#39;bold&#39;))
+
+        # creating a entry for input
+        # name using widget Entry
+        place_position_entry = tkinter.Entry(self.settingsWindow, textvariable = self.place_position_data, font=(&#39;calibre&#39;,10,&#39;normal&#39;))
+
+
+        # creating a button using the widget
+        # Button that will call the submit function
+        sub_btn=tkinter.Button(self.settingsWindow, text = &#39;Update Location&#39;, command = self.sendPlaceLocation)
+
+        notify_label = tkinter.Label(self.settingsWindow, textvariable = self.placeLocationStatus, font=(&#39;calibre&#39;,10, &#39;bold&#39;))
+
+
+
+        self.eco_button.pack()
+        self.velocity_scale.pack(anchor = tkinter.CENTER)
+        self.set_velocity.pack()
+        self.display_velocity.pack()
+        place_position_label.pack()
+        place_position_entry.pack()
+        sub_btn.pack()
+        notify_label.pack()
+
+#   # function for video streaming
+    #Used for testing, change to network stream for final version
+    def video_stream(self):
+   
+        &#34;&#34;&#34;
+
+        Creates a NetGear socket (TCP for network protocol) to handle video stream from server.
+
+        Args: 
+            
+            self.systemStatus (string): Used to determine if the system needs to shutdown or go to standby.
+
+
+        Returns: 
+            
+            None
+
+
+        &#34;&#34;&#34;
+
+
+
+        # define tweak flags
+        options = {&#34;compression_format&#34;: &#34;.jpg&#34;, &#34;compression_param&#34;: cv2.IMREAD_COLOR}
+
+        # Define Netgear Client at given IP address and define parameters
+        # !!! change following IP address &#39;192.168.x.xxx&#39; with yours !!!
+        self.NetGearclient = NetGear(
+            address=HOST,
+            port=&#34;5454&#34;,
+            protocol=&#34;tcp&#34;,
+            pattern=0,
+            receive_mode=True,
+            **options
+        )
+        self.lmain.grid(row=0, column=1, rowspan=3)
+        # loop over
+        while True:
+
+            if(self.systemStatus == &#34;Online&#34;):
+                # receive frames from network
+                frame = self.NetGearclient.recv()
+
+                # check for received frame if Nonetype
+                if frame is None:
+                    break
+
+
+                thread = threading.Thread(target = self.updateVideoWindow, args = (frame, ))
+
+                thread.start()
+
+    def updateVideoWindow(self, frame):
+            
+        &#34;&#34;&#34;
+
+        Function is called by video_stream() to update the frame (image) on the GUI.
+
+        Runs in a thread to avoid blocking of new frame (update frame as fast as network transmits).
+
+        Args: 
+            
+            frame (OpenCV frame): image recieved by the server.
+
+            self.lmain (tkinter Label): Label used to display image on the GUI
+
+
+        Returns: 
+            
+            None
+
+
+        &#34;&#34;&#34;
+
+        cv2image = cv2.cvtColor(frame, cv2.COLOR_BGR2RGBA)
+        img = Image.fromarray(cv2image)
+        imgtk = ImageTk.PhotoImage(image=img)
+        self.lmain.imgtk = imgtk
+        self.lmain.configure(image=imgtk)
+
+
+
+    #Modify function to return data decoded
+    #Not sure if this function is really needed, used mostly for testing purposes
+    # def receive(self):
+    #     jsonReceived = self.conn.recv(1024)
+    #     jsonReceived = json.loads(jsonReceived.decode(&#34;utf-8&#34;))
+    #     print(jsonReceived[&#34;first&#34;])
+
+
+    def send(self, data):
+        
+        &#34;&#34;&#34;
+
+        Converts data (json dict.) into a string and transmits to connected server socket.
+
+        Args: 
+            
+            self.conn (socket): Uses socket connection (conn) defined in creation of class.
+
+            data (dictionary): Data to be sent over network in the form of json.
+
+
+        Returns: 
+            
+            None
+
+
+        &#34;&#34;&#34;
+        jsonResult = json.dumps(data)
+        self.conn.send(bytes(jsonResult, encoding=&#34;utf-8&#34;))
+
+
+    def on_exit(self):
+        
+        &#34;&#34;&#34;
+
+        Sends shutdown notification over the network to rest of the system (connected to button event).
+        Shuts down video stream (NetGear) and the normal socket.
+        Finally exits program
+
+        Args: 
+            
+            self.conn (socket): Uses socket connection (conn) defined in creation of class
+
+            self.NetGearclient (NetGearSocket): Uses NetGearSocket defined in video_stream()
+
+
+        Returns: 
+            
+            None
+
+
+        &#34;&#34;&#34;
+
+      
+        try:
+            jsonResult = {&#34;first&#34;:&#34;Client 2&#34;, &#34;second&#34;:&#34;Shut Down System&#34;}
+            self.send(jsonResult)
+
+        except:
+            print(&#34;Error sending close command to server&#34;)
+
+        try:
+            self.root.destroy()
+            self.NetGearclient.close()
+            self.conn.shutdown(socket.SHUT_RDWR)
+            self.conn.close()
+
+        except:
+            print(&#34;Error closing sockets&#34;)
+
+        finally:
+            os._exit(1)
+
+    def setVelocity(self):
+    
+        &#34;&#34;&#34;
+
+        Transmits new velocity (set by user) over the network to the arm.
+
+        Args: 
+            
+             self.display_velocity (Tkinter Label): Updates display_velocity to notify user velocity has been updated
+
+
+        Returns: 
+            
+            None
+
+
+        &#34;&#34;&#34;
+        try:
+
+            jsonResult = {&#34;first&#34;:&#34;Client 2&#34;, &#34;second&#34;:&#34;Set Velocity&#34;, &#34;third&#34;: str(self.speed.get())}
+            self.send(jsonResult)
+
+            sel = &#34;New Velocity = &#34; + str(self.speed.get())
+            self.display_velocity.config(text = sel, font =(&#34;New Times Roman&#34;, 14))
+
+        except Exception as e:
+            print(e)
+
+
+
+    #This is mostly a joke
+    #However, it is possible to save alot of energy (up to 21% according to some research papers).
+    #It seems as torque increases, running at about half betwen the torque-rpm curve is best
+    #It seems the best thing to do is run at 80 to 90% speed with no payload, and reduce as payload increases (torque increases).
+    #Can reduce velocity by about 20% with payload vs no payload
+    #The e-series robots can measure torque change.
+    #No way of knowing power savings (if any) without testing.
+    def ecoMode(self):
+        
+        &#34;&#34;&#34;
+
+        Transmits new velocity (ECO) over the network to the arm.
+
+        Args: 
+            
+             self.display_velocity (Tkinter Label): Updates display_velocity to notify user velocity has been updated
+
+
+        Returns: 
+            
+            None
+
+
+        &#34;&#34;&#34;
+        try:
+
+            jsonResult = {&#34;first&#34;:&#34;Client 2&#34;, &#34;second&#34;:&#34;Set Velocity&#34;, &#34;third&#34;: str(69)}
+            self.send(jsonResult)
+
+            sel = &#34;New Velocity = &#34; + str(69)
+            self.display_velocity.config(text = sel, font =(&#34;New Times Roman&#34;, 14))
+
+        except Exception as e:
+            print(e)
+
+    #Does not shut down the GUI program, goes into a standby mode, ready to start up again.
+    def pauseSystem(self):
+     
+        &#34;&#34;&#34;
+
+        Sends standby notification over the network to the rest of the system.
+
+        Args: 
+            
+            self.systemStatusLabel (Tkinter Label): Updates systemStatusLabel (displays system status on Interface) text and color.
+
+
+        Returns: 
+            
+            None
+
+
+        &#34;&#34;&#34;
+
+        print(&#34;Putting system in Standby&#34;)
+      
+
+
+        try:
+            jsonResult = {&#34;first&#34;:&#34;Client 2&#34;, &#34;second&#34;:&#34;Pause System&#34;}
+
+            self.send(jsonResult)
+
+
+            self.systemStatusLabelText.set(&#34;System Status - Standby&#34;)
+            self.systemStatusLabel.config(bg = &#39;#f9ff54&#39;)
+            self.systemStatus = &#34;Standby&#34;
+
+        except Exception as e:
+            print(e)
+
+
+
+
+
+
+
+    def startSystem(self):
+        
+        &#34;&#34;&#34;
+
+        Sends startup notification over the network to the rest of the system.
+
+        Starts up the video stream in a seperate thread. 
+
+        Args: 
+            
+            self.systemStatusLabel (Tkinter Label): Updates systemStatusLabel (displays system status on Interface) text and color.
+
+
+        Returns: 
+            
+            None
+
+
+        &#34;&#34;&#34;
+        
+
+        
+
+
+        #Create another client (with a different port) to handle the video stream.
+
+        if(self.systemStatus == &#34;Offline&#34;):
+
+
+
+            print(&#34;Starting up system&#34;)
+
+            try:
+                self.conn = socket.socket(socket.AF_INET, socket.SOCK_STREAM)
+
+                self.conn.connect((HOST, PORT))
+
+                jsonResult = {&#34;first&#34;:&#34;Client 2&#34;, &#34;second&#34;:&#34;Start Up System&#34;}
+                self.send(jsonResult)
+
+                #self.receive()
+
+                self.systemStatusLabelText.set(&#34;System Status - Online&#34;)
+                self.systemStatusLabel.config(bg = &#39;#499c5f&#39;)
+                self.systemStatus = &#34;Online&#34;
+
+
+                #Start video stream here
+
+                t1 = threading.Thread(target = self.video_stream)
+
+                t1.start()
+
+            except Exception as e:
+                print(e)
+
+        #At this point, if function is called, assuming system is in standby, send message to resume system
+        elif(self.systemStatus == &#34;Standby&#34;):
+            try:
+                jsonResult = {&#34;first&#34;:&#34;Client 2&#34;, &#34;second&#34;:&#34;Resume System&#34;}
+                self.send(jsonResult)
+                self.systemStatus = &#34;Online&#34;
+
+
+
+                self.systemStatusLabelText.set(&#34;System Status - Online&#34;)
+                self.systemStatusLabel.config(bg = &#39;#499c5f&#39;)
+            except Exception as error:
+                print(error)
+
+
+
+
+if __name__ == &#39;__main__&#39;:
+
+    root = tkinter.Tk()
+    GUI(root)
+    root.mainloop()</code></pre>
+</details>
+</section>
+<section>
+</section>
+<section>
+</section>
+<section>
+</section>
+<section>
+<h2 class="section-title" id="header-classes">Classes</h2>
+<dl>
+<dt id="User_Interface.GUI"><code class="flex name class">
+<span>class <span class="ident">GUI</span></span>
+<span>(</span><span>parent)</span>
+</code></dt>
+<dd>
+<div class="desc"><p>Ttk Frame widget is a container, used to group other widgets
+together.</p>
+<p>Constructor:</p>
+<p>Initializes the GUI with the parmeters set by the user.</p>
+<p>Calls the setup (init_gui) for the rest of the GUI.</p>
+<p>Args: </p>
+<pre><code>parent: Root window for the Main Window.
+</code></pre>
+<p>Returns: </p>
+<pre><code>None.
+</code></pre></div>
+<details class="source">
+<summary>
+<span>Expand source code</span>
+</summary>
+<pre><code class="python">class GUI(ttk.Frame):
+    
+    def __init__(self, parent):
+        
+        &#34;&#34;&#34;
+        
+        Constructor:
+        
+        Initializes the GUI with the parmeters set by the user.
+
+        Calls the setup (init_gui) for the rest of the GUI.
+
+        Args: 
+           
+            parent: Root window for the Main Window. 
+
+
+        Returns: 
+            
+            None.
+
+        &#34;&#34;&#34;
+
+        ttk.Frame.__init__(self, parent)
+        self.root = parent
+        self.systemStatus = &#34;Offline&#34;
+        self.init_gui()
+
+
+    def init_gui(self):
+
+        &#34;&#34;&#34;
+
+        Setups all the parameters (and their values) needed by the GUI.
+        
+        Includes window size, components, background, and more. 
+
+        Args: 
+            
+            None
+
+
+        Returns: 
+            
+            None
+
+
+        &#34;&#34;&#34;
+
+
+
+        #Rename, socket for client
+
+
+        self.root.title(&#39;Arm Solutions&#39;)
+        self.root.geometry(&#34;1200x800&#34;)
+
+
+        self.background_image = Image.open(&#34;Flat_colorful_background.png&#34;)
+        self.background_image = self.background_image.resize((2000,2000), Image.ANTIALIAS)
+        self.background_image = ImageTk.PhotoImage(self.background_image)
+
+        self.label = tkinter.Label(self.root, image=self.background_image)
+
+        self.label.image = self.background_image
+        self.label.place(x=0,y=0, relwidth=1, relheight=1)
+
+        self.root.grid_columnconfigure(1, weight=1)
+        self.root.grid_columnconfigure(0, weight=1)
+
+        self.root.option_add(&#39;*tearOff&#39;, &#39;FALSE&#39;) # Disables ability to tear menu bar into own window
+#
+        self.systemStatusLabelText = tkinter.StringVar()
+
+
+
+        self.systemStatusLabel = tkinter.Label(textvariable= self.systemStatusLabelText , bg = &#39;#e81a1a&#39;, width = 25)
+
+
+        self.startup_button = tkinter.Button(self.root, text =&#34;Start Up/Resume System&#34;, command = self.startSystem, height=3, width= 35, bg = &#39;#499c5f&#39;)
+        self.pause_button = tkinter.Button(self.root, text =&#34;Put System in Standby&#34;, command = self.pauseSystem, height=3, width= 35, bg =&#39;#f9ff54&#39;)
+        self.settings_button = tkinter.Button(self.root, text =&#34;System Settings&#34;, command = self.systemSettings, height=3, width= 35, bg = &#39;#adaaaa&#39;)
+        self.exit_button = tkinter.Button(self.root, text =&#34;Shut Down System&#34;, command = self.on_exit, height=3, width= 35, bg = &#39;#e81a1a&#39;)
+
+
+        self.imageFrame = tkinter.Frame(self.root)
+        self.imageFrame.grid(row=0, column=1, padx=10, pady=50, rowspan=4)
+
+
+
+
+        self.startup_button.grid(row=0,column=0, padx=50, pady=(60,100))
+        self.pause_button.grid(row=1,column=0, padx=50, pady=(0,100))
+        self.settings_button.grid(row=2, column=0, padx=50, pady=(0,100))
+        self.exit_button.grid(row=3, column=0, padx=50)
+        self.systemStatusLabel.grid(row=3, column=1, pady=10, padx=240)
+
+
+
+
+        self.systemStatusLabel.config(font=(&#34;New Times Roman&#34;, 20))
+        self.startup_button.config(font=(&#34;New Times Roman&#34;, 16))
+        self.pause_button.config(font=(&#34;New Times Roman&#34;, 16))
+        self.settings_button.config(font=(&#34;New Times Roman&#34;, 16))
+        self.exit_button.config(font=(&#34;New Times Roman&#34;, 16))
+
+
+        # Menu Bar
+        self.menubar = Menubar(self.root)
+
+        # Padding
+        for child in self.winfo_children():
+            child.grid_configure(padx=10, pady=5)
+
+
+        self.lmain = tkinter.Label(self.imageFrame)
+
+        #Variables used later on
+        self.speed = tkinter.DoubleVar()
+        self.systemStatusLabelText.set(&#34;System Status - Offline&#34;)
+
+
+    def sendPlaceLocation(self):
+              
+        &#34;&#34;&#34;
+
+        Sends updated drop (place) location of parcel to the server set by the user. 
+
+        Args: 
+            
+            self.place_position (string): Drop location of parcel set by user.
+
+
+        Returns: 
+            
+            None
+
+
+        &#34;&#34;&#34;
+  
+
+        try:
+            data = self.place_position_data.get()
+
+            self.place_position_data.set(&#34;&#34;)
+
+            data = data.split()
+
+            if(len(data) == 6):
+
+                if(self.systemStatus == &#34;Online&#34;):
+                    print()
+                    jsonData = {&#34;first&#34;: &#34;Client 2&#34;, &#34;second&#34;: &#34;Drop Location&#34;, &#34;third&#34;: data[0], &#34;fourth&#34;: data[1], &#34;fifth&#34;: data[2], &#34;sixth&#34;: data[3], &#34;seventh&#34;: data[4], &#34;eight&#34;: data[5] }
+                    self.send(jsonData)
+                    self.placeLocationStatus.set(&#34;Parcel Drop Location Updated&#34;)
+                else:
+                    self.placeLocationStatus.set(&#34;System status: &#34; + self.systemStatus)
+            else:
+                self.placeLocationStatus.set(&#34;Incorrect format&#34;)
+
+        except Exception as error:
+            print(error)
+            self.placeLocationStatus.set(&#34;Error&#34;)
+
+
+
+      #Work the styling for settings window
+    def systemSettings(self):
+
+        &#34;&#34;&#34;
+        Settings window for the User Interface.
+        
+        Allows the user to edit multiple aspects of the system. Including velocity, drop location, and more. 
+
+        Args: 
+            
+            None
+
+        Returns: 
+            
+            None.
+
+        &#34;&#34;&#34;
+
+        self.settingsWindow = tkinter.Toplevel(self.root)
+
+        self.settingsWindow.title(&#34;Settings&#34;)
+
+        self.settingsWindow.geometry(&#34;400x400&#34;)
+
+        self.velocity_scale = tkinter.Scale(self.settingsWindow, variable = self.speed, from_ = 1, to = 100, orient= tkinter.HORIZONTAL, length = 250, width=30)
+
+        self.display_velocity = tkinter.Label(self.settingsWindow)
+
+        self.set_velocity = tkinter.Button(self.settingsWindow, text =&#34;Set Velocity&#34;,
+            command = self.setVelocity)
+
+        self.eco_button = tkinter.Button(self.settingsWindow, text = &#34;ECO Mode&#34;, command = self.ecoMode)
+
+        self.place_position_data = tkinter.StringVar()
+
+        self.placeLocationStatus = tkinter.StringVar()
+        self.placeLocationStatus.set(&#34;&#34;)
+
+        # creating a label for
+        # name using widget Label
+        place_position_label = tkinter.Label(self.settingsWindow, text = &#39;Parcel Drop Location&#39;, font=(&#39;calibre&#39;,10, &#39;bold&#39;))
+
+        # creating a entry for input
+        # name using widget Entry
+        place_position_entry = tkinter.Entry(self.settingsWindow, textvariable = self.place_position_data, font=(&#39;calibre&#39;,10,&#39;normal&#39;))
+
+
+        # creating a button using the widget
+        # Button that will call the submit function
+        sub_btn=tkinter.Button(self.settingsWindow, text = &#39;Update Location&#39;, command = self.sendPlaceLocation)
+
+        notify_label = tkinter.Label(self.settingsWindow, textvariable = self.placeLocationStatus, font=(&#39;calibre&#39;,10, &#39;bold&#39;))
+
+
+
+        self.eco_button.pack()
+        self.velocity_scale.pack(anchor = tkinter.CENTER)
+        self.set_velocity.pack()
+        self.display_velocity.pack()
+        place_position_label.pack()
+        place_position_entry.pack()
+        sub_btn.pack()
+        notify_label.pack()
+
+#   # function for video streaming
+    #Used for testing, change to network stream for final version
+    def video_stream(self):
+   
+        &#34;&#34;&#34;
+
+        Creates a NetGear socket (TCP for network protocol) to handle video stream from server.
+
+        Args: 
+            
+            self.systemStatus (string): Used to determine if the system needs to shutdown or go to standby.
+
+
+        Returns: 
+            
+            None
+
+
+        &#34;&#34;&#34;
+
+
+
+        # define tweak flags
+        options = {&#34;compression_format&#34;: &#34;.jpg&#34;, &#34;compression_param&#34;: cv2.IMREAD_COLOR}
+
+        # Define Netgear Client at given IP address and define parameters
+        # !!! change following IP address &#39;192.168.x.xxx&#39; with yours !!!
+        self.NetGearclient = NetGear(
+            address=HOST,
+            port=&#34;5454&#34;,
+            protocol=&#34;tcp&#34;,
+            pattern=0,
+            receive_mode=True,
+            **options
+        )
+        self.lmain.grid(row=0, column=1, rowspan=3)
+        # loop over
+        while True:
+
+            if(self.systemStatus == &#34;Online&#34;):
+                # receive frames from network
+                frame = self.NetGearclient.recv()
+
+                # check for received frame if Nonetype
+                if frame is None:
+                    break
+
+
+                thread = threading.Thread(target = self.updateVideoWindow, args = (frame, ))
+
+                thread.start()
+
+    def updateVideoWindow(self, frame):
+            
+        &#34;&#34;&#34;
+
+        Function is called by video_stream() to update the frame (image) on the GUI.
+
+        Runs in a thread to avoid blocking of new frame (update frame as fast as network transmits).
+
+        Args: 
+            
+            frame (OpenCV frame): image recieved by the server.
+
+            self.lmain (tkinter Label): Label used to display image on the GUI
+
+
+        Returns: 
+            
+            None
+
+
+        &#34;&#34;&#34;
+
+        cv2image = cv2.cvtColor(frame, cv2.COLOR_BGR2RGBA)
+        img = Image.fromarray(cv2image)
+        imgtk = ImageTk.PhotoImage(image=img)
+        self.lmain.imgtk = imgtk
+        self.lmain.configure(image=imgtk)
+
+
+
+    #Modify function to return data decoded
+    #Not sure if this function is really needed, used mostly for testing purposes
+    # def receive(self):
+    #     jsonReceived = self.conn.recv(1024)
+    #     jsonReceived = json.loads(jsonReceived.decode(&#34;utf-8&#34;))
+    #     print(jsonReceived[&#34;first&#34;])
+
+
+    def send(self, data):
+        
+        &#34;&#34;&#34;
+
+        Converts data (json dict.) into a string and transmits to connected server socket.
+
+        Args: 
+            
+            self.conn (socket): Uses socket connection (conn) defined in creation of class.
+
+            data (dictionary): Data to be sent over network in the form of json.
+
+
+        Returns: 
+            
+            None
+
+
+        &#34;&#34;&#34;
+        jsonResult = json.dumps(data)
+        self.conn.send(bytes(jsonResult, encoding=&#34;utf-8&#34;))
+
+
+    def on_exit(self):
+        
+        &#34;&#34;&#34;
+
+        Sends shutdown notification over the network to rest of the system (connected to button event).
+        Shuts down video stream (NetGear) and the normal socket.
+        Finally exits program
+
+        Args: 
+            
+            self.conn (socket): Uses socket connection (conn) defined in creation of class
+
+            self.NetGearclient (NetGearSocket): Uses NetGearSocket defined in video_stream()
+
+
+        Returns: 
+            
+            None
+
+
+        &#34;&#34;&#34;
+
+      
+        try:
+            jsonResult = {&#34;first&#34;:&#34;Client 2&#34;, &#34;second&#34;:&#34;Shut Down System&#34;}
+            self.send(jsonResult)
+
+        except:
+            print(&#34;Error sending close command to server&#34;)
+
+        try:
+            self.root.destroy()
+            self.NetGearclient.close()
+            self.conn.shutdown(socket.SHUT_RDWR)
+            self.conn.close()
+
+        except:
+            print(&#34;Error closing sockets&#34;)
+
+        finally:
+            os._exit(1)
+
+    def setVelocity(self):
+    
+        &#34;&#34;&#34;
+
+        Transmits new velocity (set by user) over the network to the arm.
+
+        Args: 
+            
+             self.display_velocity (Tkinter Label): Updates display_velocity to notify user velocity has been updated
+
+
+        Returns: 
+            
+            None
+
+
+        &#34;&#34;&#34;
+        try:
+
+            jsonResult = {&#34;first&#34;:&#34;Client 2&#34;, &#34;second&#34;:&#34;Set Velocity&#34;, &#34;third&#34;: str(self.speed.get())}
+            self.send(jsonResult)
+
+            sel = &#34;New Velocity = &#34; + str(self.speed.get())
+            self.display_velocity.config(text = sel, font =(&#34;New Times Roman&#34;, 14))
+
+        except Exception as e:
+            print(e)
+
+
+
+    #This is mostly a joke
+    #However, it is possible to save alot of energy (up to 21% according to some research papers).
+    #It seems as torque increases, running at about half betwen the torque-rpm curve is best
+    #It seems the best thing to do is run at 80 to 90% speed with no payload, and reduce as payload increases (torque increases).
+    #Can reduce velocity by about 20% with payload vs no payload
+    #The e-series robots can measure torque change.
+    #No way of knowing power savings (if any) without testing.
+    def ecoMode(self):
+        
+        &#34;&#34;&#34;
+
+        Transmits new velocity (ECO) over the network to the arm.
+
+        Args: 
+            
+             self.display_velocity (Tkinter Label): Updates display_velocity to notify user velocity has been updated
+
+
+        Returns: 
+            
+            None
+
+
+        &#34;&#34;&#34;
+        try:
+
+            jsonResult = {&#34;first&#34;:&#34;Client 2&#34;, &#34;second&#34;:&#34;Set Velocity&#34;, &#34;third&#34;: str(69)}
+            self.send(jsonResult)
+
+            sel = &#34;New Velocity = &#34; + str(69)
+            self.display_velocity.config(text = sel, font =(&#34;New Times Roman&#34;, 14))
+
+        except Exception as e:
+            print(e)
+
+    #Does not shut down the GUI program, goes into a standby mode, ready to start up again.
+    def pauseSystem(self):
+     
+        &#34;&#34;&#34;
+
+        Sends standby notification over the network to the rest of the system.
+
+        Args: 
+            
+            self.systemStatusLabel (Tkinter Label): Updates systemStatusLabel (displays system status on Interface) text and color.
+
+
+        Returns: 
+            
+            None
+
+
+        &#34;&#34;&#34;
+
+        print(&#34;Putting system in Standby&#34;)
+      
+
+
+        try:
+            jsonResult = {&#34;first&#34;:&#34;Client 2&#34;, &#34;second&#34;:&#34;Pause System&#34;}
+
+            self.send(jsonResult)
+
+
+            self.systemStatusLabelText.set(&#34;System Status - Standby&#34;)
+            self.systemStatusLabel.config(bg = &#39;#f9ff54&#39;)
+            self.systemStatus = &#34;Standby&#34;
+
+        except Exception as e:
+            print(e)
+
+
+
+
+
+
+
+    def startSystem(self):
+        
+        &#34;&#34;&#34;
+
+        Sends startup notification over the network to the rest of the system.
+
+        Starts up the video stream in a seperate thread. 
+
+        Args: 
+            
+            self.systemStatusLabel (Tkinter Label): Updates systemStatusLabel (displays system status on Interface) text and color.
+
+
+        Returns: 
+            
+            None
+
+
+        &#34;&#34;&#34;
+        
+
+        
+
+
+        #Create another client (with a different port) to handle the video stream.
+
+        if(self.systemStatus == &#34;Offline&#34;):
+
+
+
+            print(&#34;Starting up system&#34;)
+
+            try:
+                self.conn = socket.socket(socket.AF_INET, socket.SOCK_STREAM)
+
+                self.conn.connect((HOST, PORT))
+
+                jsonResult = {&#34;first&#34;:&#34;Client 2&#34;, &#34;second&#34;:&#34;Start Up System&#34;}
+                self.send(jsonResult)
+
+                #self.receive()
+
+                self.systemStatusLabelText.set(&#34;System Status - Online&#34;)
+                self.systemStatusLabel.config(bg = &#39;#499c5f&#39;)
+                self.systemStatus = &#34;Online&#34;
+
+
+                #Start video stream here
+
+                t1 = threading.Thread(target = self.video_stream)
+
+                t1.start()
+
+            except Exception as e:
+                print(e)
+
+        #At this point, if function is called, assuming system is in standby, send message to resume system
+        elif(self.systemStatus == &#34;Standby&#34;):
+            try:
+                jsonResult = {&#34;first&#34;:&#34;Client 2&#34;, &#34;second&#34;:&#34;Resume System&#34;}
+                self.send(jsonResult)
+                self.systemStatus = &#34;Online&#34;
+
+
+
+                self.systemStatusLabelText.set(&#34;System Status - Online&#34;)
+                self.systemStatusLabel.config(bg = &#39;#499c5f&#39;)
+            except Exception as error:
+                print(error)</code></pre>
+</details>
+<h3>Ancestors</h3>
+<ul class="hlist">
+<li>tkinter.ttk.Frame</li>
+<li>tkinter.ttk.Widget</li>
+<li>tkinter.Widget</li>
+<li>tkinter.BaseWidget</li>
+<li>tkinter.Misc</li>
+<li>tkinter.Pack</li>
+<li>tkinter.Place</li>
+<li>tkinter.Grid</li>
+</ul>
+<h3>Methods</h3>
+<dl>
+<dt id="User_Interface.GUI.ecoMode"><code class="name flex">
+<span>def <span class="ident">ecoMode</span></span>(<span>self)</span>
+</code></dt>
+<dd>
+<div class="desc"><p>Transmits new velocity (ECO) over the network to the arm.</p>
+<p>Args: </p>
+<pre><code> self.display_velocity (Tkinter Label): Updates display_velocity to notify user velocity has been updated
+</code></pre>
+<p>Returns: </p>
+<pre><code>None
+</code></pre></div>
+<details class="source">
+<summary>
+<span>Expand source code</span>
+</summary>
+<pre><code class="python">def ecoMode(self):
+    
+    &#34;&#34;&#34;
+
+    Transmits new velocity (ECO) over the network to the arm.
+
+    Args: 
+        
+         self.display_velocity (Tkinter Label): Updates display_velocity to notify user velocity has been updated
+
+
+    Returns: 
+        
+        None
+
+
+    &#34;&#34;&#34;
+    try:
+
+        jsonResult = {&#34;first&#34;:&#34;Client 2&#34;, &#34;second&#34;:&#34;Set Velocity&#34;, &#34;third&#34;: str(69)}
+        self.send(jsonResult)
+
+        sel = &#34;New Velocity = &#34; + str(69)
+        self.display_velocity.config(text = sel, font =(&#34;New Times Roman&#34;, 14))
+
+    except Exception as e:
+        print(e)</code></pre>
+</details>
+</dd>
+<dt id="User_Interface.GUI.init_gui"><code class="name flex">
+<span>def <span class="ident">init_gui</span></span>(<span>self)</span>
+</code></dt>
+<dd>
+<div class="desc"><p>Setups all the parameters (and their values) needed by the GUI.</p>
+<p>Includes window size, components, background, and more. </p>
+<p>Args: </p>
+<pre><code>None
+</code></pre>
+<p>Returns: </p>
+<pre><code>None
+</code></pre></div>
+<details class="source">
+<summary>
+<span>Expand source code</span>
+</summary>
+<pre><code class="python">    def init_gui(self):
+
+        &#34;&#34;&#34;
+
+        Setups all the parameters (and their values) needed by the GUI.
+        
+        Includes window size, components, background, and more. 
+
+        Args: 
+            
+            None
+
+
+        Returns: 
+            
+            None
+
+
+        &#34;&#34;&#34;
+
+
+
+        #Rename, socket for client
+
+
+        self.root.title(&#39;Arm Solutions&#39;)
+        self.root.geometry(&#34;1200x800&#34;)
+
+
+        self.background_image = Image.open(&#34;Flat_colorful_background.png&#34;)
+        self.background_image = self.background_image.resize((2000,2000), Image.ANTIALIAS)
+        self.background_image = ImageTk.PhotoImage(self.background_image)
+
+        self.label = tkinter.Label(self.root, image=self.background_image)
+
+        self.label.image = self.background_image
+        self.label.place(x=0,y=0, relwidth=1, relheight=1)
+
+        self.root.grid_columnconfigure(1, weight=1)
+        self.root.grid_columnconfigure(0, weight=1)
+
+        self.root.option_add(&#39;*tearOff&#39;, &#39;FALSE&#39;) # Disables ability to tear menu bar into own window
+#
+        self.systemStatusLabelText = tkinter.StringVar()
+
+
+
+        self.systemStatusLabel = tkinter.Label(textvariable= self.systemStatusLabelText , bg = &#39;#e81a1a&#39;, width = 25)
+
+
+        self.startup_button = tkinter.Button(self.root, text =&#34;Start Up/Resume System&#34;, command = self.startSystem, height=3, width= 35, bg = &#39;#499c5f&#39;)
+        self.pause_button = tkinter.Button(self.root, text =&#34;Put System in Standby&#34;, command = self.pauseSystem, height=3, width= 35, bg =&#39;#f9ff54&#39;)
+        self.settings_button = tkinter.Button(self.root, text =&#34;System Settings&#34;, command = self.systemSettings, height=3, width= 35, bg = &#39;#adaaaa&#39;)
+        self.exit_button = tkinter.Button(self.root, text =&#34;Shut Down System&#34;, command = self.on_exit, height=3, width= 35, bg = &#39;#e81a1a&#39;)
+
+
+        self.imageFrame = tkinter.Frame(self.root)
+        self.imageFrame.grid(row=0, column=1, padx=10, pady=50, rowspan=4)
+
+
+
+
+        self.startup_button.grid(row=0,column=0, padx=50, pady=(60,100))
+        self.pause_button.grid(row=1,column=0, padx=50, pady=(0,100))
+        self.settings_button.grid(row=2, column=0, padx=50, pady=(0,100))
+        self.exit_button.grid(row=3, column=0, padx=50)
+        self.systemStatusLabel.grid(row=3, column=1, pady=10, padx=240)
+
+
+
+
+        self.systemStatusLabel.config(font=(&#34;New Times Roman&#34;, 20))
+        self.startup_button.config(font=(&#34;New Times Roman&#34;, 16))
+        self.pause_button.config(font=(&#34;New Times Roman&#34;, 16))
+        self.settings_button.config(font=(&#34;New Times Roman&#34;, 16))
+        self.exit_button.config(font=(&#34;New Times Roman&#34;, 16))
+
+
+        # Menu Bar
+        self.menubar = Menubar(self.root)
+
+        # Padding
+        for child in self.winfo_children():
+            child.grid_configure(padx=10, pady=5)
+
+
+        self.lmain = tkinter.Label(self.imageFrame)
+
+        #Variables used later on
+        self.speed = tkinter.DoubleVar()
+        self.systemStatusLabelText.set(&#34;System Status - Offline&#34;)</code></pre>
+</details>
+</dd>
+<dt id="User_Interface.GUI.on_exit"><code class="name flex">
+<span>def <span class="ident">on_exit</span></span>(<span>self)</span>
+</code></dt>
+<dd>
+<div class="desc"><p>Sends shutdown notification over the network to rest of the system (connected to button event).
+Shuts down video stream (NetGear) and the normal socket.
+Finally exits program</p>
+<p>Args: </p>
+<pre><code>self.conn (socket): Uses socket connection (conn) defined in creation of class
+
+self.NetGearclient (NetGearSocket): Uses NetGearSocket defined in video_stream()
+</code></pre>
+<p>Returns: </p>
+<pre><code>None
+</code></pre></div>
+<details class="source">
+<summary>
+<span>Expand source code</span>
+</summary>
+<pre><code class="python">def on_exit(self):
+    
+    &#34;&#34;&#34;
+
+    Sends shutdown notification over the network to rest of the system (connected to button event).
+    Shuts down video stream (NetGear) and the normal socket.
+    Finally exits program
+
+    Args: 
+        
+        self.conn (socket): Uses socket connection (conn) defined in creation of class
+
+        self.NetGearclient (NetGearSocket): Uses NetGearSocket defined in video_stream()
+
+
+    Returns: 
+        
+        None
+
+
+    &#34;&#34;&#34;
+
+  
+    try:
+        jsonResult = {&#34;first&#34;:&#34;Client 2&#34;, &#34;second&#34;:&#34;Shut Down System&#34;}
+        self.send(jsonResult)
+
+    except:
+        print(&#34;Error sending close command to server&#34;)
+
+    try:
+        self.root.destroy()
+        self.NetGearclient.close()
+        self.conn.shutdown(socket.SHUT_RDWR)
+        self.conn.close()
+
+    except:
+        print(&#34;Error closing sockets&#34;)
+
+    finally:
+        os._exit(1)</code></pre>
+</details>
+</dd>
+<dt id="User_Interface.GUI.pauseSystem"><code class="name flex">
+<span>def <span class="ident">pauseSystem</span></span>(<span>self)</span>
+</code></dt>
+<dd>
+<div class="desc"><p>Sends standby notification over the network to the rest of the system.</p>
+<p>Args: </p>
+<pre><code>self.systemStatusLabel (Tkinter Label): Updates systemStatusLabel (displays system status on Interface) text and color.
+</code></pre>
+<p>Returns: </p>
+<pre><code>None
+</code></pre></div>
+<details class="source">
+<summary>
+<span>Expand source code</span>
+</summary>
+<pre><code class="python">def pauseSystem(self):
+ 
+    &#34;&#34;&#34;
+
+    Sends standby notification over the network to the rest of the system.
+
+    Args: 
+        
+        self.systemStatusLabel (Tkinter Label): Updates systemStatusLabel (displays system status on Interface) text and color.
+
+
+    Returns: 
+        
+        None
+
+
+    &#34;&#34;&#34;
+
+    print(&#34;Putting system in Standby&#34;)
+  
+
+
+    try:
+        jsonResult = {&#34;first&#34;:&#34;Client 2&#34;, &#34;second&#34;:&#34;Pause System&#34;}
+
+        self.send(jsonResult)
+
+
+        self.systemStatusLabelText.set(&#34;System Status - Standby&#34;)
+        self.systemStatusLabel.config(bg = &#39;#f9ff54&#39;)
+        self.systemStatus = &#34;Standby&#34;
+
+    except Exception as e:
+        print(e)</code></pre>
+</details>
+</dd>
+<dt id="User_Interface.GUI.send"><code class="name flex">
+<span>def <span class="ident">send</span></span>(<span>self, data)</span>
+</code></dt>
+<dd>
+<div class="desc"><p>Converts data (json dict.) into a string and transmits to connected server socket.</p>
+<p>Args: </p>
+<pre><code>self.conn (socket): Uses socket connection (conn) defined in creation of class.
+
+data (dictionary): Data to be sent over network in the form of json.
+</code></pre>
+<p>Returns: </p>
+<pre><code>None
+</code></pre></div>
+<details class="source">
+<summary>
+<span>Expand source code</span>
+</summary>
+<pre><code class="python">def send(self, data):
+    
+    &#34;&#34;&#34;
+
+    Converts data (json dict.) into a string and transmits to connected server socket.
+
+    Args: 
+        
+        self.conn (socket): Uses socket connection (conn) defined in creation of class.
+
+        data (dictionary): Data to be sent over network in the form of json.
+
+
+    Returns: 
+        
+        None
+
+
+    &#34;&#34;&#34;
+    jsonResult = json.dumps(data)
+    self.conn.send(bytes(jsonResult, encoding=&#34;utf-8&#34;))</code></pre>
+</details>
+</dd>
+<dt id="User_Interface.GUI.sendPlaceLocation"><code class="name flex">
+<span>def <span class="ident">sendPlaceLocation</span></span>(<span>self)</span>
+</code></dt>
+<dd>
+<div class="desc"><p>Sends updated drop (place) location of parcel to the server set by the user. </p>
+<p>Args: </p>
+<pre><code>self.place_position (string): Drop location of parcel set by user.
+</code></pre>
+<p>Returns: </p>
+<pre><code>None
+</code></pre></div>
+<details class="source">
+<summary>
+<span>Expand source code</span>
+</summary>
+<pre><code class="python">def sendPlaceLocation(self):
+          
+    &#34;&#34;&#34;
+
+    Sends updated drop (place) location of parcel to the server set by the user. 
+
+    Args: 
+        
+        self.place_position (string): Drop location of parcel set by user.
+
+
+    Returns: 
+        
+        None
+
+
+    &#34;&#34;&#34;
+
+
+    try:
+        data = self.place_position_data.get()
+
+        self.place_position_data.set(&#34;&#34;)
+
+        data = data.split()
+
+        if(len(data) == 6):
+
+            if(self.systemStatus == &#34;Online&#34;):
+                print()
+                jsonData = {&#34;first&#34;: &#34;Client 2&#34;, &#34;second&#34;: &#34;Drop Location&#34;, &#34;third&#34;: data[0], &#34;fourth&#34;: data[1], &#34;fifth&#34;: data[2], &#34;sixth&#34;: data[3], &#34;seventh&#34;: data[4], &#34;eight&#34;: data[5] }
+                self.send(jsonData)
+                self.placeLocationStatus.set(&#34;Parcel Drop Location Updated&#34;)
+            else:
+                self.placeLocationStatus.set(&#34;System status: &#34; + self.systemStatus)
+        else:
+            self.placeLocationStatus.set(&#34;Incorrect format&#34;)
+
+    except Exception as error:
+        print(error)
+        self.placeLocationStatus.set(&#34;Error&#34;)</code></pre>
+</details>
+</dd>
+<dt id="User_Interface.GUI.setVelocity"><code class="name flex">
+<span>def <span class="ident">setVelocity</span></span>(<span>self)</span>
+</code></dt>
+<dd>
+<div class="desc"><p>Transmits new velocity (set by user) over the network to the arm.</p>
+<p>Args: </p>
+<pre><code> self.display_velocity (Tkinter Label): Updates display_velocity to notify user velocity has been updated
+</code></pre>
+<p>Returns: </p>
+<pre><code>None
+</code></pre></div>
+<details class="source">
+<summary>
+<span>Expand source code</span>
+</summary>
+<pre><code class="python">def setVelocity(self):
+
+    &#34;&#34;&#34;
+
+    Transmits new velocity (set by user) over the network to the arm.
+
+    Args: 
+        
+         self.display_velocity (Tkinter Label): Updates display_velocity to notify user velocity has been updated
+
+
+    Returns: 
+        
+        None
+
+
+    &#34;&#34;&#34;
+    try:
+
+        jsonResult = {&#34;first&#34;:&#34;Client 2&#34;, &#34;second&#34;:&#34;Set Velocity&#34;, &#34;third&#34;: str(self.speed.get())}
+        self.send(jsonResult)
+
+        sel = &#34;New Velocity = &#34; + str(self.speed.get())
+        self.display_velocity.config(text = sel, font =(&#34;New Times Roman&#34;, 14))
+
+    except Exception as e:
+        print(e)</code></pre>
+</details>
+</dd>
+<dt id="User_Interface.GUI.startSystem"><code class="name flex">
+<span>def <span class="ident">startSystem</span></span>(<span>self)</span>
+</code></dt>
+<dd>
+<div class="desc"><p>Sends startup notification over the network to the rest of the system.</p>
+<p>Starts up the video stream in a seperate thread. </p>
+<p>Args: </p>
+<pre><code>self.systemStatusLabel (Tkinter Label): Updates systemStatusLabel (displays system status on Interface) text and color.
+</code></pre>
+<p>Returns: </p>
+<pre><code>None
+</code></pre></div>
+<details class="source">
+<summary>
+<span>Expand source code</span>
+</summary>
+<pre><code class="python">def startSystem(self):
+    
+    &#34;&#34;&#34;
+
+    Sends startup notification over the network to the rest of the system.
+
+    Starts up the video stream in a seperate thread. 
+
+    Args: 
+        
+        self.systemStatusLabel (Tkinter Label): Updates systemStatusLabel (displays system status on Interface) text and color.
+
+
+    Returns: 
+        
+        None
+
+
+    &#34;&#34;&#34;
+    
+
+    
+
+
+    #Create another client (with a different port) to handle the video stream.
+
+    if(self.systemStatus == &#34;Offline&#34;):
+
+
+
+        print(&#34;Starting up system&#34;)
+
+        try:
+            self.conn = socket.socket(socket.AF_INET, socket.SOCK_STREAM)
+
+            self.conn.connect((HOST, PORT))
+
+            jsonResult = {&#34;first&#34;:&#34;Client 2&#34;, &#34;second&#34;:&#34;Start Up System&#34;}
+            self.send(jsonResult)
+
+            #self.receive()
+
+            self.systemStatusLabelText.set(&#34;System Status - Online&#34;)
+            self.systemStatusLabel.config(bg = &#39;#499c5f&#39;)
+            self.systemStatus = &#34;Online&#34;
+
+
+            #Start video stream here
+
+            t1 = threading.Thread(target = self.video_stream)
+
+            t1.start()
+
+        except Exception as e:
+            print(e)
+
+    #At this point, if function is called, assuming system is in standby, send message to resume system
+    elif(self.systemStatus == &#34;Standby&#34;):
+        try:
+            jsonResult = {&#34;first&#34;:&#34;Client 2&#34;, &#34;second&#34;:&#34;Resume System&#34;}
+            self.send(jsonResult)
+            self.systemStatus = &#34;Online&#34;
+
+
+
+            self.systemStatusLabelText.set(&#34;System Status - Online&#34;)
+            self.systemStatusLabel.config(bg = &#39;#499c5f&#39;)
+        except Exception as error:
+            print(error)</code></pre>
+</details>
+</dd>
+<dt id="User_Interface.GUI.systemSettings"><code class="name flex">
+<span>def <span class="ident">systemSettings</span></span>(<span>self)</span>
+</code></dt>
+<dd>
+<div class="desc"><p>Settings window for the User Interface.</p>
+<p>Allows the user to edit multiple aspects of the system. Including velocity, drop location, and more. </p>
+<p>Args: </p>
+<pre><code>None
+</code></pre>
+<p>Returns: </p>
+<pre><code>None.
+</code></pre></div>
+<details class="source">
+<summary>
+<span>Expand source code</span>
+</summary>
+<pre><code class="python">def systemSettings(self):
+
+    &#34;&#34;&#34;
+    Settings window for the User Interface.
+    
+    Allows the user to edit multiple aspects of the system. Including velocity, drop location, and more. 
+
+    Args: 
+        
+        None
+
+    Returns: 
+        
+        None.
+
+    &#34;&#34;&#34;
+
+    self.settingsWindow = tkinter.Toplevel(self.root)
+
+    self.settingsWindow.title(&#34;Settings&#34;)
+
+    self.settingsWindow.geometry(&#34;400x400&#34;)
+
+    self.velocity_scale = tkinter.Scale(self.settingsWindow, variable = self.speed, from_ = 1, to = 100, orient= tkinter.HORIZONTAL, length = 250, width=30)
+
+    self.display_velocity = tkinter.Label(self.settingsWindow)
+
+    self.set_velocity = tkinter.Button(self.settingsWindow, text =&#34;Set Velocity&#34;,
+        command = self.setVelocity)
+
+    self.eco_button = tkinter.Button(self.settingsWindow, text = &#34;ECO Mode&#34;, command = self.ecoMode)
+
+    self.place_position_data = tkinter.StringVar()
+
+    self.placeLocationStatus = tkinter.StringVar()
+    self.placeLocationStatus.set(&#34;&#34;)
+
+    # creating a label for
+    # name using widget Label
+    place_position_label = tkinter.Label(self.settingsWindow, text = &#39;Parcel Drop Location&#39;, font=(&#39;calibre&#39;,10, &#39;bold&#39;))
+
+    # creating a entry for input
+    # name using widget Entry
+    place_position_entry = tkinter.Entry(self.settingsWindow, textvariable = self.place_position_data, font=(&#39;calibre&#39;,10,&#39;normal&#39;))
+
+
+    # creating a button using the widget
+    # Button that will call the submit function
+    sub_btn=tkinter.Button(self.settingsWindow, text = &#39;Update Location&#39;, command = self.sendPlaceLocation)
+
+    notify_label = tkinter.Label(self.settingsWindow, textvariable = self.placeLocationStatus, font=(&#39;calibre&#39;,10, &#39;bold&#39;))
+
+
+
+    self.eco_button.pack()
+    self.velocity_scale.pack(anchor = tkinter.CENTER)
+    self.set_velocity.pack()
+    self.display_velocity.pack()
+    place_position_label.pack()
+    place_position_entry.pack()
+    sub_btn.pack()
+    notify_label.pack()</code></pre>
+</details>
+</dd>
+<dt id="User_Interface.GUI.updateVideoWindow"><code class="name flex">
+<span>def <span class="ident">updateVideoWindow</span></span>(<span>self, frame)</span>
+</code></dt>
+<dd>
+<div class="desc"><p>Function is called by video_stream() to update the frame (image) on the GUI.</p>
+<p>Runs in a thread to avoid blocking of new frame (update frame as fast as network transmits).</p>
+<p>Args: </p>
+<pre><code>frame (OpenCV frame): image recieved by the server.
+
+self.lmain (tkinter Label): Label used to display image on the GUI
+</code></pre>
+<p>Returns: </p>
+<pre><code>None
+</code></pre></div>
+<details class="source">
+<summary>
+<span>Expand source code</span>
+</summary>
+<pre><code class="python">def updateVideoWindow(self, frame):
+        
+    &#34;&#34;&#34;
+
+    Function is called by video_stream() to update the frame (image) on the GUI.
+
+    Runs in a thread to avoid blocking of new frame (update frame as fast as network transmits).
+
+    Args: 
+        
+        frame (OpenCV frame): image recieved by the server.
+
+        self.lmain (tkinter Label): Label used to display image on the GUI
+
+
+    Returns: 
+        
+        None
+
+
+    &#34;&#34;&#34;
+
+    cv2image = cv2.cvtColor(frame, cv2.COLOR_BGR2RGBA)
+    img = Image.fromarray(cv2image)
+    imgtk = ImageTk.PhotoImage(image=img)
+    self.lmain.imgtk = imgtk
+    self.lmain.configure(image=imgtk)</code></pre>
+</details>
+</dd>
+<dt id="User_Interface.GUI.video_stream"><code class="name flex">
+<span>def <span class="ident">video_stream</span></span>(<span>self)</span>
+</code></dt>
+<dd>
+<div class="desc"><p>Creates a NetGear socket (TCP for network protocol) to handle video stream from server.</p>
+<p>Args: </p>
+<pre><code>self.systemStatus (string): Used to determine if the system needs to shutdown or go to standby.
+</code></pre>
+<p>Returns: </p>
+<pre><code>None
+</code></pre></div>
+<details class="source">
+<summary>
+<span>Expand source code</span>
+</summary>
+<pre><code class="python">def video_stream(self):
+
+    &#34;&#34;&#34;
+
+    Creates a NetGear socket (TCP for network protocol) to handle video stream from server.
+
+    Args: 
+        
+        self.systemStatus (string): Used to determine if the system needs to shutdown or go to standby.
+
+
+    Returns: 
+        
+        None
+
+
+    &#34;&#34;&#34;
+
+
+
+    # define tweak flags
+    options = {&#34;compression_format&#34;: &#34;.jpg&#34;, &#34;compression_param&#34;: cv2.IMREAD_COLOR}
+
+    # Define Netgear Client at given IP address and define parameters
+    # !!! change following IP address &#39;192.168.x.xxx&#39; with yours !!!
+    self.NetGearclient = NetGear(
+        address=HOST,
+        port=&#34;5454&#34;,
+        protocol=&#34;tcp&#34;,
+        pattern=0,
+        receive_mode=True,
+        **options
+    )
+    self.lmain.grid(row=0, column=1, rowspan=3)
+    # loop over
+    while True:
+
+        if(self.systemStatus == &#34;Online&#34;):
+            # receive frames from network
+            frame = self.NetGearclient.recv()
+
+            # check for received frame if Nonetype
+            if frame is None:
+                break
+
+
+            thread = threading.Thread(target = self.updateVideoWindow, args = (frame, ))
+
+            thread.start()</code></pre>
+</details>
+</dd>
+</dl>
+</dd>
+<dt id="User_Interface.Menubar"><code class="flex name class">
+<span>class <span class="ident">Menubar</span></span>
+<span>(</span><span>parent)</span>
+</code></dt>
+<dd>
+<div class="desc"><p>Ttk Frame widget is a container, used to group other widgets
+together.</p>
+<p>Constructor:</p>
+<p>Initializes the menubar for the GUI</p>
+<p>Calls the setup (init_menubar) for the rest of the menubar.</p>
+<p>Args: </p>
+<pre><code>parent: Root window for the MenuBar.
+</code></pre>
+<p>Returns: </p>
+<pre><code>None.
+</code></pre></div>
+<details class="source">
+<summary>
+<span>Expand source code</span>
+</summary>
+<pre><code class="python">class Menubar(ttk.Frame):
+
+    def __init__(self, parent):
+
+        &#34;&#34;&#34;
+        
+        Constructor:
+        
+        Initializes the menubar for the GUI
+
+        Calls the setup (init_menubar) for the rest of the menubar.
+
+        Args: 
+            
+            parent: Root window for the MenuBar.
+
+        Returns: 
+            
+            None.
+
+        &#34;&#34;&#34;
+
+        ttk.Frame.__init__(self, parent)
+        self.root = parent
+        self.init_menubar()
+
+
+    def display_help(self):
+
+        &#34;&#34;&#34;
+        Displays the help document (How to use the GUI).
+
+        Args: 
+            
+            None.
+
+        Returns: 
+            
+            None.
+
+        &#34;&#34;&#34;
+        webbrowser.open(&#34;README.txt&#34;)
+        pass
+
+    def display_about(self):
+
+        &#34;&#34;&#34;
+        Displays info about program (purpose of the system).
+
+        Args: 
+           
+            None
+
+
+        Returns: 
+            
+            None.
+
+        &#34;&#34;&#34;
+        pass
+
+    def init_menubar(self):
+
+
+        
+        &#34;&#34;&#34;
+        Creates the menubar (attached to root) and adds the functionaly for the menubar.
+
+        Args: 
+            
+            None.
+
+        Returns: 
+            
+            None.
+
+        &#34;&#34;&#34;
+
+
+        self.menubar = tkinter.Menu(self.root)
+        self.menu_help = tkinter.Menu(self.menubar) #Creates a &#34;Help&#34; menu
+        self.menu_help.add_command(label=&#39;Help&#39;, command=self.display_help)
+        self.menu_help.add_command(label=&#39;About&#39;, command=self.display_about)
+        self.menubar.add_cascade(menu=self.menu_help, label=&#39;Info&#39;)
+
+        self.root.config(menu=self.menubar)</code></pre>
+</details>
+<h3>Ancestors</h3>
+<ul class="hlist">
+<li>tkinter.ttk.Frame</li>
+<li>tkinter.ttk.Widget</li>
+<li>tkinter.Widget</li>
+<li>tkinter.BaseWidget</li>
+<li>tkinter.Misc</li>
+<li>tkinter.Pack</li>
+<li>tkinter.Place</li>
+<li>tkinter.Grid</li>
+</ul>
+<h3>Methods</h3>
+<dl>
+<dt id="User_Interface.Menubar.display_about"><code class="name flex">
+<span>def <span class="ident">display_about</span></span>(<span>self)</span>
+</code></dt>
+<dd>
+<div class="desc"><p>Displays info about program (purpose of the system).</p>
+<p>Args: </p>
+<pre><code>None
+</code></pre>
+<p>Returns: </p>
+<pre><code>None.
+</code></pre></div>
+<details class="source">
+<summary>
+<span>Expand source code</span>
+</summary>
+<pre><code class="python">def display_about(self):
+
+    &#34;&#34;&#34;
+    Displays info about program (purpose of the system).
+
+    Args: 
+       
+        None
+
+
+    Returns: 
+        
+        None.
+
+    &#34;&#34;&#34;
+    pass</code></pre>
+</details>
+</dd>
+<dt id="User_Interface.Menubar.display_help"><code class="name flex">
+<span>def <span class="ident">display_help</span></span>(<span>self)</span>
+</code></dt>
+<dd>
+<div class="desc"><p>Displays the help document (How to use the GUI).</p>
+<p>Args: </p>
+<pre><code>None.
+</code></pre>
+<p>Returns: </p>
+<pre><code>None.
+</code></pre></div>
+<details class="source">
+<summary>
+<span>Expand source code</span>
+</summary>
+<pre><code class="python">def display_help(self):
+
+    &#34;&#34;&#34;
+    Displays the help document (How to use the GUI).
+
+    Args: 
+        
+        None.
+
+    Returns: 
+        
+        None.
+
+    &#34;&#34;&#34;
+    webbrowser.open(&#34;README.txt&#34;)
+    pass</code></pre>
+</details>
+</dd>
+<dt id="User_Interface.Menubar.init_menubar"><code class="name flex">
+<span>def <span class="ident">init_menubar</span></span>(<span>self)</span>
+</code></dt>
+<dd>
+<div class="desc"><p>Creates the menubar (attached to root) and adds the functionaly for the menubar.</p>
+<p>Args: </p>
+<pre><code>None.
+</code></pre>
+<p>Returns: </p>
+<pre><code>None.
+</code></pre></div>
+<details class="source">
+<summary>
+<span>Expand source code</span>
+</summary>
+<pre><code class="python">def init_menubar(self):
+
+
+    
+    &#34;&#34;&#34;
+    Creates the menubar (attached to root) and adds the functionaly for the menubar.
+
+    Args: 
+        
+        None.
+
+    Returns: 
+        
+        None.
+
+    &#34;&#34;&#34;
+
+
+    self.menubar = tkinter.Menu(self.root)
+    self.menu_help = tkinter.Menu(self.menubar) #Creates a &#34;Help&#34; menu
+    self.menu_help.add_command(label=&#39;Help&#39;, command=self.display_help)
+    self.menu_help.add_command(label=&#39;About&#39;, command=self.display_about)
+    self.menubar.add_cascade(menu=self.menu_help, label=&#39;Info&#39;)
+
+    self.root.config(menu=self.menubar)</code></pre>
+</details>
+</dd>
+</dl>
+</dd>
+</dl>
+</section>
+</article>
+<nav id="sidebar">
+<h1>Index</h1>
+<div class="toc">
+<ul></ul>
+</div>
+<ul id="index">
+<li><h3><a href="#header-classes">Classes</a></h3>
+<ul>
+<li>
+<h4><code><a title="User_Interface.GUI" href="#User_Interface.GUI">GUI</a></code></h4>
+<ul class="two-column">
+<li><code><a title="User_Interface.GUI.ecoMode" href="#User_Interface.GUI.ecoMode">ecoMode</a></code></li>
+<li><code><a title="User_Interface.GUI.init_gui" href="#User_Interface.GUI.init_gui">init_gui</a></code></li>
+<li><code><a title="User_Interface.GUI.on_exit" href="#User_Interface.GUI.on_exit">on_exit</a></code></li>
+<li><code><a title="User_Interface.GUI.pauseSystem" href="#User_Interface.GUI.pauseSystem">pauseSystem</a></code></li>
+<li><code><a title="User_Interface.GUI.send" href="#User_Interface.GUI.send">send</a></code></li>
+<li><code><a title="User_Interface.GUI.sendPlaceLocation" href="#User_Interface.GUI.sendPlaceLocation">sendPlaceLocation</a></code></li>
+<li><code><a title="User_Interface.GUI.setVelocity" href="#User_Interface.GUI.setVelocity">setVelocity</a></code></li>
+<li><code><a title="User_Interface.GUI.startSystem" href="#User_Interface.GUI.startSystem">startSystem</a></code></li>
+<li><code><a title="User_Interface.GUI.systemSettings" href="#User_Interface.GUI.systemSettings">systemSettings</a></code></li>
+<li><code><a title="User_Interface.GUI.updateVideoWindow" href="#User_Interface.GUI.updateVideoWindow">updateVideoWindow</a></code></li>
+<li><code><a title="User_Interface.GUI.video_stream" href="#User_Interface.GUI.video_stream">video_stream</a></code></li>
+</ul>
+</li>
+<li>
+<h4><code><a title="User_Interface.Menubar" href="#User_Interface.Menubar">Menubar</a></code></h4>
+<ul class="">
+<li><code><a title="User_Interface.Menubar.display_about" href="#User_Interface.Menubar.display_about">display_about</a></code></li>
+<li><code><a title="User_Interface.Menubar.display_help" href="#User_Interface.Menubar.display_help">display_help</a></code></li>
+<li><code><a title="User_Interface.Menubar.init_menubar" href="#User_Interface.Menubar.init_menubar">init_menubar</a></code></li>
+</ul>
+</li>
+</ul>
+</li>
+</ul>
+</nav>
+</main>
+<footer id="footer">
+<p>Generated by <a href="https://pdoc3.github.io/pdoc"><cite>pdoc</cite> 0.9.2</a>.</p>
+</footer>
+</body>
+</html>
