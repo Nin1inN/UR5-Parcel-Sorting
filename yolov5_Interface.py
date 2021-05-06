@@ -76,9 +76,10 @@ def detect(model, color_frame, depth_frame, imgsz, obj_names, obj_colors):
                     valid = True
 
     #Edit video frame to include data
-    plot_one_box(img_params[0], color_frame, label=label, color=obj_colors[int(img_params[1])], line_thickness=4)
-    cv2.circle(color_frame, (img_params[2], img_params[3]), 8, (0, 0, 255))
-    cv2.putText(color_frame, "{}mm".format(depth), (img_params[2], img_params[3] - 20), cv2.FONT_HERSHEY_PLAIN, 2, (0, 0, 0), 2)
+    if len(img_params):
+        plot_one_box(img_params[0], color_frame, label=label, color=obj_colors[int(img_params[1])], line_thickness=4)
+        cv2.circle(color_frame, (img_params[2], img_params[3]), 8, (0, 0, 255))
+        cv2.putText(color_frame, "{}mm".format(depth), (img_params[2], img_params[3] - 20), cv2.FONT_HERSHEY_PLAIN, 2, (0, 0, 0), 2)
     
     return valid, depth, bounds, color_frame
 
