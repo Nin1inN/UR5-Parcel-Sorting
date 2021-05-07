@@ -1,0 +1,34 @@
+How to Use:
+#Explains how the GUI works. 
+
+The User_Interface.py allows the user (operator) to control the rest of the system.
+
+To start up the system, simply click "Start Up/Resume System" (Green Button).
+
+	This will connect the script to the server (for this demo, running on the PI), and send a command to the rest of the system to start up.
+
+	At this point, a video feed will appear on the GUI, either showing the results of the AI detection on the Aruco Markers.
+
+To pause the system (not shutdown), simply click "Put System in Standby" (Yellow Button). 
+
+	Program will still be running, but everything will be put on standby.
+
+To shut down the system (close the GUI and shutdown the rest of the system), simply click "Shut Down System".
+
+	Will begin the process of closing the sockets and notify the rest of the system. 
+
+To access the system settings, simply click "System Settings".
+
+	A window will pop up showing the user (operator) several options.
+
+	This includes manually setting the arm velocity or choosing the Drop Location of the Parcel
+
+		The syntax for this is X, Y, Z, RX, RY, RX.
+
+			 X, Y, Z being in meters, and RX, RY, RZ being in radians. 
+
+			 Refer to the UR5 manual for the limits of the operating space.
+
+	Lastly, an ECO Mode is available.
+
+		This mode will attempt to run the motors of the UR5 at the most efficent speed. With and without payload. 

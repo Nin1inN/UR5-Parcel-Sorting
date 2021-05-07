@@ -4,8 +4,8 @@ import numpy as np
 import time
 import threading
 import math
-import rtde_control
-import rtde_receive
+#import rtde_control
+#import rtde_receive
 import cv2
 import pyrealsense2
 from queue import Queue
@@ -81,8 +81,8 @@ class Arm_Movement:
         #Connect to arm
         while not(connected):
             try:
-                rtde_c = rtde_control.RTDEControlInterface(self.armIP)
-                rtde_r = rtde_receive.RTDEReceiveInterface(self.armIP)
+                #rtde_c = rtde_control.RTDEControlInterface(self.armIP)
+                #rtde_r = rtde_receive.RTDEReceiveInterface(self.armIP)
                 connected = True
             except Exception as e:
                 print(e)
@@ -106,13 +106,13 @@ class Arm_Movement:
 
         q = Queue()
         t1 = threading.Thread(target = self.moniterUserInput, args = (q, conn, ))
-        t2 = threading.Thread(target = self.TCPwrapper, args = (q, conn, rtde_c, rtde_r,  ))
+       # t2 = threading.Thread(target = self.TCPwrapper, args = (q, conn, rtde_c, rtde_r,  ))
 
         t1.start()
-        t2.start()
+        #t2.start()
 
         t1.join()
-        t2.join()
+       # t2.join()
 
 
 
@@ -476,6 +476,8 @@ class Arm_Movement:
 
         while(True):
             jsonReceived = self.receive(conn)
+            
+            print(jsonReceived)
 
             #Add commands for this script
             #System Pasue, shutdown, velocity change, etc.

@@ -1,6 +1,5 @@
 import tkinter
 from tkinter import ttk
-#import numpy as np
 import cv2
 from PIL import Image, ImageTk
 import socket
@@ -12,8 +11,8 @@ import webbrowser
 
 
 
-HOST = '10.0.0.3'
-PORT = 5500
+HOST = '10.0.0.8'
+PORT = 5000
 
 
 class Menubar(ttk.Frame):
@@ -57,7 +56,7 @@ class Menubar(ttk.Frame):
             None.
 
         """
-        webbrowser.open("README.txt")
+        webbrowser.open("Help_Document.txt")
         pass
 
     def display_about(self):
@@ -544,10 +543,10 @@ class GUI(ttk.Frame):
         """
         try:
 
-            jsonResult = {"first":"Client 2", "second":"Set Velocity", "third": str(69)}
+            jsonResult = {"first":"Client 2", "second":"Set Velocity", "third": "ECO"}
             self.send(jsonResult)
 
-            sel = "New Velocity = " + str(69)
+            sel = "New Velocity = ECO "
             self.display_velocity.config(text = sel, font =("New Times Roman", 14))
 
         except Exception as e:

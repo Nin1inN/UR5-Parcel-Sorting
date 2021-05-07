@@ -188,8 +188,8 @@ class Server:
                     if(server.systemStatus == "Online"):
 
                         jsonResult = {"first": "Drop Location", "second": jsonReceived["third"], "third": jsonReceived["fourth"], "fourth": jsonReceived["fifth"], "fifth": jsonReceived["sixth"], "sixth": jsonReceived["seventh"], "seventh": jsonReceived["eight"] }
-                        print(jsonResult)
-                        #send(jsonResult, 1)
+                        #print(jsonResult)
+                        server.send(jsonResult, 1)
 
                 elif(jsonReceived["second"] == "Set Velocity"):
 
@@ -274,6 +274,7 @@ class Server:
     #If object detected will call findLocation and convertToWorldLocation to get x and y TCP values
     #Expected value at end is an array of 6 values.
     def visionSystem(server, in_q):
+        pass
 
         """
 
@@ -541,53 +542,55 @@ class Server:
 
 
         """
+        
+        pass
 
-        ipOfClient = server.clients[-1].getpeername()
-
-
-        #10 frames a sec is fine for the video stream
-        #If not, you are welcome to increase (problems with the GUI appear if you do)
-        frame_rate = 10
-        prev = 0
-
-        # define tweak flags
-        options = {
-        "compression_format": ".jpg",
-        "compression_param": [cv2.IMWRITE_JPEG_QUALITY, 50],
-    }
+    #     ipOfClient = server.clients[-1].getpeername()
 
 
+    #     #10 frames a sec is fine for the video stream
+    #     #If not, you are welcome to increase (problems with the GUI appear if you do)
+    #     frame_rate = 10
+    #     prev = 0
 
-        VidGearServer = NetGear(
-            address = ipOfClient[0],
-            port = "5454",
-            protocol="tcp",
-            pattern=0,
-            **options
-        )
+    #     # define tweak flags
+    #     options = {
+    #     "compression_format": ".jpg",
+    #     "compression_param": [cv2.IMWRITE_JPEG_QUALITY, 50],
+    # }
 
-        # loop over until KeyBoard Interrupted
-        while True:
 
-            if(server.systemStatus == "Online"):
 
-                try:
-                    time_elapsed = time.time() - prev
+    #     VidGearServer = NetGear(
+    #         address = ipOfClient[0],
+    #         port = "5454",
+    #         protocol="tcp",
+    #         pattern=0,
+    #         **options
+    #     )
 
-                    if(time_elapsed > 1./frame_rate):
-                        # read frames from stream
-                        frame = in_q.get()
-                        #print(frame)
+    #     # loop over until KeyBoard Interrupted
+    #     while True:
 
-                        prev = time.time()
+    #         if(server.systemStatus == "Online"):
 
-                        VidGearServer.send(frame)
+    #             try:
+    #                 time_elapsed = time.time() - prev
 
-                except KeyboardInterrupt:
-                    break
-            elif(server.systemStatus == "Offline"):
-                VidGearServer.close()
-                return
+    #                 if(time_elapsed > 1./frame_rate):
+    #                     # read frames from stream
+    #                     frame = in_q.get()
+    #                     #print(frame)
+
+    #                     prev = time.time()
+
+    #                     VidGearServer.send(frame)
+
+    #             except KeyboardInterrupt:
+    #                 break
+    #         elif(server.systemStatus == "Offline"):
+    #             VidGearServer.close()
+    #             return
 
 
 if __name__ == "__main__":

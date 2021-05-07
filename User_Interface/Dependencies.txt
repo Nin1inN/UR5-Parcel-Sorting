@@ -17,9 +17,3 @@ Threading (Library used for running threads)
 OS (Library for various operating system commands)
 
 Webbrowser (Library used to display documents)
-
-
-How to Use:
-
-#Explain how the GUI works. 
-
