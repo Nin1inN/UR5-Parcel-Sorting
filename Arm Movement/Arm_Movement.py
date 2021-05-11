@@ -4,8 +4,8 @@ import numpy as np
 import time
 import threading
 import math
-#import rtde_control
-#import rtde_receive
+import rtde_control
+import rtde_receive
 import cv2
 import pyrealsense2
 from queue import Queue
@@ -65,8 +65,8 @@ class Arm_Movement:
         #Connect to arm
         while not(connected):
             try:
-                #rtde_c = rtde_control.RTDEControlInterface(self.armIP)
-                #rtde_r = rtde_receive.RTDEReceiveInterface(self.armIP)
+                rtde_c = rtde_control.RTDEControlInterface(self.armIP)
+                rtde_r = rtde_receive.RTDEReceiveInterface(self.armIP)
                 connected = True
             except Exception as e:
                 print(e)
