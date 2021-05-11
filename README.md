@@ -5,7 +5,7 @@ Important Documents
 2) requirments.txt - Libraries needed overall for the project
 
 NEW Static IP Adrress are:
-1) Raspberry pi: 10.0.0.5
+1) Raspberry pi: 10.0.0.8
 2) UR5: 10.0.0.6
 
 Structure of files 
