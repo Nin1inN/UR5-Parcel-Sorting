@@ -12,22 +12,6 @@ from queue import Queue
 from threading import Event
 
 
-
-# armVelocity = 0
-
-#For the demo, there will only be one drop position.
-#However, for future projects, more can be added
-#Will be set to a default position, however, user can change this
-# place_position = np.zeros(6)
-
-
-#Ready to add other functions for arm movement
-
-
-
-
-
-
 class Arm_Movement:
     def __init__(self):
 
@@ -106,13 +90,13 @@ class Arm_Movement:
 
         q = Queue()
         t1 = threading.Thread(target = self.moniterUserInput, args = (q, conn, ))
-       # t2 = threading.Thread(target = self.TCPwrapper, args = (q, conn, rtde_c, rtde_r,  ))
+        t2 = threading.Thread(target = self.TCPwrapper, args = (q, conn, rtde_c, rtde_r,  ))
 
         t1.start()
-        #t2.start()
+        t2.start()
 
         t1.join()
-       # t2.join()
+        t2.join()
 
 
 
@@ -205,11 +189,11 @@ class Arm_Movement:
 
                     self.checkTCPValues(rtde_r, rtde_c, targetTCP, armVelocity)
                     #
-                    # pickParcel()
+                    self.pickParcel()
                     #
                     # #################################################################
                     #
-                    # armVelocity = checkVelocity(in_q, armVelocity)
+                    #self.armVelocity = checkVelocity(in_q, armVelocity)
                     #
                     # #This section moves the arm to parcel drop location
                     self.movRobot(rtde_c, place_position, armVelocity, 1, True, True)
@@ -217,12 +201,12 @@ class Arm_Movement:
 
 
                     self.checkTCPValues(rtde_r, rtde_c, place_position, armVelocity)
-                    #
-                    # placeParcel()
+                    
+                    self.placeParcel()
 
                     #################################################################
 
-                    # armVelocity = checkVelocity(in_q, armVelocity)
+                    #self.armVelocity = checkVelocity(in_q, armVelocity)
                     #
                     self.movRobot(rtde_c, home_position, armVelocity, 1, True, False)
                     time.sleep(1)

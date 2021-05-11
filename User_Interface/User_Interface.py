@@ -12,7 +12,7 @@ import webbrowser
 
 
 HOST = '10.0.0.8'
-PORT = 5000
+PORT = 6005
 
 
 class Menubar(ttk.Frame):

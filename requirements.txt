@@ -30,3 +30,6 @@ pycocotools>=2.0  # COCO mAP
 vidgear>=0.2.0
 opencv-contrib-python>=4.5.1.48
 pyrealsense2>=2.44.0.3073
+
+#Arm Movment
+ur-rtde>=1.4.2
