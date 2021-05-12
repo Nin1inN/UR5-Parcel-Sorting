@@ -11,7 +11,7 @@
 ## Run Instructions ## 
 1) Server Side
    1. python3 Integrated_Server.py
+   2. python3 ArmMovement.py
 2) Client Side
-   1. python3 ArmMovement.py
-   2. python3 UserInterface.py 
+   1. python3 UserInterface.py 
 
