@@ -10,6 +10,7 @@ import cv2
 import pyrealsense2
 from queue import Queue
 from threading import Event
+import RPi.GPIO as GPIO
 
 
 class Arm_Movement:
@@ -34,6 +35,10 @@ class Arm_Movement:
         self.armIP = "10.0.0.4"
         self.armPORT = 30002
         self.systemStatus = "Offline"
+        GPIO.setmode(GPIO.BOARD)
+        GPIO.setup(23, GPIO.IN)
+        GPIO.setup(24, GPIO.OUT)
+        
 
 
     def setup(self):
@@ -65,9 +70,9 @@ class Arm_Movement:
         #Connect to arm
         while not(connected):
             try:
-                rtde_c = rtde_control.RTDEControlInterface(self.armIP)
-                rtde_r = rtde_receive.RTDEReceiveInterface(self.armIP)
-                connected = True
+               rtde_c = rtde_control.RTDEControlInterface(self.armIP)
+               rtde_r = rtde_receive.RTDEReceiveInterface(self.armIP)
+               connected = True
             except Exception as e:
                 print(e)
             finally:
@@ -222,16 +227,21 @@ class Arm_Movement:
 
 
 
-    #Ready for code
+    
     def pickParcel(self):
 
 
         #At this point (in checkTCPValues) can read the sensor (switch), if nothing, move lower in the z axis by small increments)
-        pass
+        
+        switch_input = GPIO.input(23)
+        
+        GPIO.output(24, GPIO.HIGH)
 
-    #Ready for code
+  
     def placeParcel(self):
-        pass
+        #pass
+        
+        GPIO.output(24, GPIO.LOW)
 
     def stopRobot(self, rtde_c):
 
