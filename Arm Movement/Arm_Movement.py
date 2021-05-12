@@ -162,10 +162,6 @@ class Arm_Movement:
                             targetTCP[1] = float(jsonReceived["third"])
                             targetTCP[2] = float(jsonReceived["fourth"])
 
-                            #For TCP orientation, probably wont need.
-                            # targetTCP[3] = float(jsonReceived["fifth"])
-                            # targetTCP[4] = float(jsonReceived["sixth"])
-                            # targetTCP[5] = float(jsonReceived["seventh"])
 
                         elif(jsonReceived["first"] == "Place Location"):
                             place_position[0] = float(jsonReceived["second"])
@@ -190,7 +186,6 @@ class Arm_Movement:
                     self.movRobot(rtde_c, targetTCP, armVelocity, 0.6, True, False)
                     time.sleep(1)
 
-                    #armPosition = "Unknown"
 
                     self.checkTCPValues(rtde_r, rtde_c, targetTCP, armVelocity)
                     #
@@ -220,7 +215,6 @@ class Arm_Movement:
 
                     #Arm at home position, ready to repeat
 
-                    #armPosition =  "Home"
 
 
 
@@ -229,17 +223,9 @@ class Arm_Movement:
 
     
     def pickParcel(self):
-
-
-        #At this point (in checkTCPValues) can read the sensor (switch), if nothing, move lower in the z axis by small increments)
-        
-        switch_input = GPIO.input(23)
-        
         GPIO.output(24, GPIO.HIGH)
 
-  
     def placeParcel(self):
-        #pass
         
         GPIO.output(24, GPIO.LOW)
 

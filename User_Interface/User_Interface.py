@@ -151,11 +151,6 @@ class GUI(ttk.Frame):
 
         """
 
-
-
-        #Rename, socket for client
-
-
         self.root.title('Arm Solutions')
         self.root.geometry("1200x800")
 
@@ -175,8 +170,6 @@ class GUI(ttk.Frame):
         self.root.option_add('*tearOff', 'FALSE') # Disables ability to tear menu bar into own window
 #
         self.systemStatusLabelText = tkinter.StringVar()
-
-
 
         self.systemStatusLabel = tkinter.Label(textvariable= self.systemStatusLabelText , bg = '#e81a1a', width = 25)
 
@@ -634,7 +627,6 @@ class GUI(ttk.Frame):
                 jsonResult = {"first":"Client 2", "second":"Start Up System"}
                 self.send(jsonResult)
 
-                #self.receive()
 
                 self.systemStatusLabelText.set("System Status - Online")
                 self.systemStatusLabel.config(bg = '#499c5f')

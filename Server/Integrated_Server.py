@@ -121,13 +121,9 @@ class Server:
             try:
                 jsonReceived = clientsocket.recv(1024)
                 jsonReceived = json.loads(jsonReceived.decode("utf-8"))
-              #  jsonReceived = json.loads(jsonReceived)
             except Exception as error:
                 print(error)
                 continue
-
-
-
             #Arm command
             if(jsonReceived["first"] == "ARM"):
 
@@ -205,19 +201,14 @@ class Server:
 
 
 
-                    #Client 0 for testing, client 1 for final version
 
                     try:
-
                         clientsocket.close()
-
-
                     except Exception as e:
                         logging.error(e)
 
                     finally:
-                        #Will need in final version.
-                        #del server.clients[1]
+                        del server.clients[-1]
                         return
                        #os._exit(1)
 
@@ -317,8 +308,8 @@ class Server:
                 ret, depth_frame, color_frame = sensor.get_frames()
                 status, depth, bounds, frame = yolov5.detect(model, color_frame, depth_frame, 192, objects, obj_colors)
 
-                # if(status == False):
-                #     continue
+                if(status == False):
+                    continue
 
 
 
@@ -355,13 +346,13 @@ class Server:
                 #Can use simple trig to get an aproximate of the depth.
 
                 # marker_distance would hold the values for the displacement between the markers and the camera (x-axis)
-                # x_distance = marker_distance[round(row_position_average)]
+                x_distance = server.marker_distance[round(row_position_average)]
 
-                # depth = math.sqrt( pow(depth, 2) - pow(x_distance, 2) )
+                depth = math.sqrt( pow(depth, 2) - pow(x_distance, 2) )
                 
-                # jsonResult = {"first": "Target TCP", "second":(worldPosition[0]/1000), "third": (worldPosition[1]/1000), "fourth": (depth/1000)}
+                jsonResult = {"first": "Target TCP", "second":(worldPosition[0]/1000), "third": (worldPosition[1]/1000), "fourth": (depth/1000)}
                 
-                # server.send(jsonResult, 1)
+                server.send(jsonResult, 1)
 
             else:
                 
@@ -514,8 +505,6 @@ class Server:
            print("Column Position")
 
            worldPosition = server.convertToWorldLocation(row_position_average, column_position_average)
-           # row_position_average = np.zeros(0)
-           # column_position_average = np.zeros(0)
 
         return row_position_average, column_position_average, worldPosition
 
@@ -547,7 +536,6 @@ class Server:
 
 
         #10 frames a sec is fine for the video stream
-        #If not, you are welcome to increase (problems with the GUI appear if you do)
         frame_rate = 10
         prev = 0
 
